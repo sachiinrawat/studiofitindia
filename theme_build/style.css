@@ -1,0 +1,17 @@
+/*
+Theme Name: Studio FIT India
+Theme URI: https://studiofitindia.com
+Author: Studio FIT India
+Author URI: https://studiofitindia.com
+Description: Premium animated online fitness studio theme
+Version: 3.1.0
+Requires at least: 5.0
+Tested up to: 6.4
+*/
+
+/* Reset & Base Styles handled by React app */
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+}
