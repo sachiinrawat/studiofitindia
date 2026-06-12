@@ -140,7 +140,7 @@ function studiofitindia_enqueue_scripts() {
   $theme_uri = get_template_directory_uri();
 
   // Dynamically find the CSS file hash
-  $css_files = glob($theme_dir . '/assets/index-T3HxSsN8.css');
+  $css_files = glob($theme_dir . '/assets/index--_sENOfy.css');
   $css_path = !empty($css_files) ? $css_files[0] : '';
   $css_uri  = !empty($css_path) ? $theme_uri . '/assets/' . basename($css_path) : '';
   $css_ver  = !empty($css_path) && file_exists($css_path) ? filemtime($css_path) : '1.0.0';
@@ -150,7 +150,7 @@ function studiofitindia_enqueue_scripts() {
   }
 
   // Dynamically find the JS file hash
-  $js_files = glob($theme_dir . '/assets/index-DDHpbFT4.js');
+  $js_files = glob($theme_dir . '/assets/index-B0e-z27c.js');
   $js_path = !empty($js_files) ? $js_files[0] : '';
   $js_uri  = !empty($js_path) ? $theme_uri . '/assets/' . basename($js_path) : '';
   $js_ver  = !empty($js_path) && file_exists($js_path) ? filemtime($js_path) : '1.0.0';
@@ -856,12 +856,12 @@ function studiofitindia_preload_assets() {
   $theme_uri = get_template_directory_uri();
   $theme_dir = get_template_directory();
 
-  $css_files = glob($theme_dir . '/assets/index-T3HxSsN8.css');
+  $css_files = glob($theme_dir . '/assets/index--_sENOfy.css');
   if (!empty($css_files)) {
     echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/' . basename($css_files[0])) . '" as="style">' . "\n";
   }
 
-  $js_files = glob($theme_dir . '/assets/index-DDHpbFT4.js');
+  $js_files = glob($theme_dir . '/assets/index-B0e-z27c.js');
   if (!empty($js_files)) {
     echo '<link rel="modulepreload" href="' . esc_url($theme_uri . '/assets/' . basename($js_files[0])) . '">' . "\n";
   }

@@ -219,14 +219,8 @@
       </div>
     </div>
 
-    <!-- SEO Content: visible to crawlers, hidden once React loads -->
-    <div id="sfi-seo-content" class="seo-content">
-    <script>
-      window.addEventListener('DOMContentLoaded', function() {
-        var el = document.getElementById('sfi-seo-content');
-        if (el) setTimeout(function(){ el.style.display = 'none'; }, 100);
-      });
-    </script>
+    <!-- SEO Content: visible to crawlers, visually hidden to prevent layout shift -->
+    <div id="sfi-seo-content" class="seo-content" style="position: absolute; left: -9999px; top: -9999px;">
       <h2>India's Leading Online Fitness Studio</h2>
       <p>
         Studio FIT India is India's premier online fitness studio offering live

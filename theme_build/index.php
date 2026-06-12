@@ -98,15 +98,9 @@
 
   <!-- React SPA Mount Point -->
   <div id="root"></div><!-- #root -->
-  <div id="sfi-seo-content">
+  <div id="sfi-seo-content" style="position: absolute; left: -9999px; top: -9999px;">
     <?php echo sfi_get_crawlable_html(); ?>
   </div>
-  <script>
-    window.addEventListener('DOMContentLoaded', function() {
-      var el = document.getElementById('sfi-seo-content');
-      if (el) setTimeout(function(){ el.style.display = 'none'; }, 100);
-    });
-  </script>
 
   <?php wp_footer(); ?>
 </body>
