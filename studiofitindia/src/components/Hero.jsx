@@ -19,11 +19,7 @@ const Hero = ({ onStartQuiz }) => {
 
       {/* === Main Centered Content === */}
       <div className="container mx-auto px-4 relative z-10 max-w-4xl text-center flex-grow flex flex-col justify-center pt-2">
-        {/* Brand Tag */}
-        <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-secondary/5 border border-secondary/15 text-secondary uppercase tracking-widest text-xs font-bold mb-6 mx-auto">
-          <Sparkles size={14} className="text-secondary animate-pulse" />
-          Top Online Home Workout
-        </div>
+
 
         {/* Dynamic Typography Title */}
         <h1 className="text-4xl md:text-6xl font-extrabold font-heading text-gray-900 mb-6 leading-tight max-w-3xl mx-auto uppercase tracking-tight">
