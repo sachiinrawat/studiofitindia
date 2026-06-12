@@ -27,8 +27,7 @@ const Hero = ({ onStartQuiz }) => {
 
         {/* Dynamic Typography Title */}
         <h1 className="text-4xl md:text-6xl font-extrabold font-heading text-gray-900 mb-6 leading-tight max-w-3xl mx-auto uppercase tracking-tight">
-          Your <span className="text-secondary">Online Fitness Studio</span> <br />
-          & Online Gym
+          Your <span className="text-secondary">Online Fitness Studio</span>
         </h1>
 
         {/* Human-Written High-Performance Copywriting */}

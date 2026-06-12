@@ -167,13 +167,13 @@ export const pricingPlans = [
         features: [
             "Unlimited Live Classes",
             "Content Library",
-            "60 Days Pause Facility",
+            "30 Days Pause Facility",
             "Valid for First 30 Members Only"
         ],
         badge: "First 30 Members Only",
         popular: true,
         paymentLink: "https://rzp.io/rzp/2yearmembership",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the 2 YEAR PLAN for ₹11900."
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the 2 YEAR PLAN for ₹8900."
     }
 ];
 
