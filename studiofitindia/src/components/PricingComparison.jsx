@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { pricingPlans, comparisonFeatures } from "../data/pricing";
 
 const PricingComparison = ({ onEnroll }) => {
-  const comparedPlans = pricingPlans;
+  const comparedPlans = pricingPlans.filter(p => p.id !== 10);
   const colCount = comparedPlans.length + 1;
 
   // Plan icons mapping

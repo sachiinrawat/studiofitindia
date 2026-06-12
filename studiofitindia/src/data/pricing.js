@@ -161,7 +161,7 @@ export const pricingPlans = [
     {
         id: 10,
         name: "2 YEAR PLAN",
-        price: 11900,
+        price: 8900,
         originalPrice: 15000,
         duration: "2 Years",
         features: [
@@ -180,10 +180,10 @@ export const pricingPlans = [
 // Feature comparison matrix for the comparison table
 // Each feature maps plan IDs to true (included) or false (not included)
 export const comparisonFeatures = [
-    { label: "Live Classes", values: { 1: "30", 2: "90", 3: "Unlimited", 4: "Unlimited", 8: "Unlimited", 5: "Unlimited", 6: "PT", 7: "PT", 9: "Unlimited", 10: "Unlimited" } },
-    { label: "Pause Option", values: { 1: false, 2: "10 Days", 3: "15 Days", 4: "30 Days", 8: false, 5: "15 Days", 6: false, 7: false, 9: "30 Days", 10: "60 Days" } },
-    { label: "Content Library", values: { 1: false, 2: false, 3: true, 4: true, 8: true, 5: true, 6: false, 7: false, 9: true, 10: true } },
-    { label: "Diet Consultation", values: { 1: false, 2: false, 3: false, 4: false, 8: "Customized", 5: "Customized", 6: "Included", 7: "Included", 9: false, 10: false } },
-    { label: "Progress Monitoring", values: { 1: false, 2: false, 3: false, 4: true, 8: "Weekly", 5: "Weekly", 6: "Daily", 7: "Daily", 9: false, 10: true } },
-    { label: "Priority Support", values: { 1: false, 2: false, 3: false, 4: false, 8: true, 5: true, 6: "Direct Coach", 7: "Direct Coach", 9: false, 10: true } },
+    { label: "Live Classes", values: { 1: "30", 2: "90", 3: "Unlimited", 4: "Unlimited", 8: "Unlimited", 5: "Unlimited", 6: "PT", 7: "PT", 9: "Unlimited" } },
+    { label: "Pause Option", values: { 1: false, 2: "10 Days", 3: "15 Days", 4: "30 Days", 8: false, 5: "15 Days", 6: false, 7: false, 9: "30 Days" } },
+    { label: "Content Library", values: { 1: false, 2: false, 3: true, 4: true, 8: true, 5: true, 6: false, 7: false, 9: true } },
+    { label: "Diet Consultation", values: { 1: false, 2: false, 3: false, 4: false, 8: "Customized", 5: "Customized", 6: "Included", 7: "Included", 9: false } },
+    { label: "Progress Monitoring", values: { 1: false, 2: false, 3: false, 4: true, 8: "Weekly", 5: "Weekly", 6: "Daily", 7: "Daily", 9: false } },
+    { label: "Priority Support", values: { 1: false, 2: false, 3: false, 4: false, 8: true, 5: true, 6: "Direct Coach", 7: "Direct Coach", 9: false } },
 ];

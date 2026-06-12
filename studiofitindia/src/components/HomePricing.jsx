@@ -19,6 +19,64 @@ const HomePricing = () => {
         </div>
 
 
+        {/* Special 2 Year Plan */}
+        {(() => {
+          const twoYearPlan = pricingPlans.find(p => p.id === 10);
+          if (!twoYearPlan) return null;
+          return (
+            <div className="max-w-4xl mx-auto mb-12 px-4">
+              <div className="bg-white border-2 border-pink-500 rounded-2xl p-8 md:p-10 shadow-sm flex flex-col md:flex-row items-stretch justify-between gap-8 hover:shadow-md transition-all">
+                {/* Left Column: Info */}
+                <div className="flex-grow flex flex-col justify-between">
+                  <div>
+                    <span className="inline-block bg-pink-600 text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded mb-4">
+                      Limited Time — First 30 Members Only
+                    </span>
+                    <h3 className="text-2xl font-extrabold text-gray-900 mb-2 font-heading">
+                      {twoYearPlan.name}
+                    </h3>
+                    <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-4">
+                      {twoYearPlan.duration} Membership — Lock in your fitness journey
+                    </p>
+                    <p className="text-gray-600 text-sm leading-relaxed max-w-lg mb-6">
+                      Commit to your transformation with our exclusive 2-Year Plan. Enjoy unlimited live fitness classes and our complete content library. Valid for the first 30 members only.
+                    </p>
+                  </div>
+
+                  <div className="flex items-baseline gap-2 mt-auto">
+                    <span className="text-3xl font-extrabold text-gray-900 tracking-tight font-heading">₹{twoYearPlan.price.toLocaleString()}</span>
+                    <span className="text-gray-500 text-xs uppercase font-bold">/ {twoYearPlan.duration}</span>
+                    {twoYearPlan.originalPrice && (
+                      <span className="text-xs text-gray-400 line-through font-semibold ml-2">₹{twoYearPlan.originalPrice.toLocaleString()}</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Right Column: Features list with left border divider */}
+                <div className="w-full md:w-[320px] flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-8">
+                  <div>
+                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Included in 2 Year Plan:</h4>
+                    <div className="space-y-3 mb-6">
+                      {twoYearPlan.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start gap-2.5">
+                          <Check size={16} className="text-pink-500 shrink-0 mt-0.5" strokeWidth={3} />
+                          <span className="text-xs font-semibold text-gray-700 leading-tight">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => setSelectedPlan(twoYearPlan)}
+                    className="w-full py-3.5 bg-pink-600 text-white hover:bg-pink-700 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
+                  >
+                    Secure Spot & Join Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Pricing Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
@@ -185,6 +243,8 @@ const HomePricing = () => {
             </div>
           );
         })()}
+
+
 
         {/* View All Button */}
         <div className="mt-12 text-center">
