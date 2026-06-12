@@ -11,7 +11,7 @@ const ThemeImage = ({ path, alt, className, loading = "lazy", width, height }) =
 
 const Hero = ({ onStartQuiz }) => {
   return (
-    <section className="relative min-h-[75vh] w-full flex flex-col justify-center overflow-hidden bg-white pt-3 pb-7 border-b border-gray-100">
+    <section className="relative min-h-[75vh] w-full flex flex-col justify-center overflow-hidden bg-white pt-16 pb-7 border-b border-gray-100">
       {/* === Static Clean Background Layers === */}
       <div className="absolute inset-0 z-0 bg-gray-50/50"></div>
 
