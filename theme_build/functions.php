@@ -367,7 +367,21 @@ function sfi_get_structured_data() {
   $path = rtrim($path, '/') ?: '/';
   $site_url = rtrim(home_url(), '/');
   $logo = "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777445549/image_ks0v7p.png";
+  $cfg = sfi_get_page_config();
 
+  if (preg_match('#^/blog/(.+)$#', $path, $matches)) {
+    return '<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "' . esc_attr($cfg['title']) . '",
+      "author": { "@type": "Organization", "name": "Studio FIT India" },
+      "publisher": { "@type": "Organization", "name": "Studio FIT India", "url": "https://studiofitindia.com" },
+      "datePublished": "2024-10-12",
+      "url": "https://studiofitindia.com' . $path . '"
+    }
+    </script>';
+  }
 
   // ── DEFAULT / HOME PAGE ───────────────────────────────────────────
   return '

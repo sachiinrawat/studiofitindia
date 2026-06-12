@@ -31,7 +31,7 @@
     />
     <meta name="author" content="Studio FIT India" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://studiofitindia.com/" />
+
 
     <!-- ===== Open Graph (Social Sharing) ===== -->
     <meta property="og:type" content="website" />
@@ -220,7 +220,13 @@
     </div>
 
     <!-- SEO Content: visible to crawlers, hidden once React loads -->
-    <div class="seo-content" style="display: none">
+    <div id="sfi-seo-content" class="seo-content">
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        var el = document.getElementById('sfi-seo-content');
+        if (el) setTimeout(function(){ el.style.display = 'none'; }, 100);
+      });
+    </script>
       <h2>India's Leading Online Fitness Studio</h2>
       <p>
         Studio FIT India is India's premier online fitness studio offering live

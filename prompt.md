@@ -1,313 +1,194 @@
-## Objective
+# Studio FIT India — SEO Problem & Solution PRD
 
-Increase website conversions, lead generation, and trial class signups by implementing six proven conversion-focused features on the fitness landing page.
-
----
-
-## Problem Statement
-
-Current website visitors may leave without taking action due to:
-
-* Lack of instant communication options
-* No lead capture mechanism for exiting users
-* Weak call-to-action visibility
-* Insufficient social proof
-* Lack of urgency
-* Limited engagement opportunities
-
-The goal is to maximize visitor-to-lead conversion using simple, high-impact improvements.
+**Prepared after full code audit of:** `github.com/sachiinrawat/studiofitindia`
+**Date:** June 2026
 
 ---
 
-# Feature 1: Sticky WhatsApp Button
+## Context
 
-## Goal
-
-Enable visitors to instantly connect with the business via WhatsApp from any page.
-
-## Requirements
-
-* Add a floating WhatsApp button fixed at the bottom-right corner.
-* Visible on all pages.
-* Opens WhatsApp with a pre-filled message.
-* Mobile and desktop responsive.
-
-## Example Message
-
-> Hi, I want to know more about the ₹1 live fitness trial class.
-
-## Expected Impact
-
-* Generate additional leads from existing traffic.
-* Improve direct communication.
-* Increase conversion rates.
-
-## Priority
-
-**Highest Impact**
-
-## Estimated Implementation Time
-
-**30 Minutes**
+Your site is a **React + Vite SPA** running inside a **WordPress theme** on Hostinger. When a page loads, WordPress serves a PHP shell, React boots via JavaScript, then renders the UI. Google crawls your URLs — but what it *actually* reads is very different from what users see.
 
 ---
 
-# Feature 2: Exit Intent Popup
+## Problem 1 — Crawlable HTML is hidden with `display:none`
 
-## Goal
+**File:** `index.html` (the Vite build)
 
-Capture users who are about to leave the website.
+**What's happening:**
+You added fallback SEO content blocks as a smart workaround, but wrapped them in `style="display:none"`. Google's documentation explicitly states it **ignores** `display:none` content during indexing. It also sees this as cloaking-adjacent, which can trigger ranking penalties.
 
-## Requirements
+```html
+<!-- THIS IS INVISIBLE TO GOOGLE -->
+<div class="seo-content" style="display: none">
+  <h2>India's Leading Online Fitness Studio</h2>
+  ...
+</div>
+```
 
-* Detect cursor movement toward browser close button.
-* Display popup before user exits.
-* Offer special trial class incentive.
+**What Google sees on your homepage:** Just the hero shell with one H1 and a paragraph. No programs, no pricing, no proof of relevance.
 
-## Popup Content Example
+**Fix:**
+Remove `display:none`. Use CSS to visually hide it for users after React loads, **not** `display:none`. The standard approach is:
 
-### Headline
+```css
+/* Applied by React after it mounts: */
+.seo-content { position: absolute; left: -9999px; }
+```
 
-> Wait! Try Your First Live Fitness Class for Just ₹1
-
-### CTA
-
-> Start on WhatsApp
-
-## Suggested Tools
-
-* Poptin
-* Wisepops
-* Custom JavaScript Implementation
-
-## Expected Impact
-
-* Recover abandoning visitors.
-* Capture 10–15% of exit traffic.
-
-## Priority
-
-**Highest Impact**
-
-## Estimated Implementation Time
-
-**1 Hour**
+Or better — since you already have `sfi_get_crawlable_html()` in `functions.php` (which is excellent), make the React `index.html` static shell content visible to crawlers by default and hidden only after JS runs.
 
 ---
 
-# Feature 3: Hero Section Optimization
+## Problem 2 — Canonical tag hardcoded to homepage on every page
 
-## Goal
+**File:** `studiofitindia/dist/index.html`
 
-Turn the homepage hero section into a conversion-focused lead generation area.
+**What's happening:**
+Every single page on your site has this in its static HTML head:
 
-## Requirements
+```html
+<link rel="canonical" href="https://studiofitindia.com/" />
+```
 
-### Hero Headline
+This tells Google: *"This page is a duplicate of the homepage."* Google then deindexes or ignores all inner pages — `/pricing`, `/yoga-classes-online`, `/blog/*` — because they self-declare as duplicates of `/`.
 
-> Lose Weight from Home. Start for Just ₹1.
+Your `SEO.jsx` tries to set the correct canonical using `window.location.href`, but that only runs client-side after JS loads. The static HTML that Googlebot reads first always has the homepage canonical.
 
-### CTA Button
-
-> WhatsApp to Start
-
-### Rules
-
-* Single clear headline.
-* Single CTA button.
-* Remove unnecessary sliders.
-* Remove multiple competing options.
-* Keep messaging simple and focused.
-
-## Expected Impact
-
-* Increase CTA clicks.
-* Improve first impression.
-* Reduce visitor confusion.
-
-## Priority
-
-**High Impact**
-
-## Estimated Implementation Time
-
-**1 Hour**
+**Fix:**
+The canonical in `index.html` should either be removed entirely, or your `functions.php` already has `studiofitindia_seo_meta_tags()` that outputs the correct per-route canonical — verify it is running **before** `wp_head()` outputs anything and that WordPress's own canonical filter is suppressed (you already have `studiofitindia_disable_canonical_redirect` — confirm it's working).
 
 ---
 
-# Feature 4: Live Chat Widget
+## Problem 3 — SEO content in `functions.php` is not being rendered correctly
 
-## Goal
+**File:** `theme_build/functions.php` — `sfi_get_crawlable_html()`
 
-Provide instant engagement and support for visitors.
+**What's happening:**
+You have a very well-written `sfi_get_crawlable_html()` function in PHP that returns full, rich HTML for every route — home, pricing, programs, all 6 program landing pages, blog posts, reviews, etc. This is the right idea. However, `front-page.php` renders it inside `<div id="root">` and React overwrites it on mount, which means:
 
-## Requirements
+1. When React boots, it calls `ReactDOM.createRoot(document.getElementById('root')).render(...)` which **deletes** the PHP HTML.
+2. If `#root` is the React mount point, the crawlable content disappears the moment JS runs.
+3. More critically — for routes other than `/` (e.g. `/pricing`, `/yoga-classes-online`), WordPress may be loading `index.php` (the fallback template) instead of `front-page.php`, meaning the crawlable HTML function may not be called at all.
 
-* Add live chat widget.
-* Display proactive welcome message.
-* Mobile responsive.
+**Fix:**
+Render crawlable HTML in a **separate `<div>` outside `#root`**, and use JavaScript to remove it after React mounts. This way crawlers always see the content, and users never see the duplicate:
 
-## Suggested Tools
+```php
+<!-- index.php / front-page.php -->
+<div id="root"></div>
+<div id="sfi-seo-content">
+  <?php echo sfi_get_crawlable_html(); ?>
+</div>
 
-* Tidio
-* Intercom
-* Crisp
-
-## Auto Message Example
-
-> Hi! Want to try a live fitness class for ₹1? Reply here 👇
-
-## Expected Impact
-
-* Increase user engagement.
-* Improve conversion rates.
-* Help answer objections instantly.
-
-## Priority
-
-**High Impact**
-
-## Estimated Implementation Time
-
-**20 Minutes**
+<script>
+  // Remove after React mounts so users don't see duplicate content
+  window.addEventListener('DOMContentLoaded', function() {
+    var el = document.getElementById('sfi-seo-content');
+    if (el) setTimeout(function(){ el.style.display = 'none'; }, 100);
+  });
+</script>
+```
 
 ---
 
-# Feature 5: Real Member Testimonials
+## Problem 4 — `.htaccess` routes to `index.php` instead of `index.html`
 
-## Goal
+**File:** `theme_build/.htaccess`
 
-Build trust using authentic customer success stories.
+**What's happening:**
+```apache
+RewriteRule . /index.php [L]
+```
 
-## Requirements
+This is WordPress's default routing — it sends all unmatched URLs to `index.php`. That's correct for a WordPress site. But the issue is that `index.php` (your React template) must then correctly handle every SPA route and return a 200 status with the right HTML. If WordPress's template loading logic has any gaps, crawlers hitting `/pricing` or `/yoga-classes-online` directly could get a 404 or wrong template.
 
-* Add member photos.
-* Include before-and-after transformations.
-* Show member name and city.
-* Position testimonials above the primary CTA section.
+You already handle this in `functions.php` with `sfi_is_spa_route()` — but this needs to be verified live. A single route failing silently costs you an indexed page.
 
-## Testimonial Structure
+**Fix:**
+Test every route using Google Search Console's URL Inspection tool. Specifically test:
+- `https://studiofitindia.com/yoga-classes-online`
+- `https://studiofitindia.com/pricing`
+- `https://studiofitindia.com/blog/hiit-training-for-weight-loss`
 
-* Member Photo
-* Name
-* City
-* Short Success Story
-* Results Achieved
-
-## Expected Impact
-
-* Increase credibility.
-* Reduce purchase hesitation.
-* Strengthen social proof.
-
-## Priority
-
-**Trust Builder**
-
-## Estimated Implementation Time
-
-**1 Hour**
+If any returns a 404 or empty page, add explicit WordPress rewrite rules for that path.
 
 ---
 
-# Feature 6: Urgency Section
+## Problem 5 — Sitemap has a dead URL (`/fat-to-fit`)
 
-## Goal
+**File:** `studiofitindia/public/sitemap.xml`
 
-Create urgency that encourages immediate action.
+**What's happening:**
+```xml
+<loc>https://studiofitindia.com/fat-to-fit</loc>
+```
 
-## Requirements
+This URL is in your sitemap but has **no route in `App.jsx`** and is **not handled in `sfi_is_spa_route()`** in `functions.php`. Google crawls it, gets a blank/error page, and marks it as a **soft 404** — wasting crawl budget and signaling low site quality.
 
-Display urgency messaging near CTA buttons.
-
-## Example Messages
-
-* Only 12 Trial Spots Left This Week
-* ₹1 Offer Ends Sunday
-* Limited Seats Available
-
-## Placement
-
-* Hero Section
-* Checkout Area
-* CTA Sections
-
-## Expected Impact
-
-* Increase click-through rates.
-* Improve lead conversions.
-* Encourage faster decision making.
-
-## Priority
-
-**Conversion Trigger**
-
-## Estimated Implementation Time
-
-**15 Minutes**
+**Fix:**
+Either:
+- Add a `/fat-to-fit` route in `App.jsx`, or
+- Remove it from the sitemap immediately.
 
 ---
 
-# Success Metrics (KPIs)
+## Problem 6 — Blog post schema is generic for all posts
 
-## Primary Metrics
+**File:** `theme_build/functions.php` — `sfi_get_structured_data()`
 
-* Number of WhatsApp Leads
-* Trial Class Registrations
-* Landing Page Conversion Rate
-* CTA Click-Through Rate (CTR)
+**What's happening:**
+The function currently only returns a generic `LocalBusiness` schema regardless of the current route. For blog posts, the structured data should be `Article` schema with `headline`, `author`, `datePublished`, and `image`. This is a missed opportunity for Google's rich results (article carousels, knowledge panels).
 
-## Secondary Metrics
+**Fix:**
+Add route-specific schema in `sfi_get_structured_data()` for blog posts:
 
-* Chat Widget Interactions
-* Exit Popup Conversions
-* Testimonial Engagement
-* WhatsApp Clicks
-
----
-
-# Implementation Priority
-
-## Phase 1 (Immediate)
-
-1. Sticky WhatsApp Button
-2. Exit Intent Popup
-
-## Phase 2
-
-3. Hero Section Optimization
-4. Live Chat Widget
-
-## Phase 3
-
-5. Member Testimonials
-6. Urgency Messaging
+```php
+if (preg_match('#^/blog/(.+)$#', $path, $matches)) {
+  return '<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "' . $cfg['title'] . '",
+    "author": { "@type": "Organization", "name": "Studio FIT India" },
+    "publisher": { "@type": "Organization", "name": "Studio FIT India", "url": "https://studiofitindia.com" },
+    "datePublished": "2024-10-12",
+    "url": "https://studiofitindia.com' . $path . '"
+  }
+  </script>';
+}
+```
 
 ---
 
-# Expected Outcome
+## What You Got Right (Do Not Change)
 
-After implementing all six features, the website should:
-
-* Generate more WhatsApp inquiries.
-* Increase trial class registrations.
-* Reduce visitor drop-offs.
-* Build trust and credibility.
-* Improve overall conversion rates through proven CRO (Conversion Rate Optimization) strategies.
-* Create a smoother user journey from visit to signup.
+| What | Why it's good |
+|---|---|
+| `sfi_get_crawlable_html()` in PHP | Correct pattern — unique rich HTML per route served server-side |
+| `sfi_get_page_config()` in PHP | Per-route title, description, keywords, canonical — exactly what's needed |
+| `studiofitindia_seo_meta_tags()` | PHP-level meta tags so Google sees them without waiting for JS |
+| Schema.org on homepage | `LocalBusiness` + `FitnessCenter` with address, phone, offers — solid |
+| URL structure | `/yoga-classes-online`, `/hiit-training-online` etc. are keyword-rich and correct |
+| `robots.txt` | Clean, allows all crawlers, links to sitemap |
+| Blog content | 5 blog posts with real content, correct slugs, internal linking |
+| `sfi_sitemap_output()` | Dynamic PHP sitemap that rebuilds on every request — great |
 
 ---
 
-# Definition of Success
+## Priority Order to Fix
 
-The project will be considered successful when:
+| # | Fix | Effort | SEO Impact |
+|---|---|---|---|
+| 1 | Move crawlable HTML outside `#root`, remove `display:none` | 30 min | Very High |
+| 2 | Remove or fix the hardcoded `canonical` in `index.html` | 10 min | Very High |
+| 3 | Remove `/fat-to-fit` from sitemap | 5 min | Medium |
+| 4 | Test all routes via GSC URL Inspection tool | 1 hour | High |
+| 5 | Add `Article` schema for blog post routes | 1 hour | Medium |
+| 6 | Submit updated sitemap to Google Search Console | 5 min | Medium |
 
-* WhatsApp lead volume increases.
-* Trial signups increase consistently.
-* Exit traffic recovery improves.
-* CTA click-through rates increase.
-* Overall landing page conversion rate improves significantly.
+---
 
-You can save this directly as `fitness-conversion-prd.md`.
+## One-Line Summary
 
-just do as i say do not change anything on your own i am telling you this clearly
+Your PHP backend (`functions.php`) is well-built for SEO. Your React frontend is fighting it. The fix is not a rewrite — it's making sure the PHP-rendered HTML is **visible to Google** and not overwritten or hidden before the crawler has a chance to read it.
