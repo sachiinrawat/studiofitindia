@@ -19,64 +19,6 @@ const HomePricing = () => {
         </div>
 
 
-        {/* Special 2 Year Plan */}
-        {(() => {
-          const twoYearPlan = pricingPlans.find(p => p.id === 10);
-          if (!twoYearPlan) return null;
-          return (
-            <div className="max-w-4xl mx-auto mb-12 px-4">
-              <div className="bg-white border-2 border-pink-500 rounded-2xl p-8 md:p-10 shadow-sm flex flex-col md:flex-row items-stretch justify-between gap-8 hover:shadow-md transition-all">
-                {/* Left Column: Info */}
-                <div className="flex-grow flex flex-col justify-between">
-                  <div>
-                    <span className="inline-block bg-pink-600 text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded mb-4">
-                      Limited Time — First 30 Members Only
-                    </span>
-                    <h3 className="text-2xl font-extrabold text-gray-900 mb-2 font-heading">
-                      {twoYearPlan.name}
-                    </h3>
-                    <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-4">
-                      {twoYearPlan.duration} Membership — Lock in your fitness journey
-                    </p>
-                    <p className="text-gray-600 text-sm leading-relaxed max-w-lg mb-6">
-                      Commit to your transformation with our exclusive 2-Year Plan. Enjoy unlimited live fitness classes and our complete content library. Valid for the first 30 members only.
-                    </p>
-                  </div>
-
-                  <div className="flex items-baseline gap-2 mt-auto">
-                    <span className="text-3xl font-extrabold text-gray-900 tracking-tight font-heading">₹{twoYearPlan.price.toLocaleString()}</span>
-                    <span className="text-gray-500 text-xs uppercase font-bold">/ {twoYearPlan.duration}</span>
-                    {twoYearPlan.originalPrice && (
-                      <span className="text-xs text-gray-400 line-through font-semibold ml-2">₹{twoYearPlan.originalPrice.toLocaleString()}</span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Right Column: Features list with left border divider */}
-                <div className="w-full md:w-[320px] flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-8">
-                  <div>
-                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Included in 2 Year Plan:</h4>
-                    <div className="space-y-3 mb-6">
-                      {twoYearPlan.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5">
-                          <Check size={16} className="text-pink-500 shrink-0 mt-0.5" strokeWidth={3} />
-                          <span className="text-xs font-semibold text-gray-700 leading-tight">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => setSelectedPlan(twoYearPlan)}
-                    className="w-full py-3.5 bg-pink-600 text-white hover:bg-pink-700 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
-                  >
-                    Secure Spot & Join Now
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })()}
 
         {/* Pricing Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
@@ -110,6 +52,7 @@ const HomePricing = () => {
                     {plan.originalPrice && (
                       <p className="text-xs text-gray-400 line-through mt-0.5">₹{plan.originalPrice.toLocaleString()}</p>
                     )}
+                    <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block">5% GST Excluded</p>
                   </div>
 
                   <div className="space-y-3.5 mb-6 flex-grow">
@@ -161,6 +104,7 @@ const HomePricing = () => {
                   {plan.originalPrice && (
                     <p className="text-xs text-gray-400 line-through mt-0.5">₹{plan.originalPrice.toLocaleString()}</p>
                   )}
+                  <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block">5% GST Excluded</p>
                 </div>
 
                 <div className="space-y-3.5 mb-6 flex-grow">
@@ -185,45 +129,53 @@ const HomePricing = () => {
           ))}
         </div>
 
-        {/* Special Featured Family Fitness Plan */}
+        {/* Family Fitness Plans */}
         {(() => {
-          const familyPlan = pricingPlans.find(p => p.id === 9);
-          if (!familyPlan) return null;
+          const family3M = pricingPlans.find(p => p.id === 11);
+          if (!family3M) return null;
           return (
             <div className="max-w-4xl mx-auto mt-16 px-4">
+              <h3 className="text-center text-xl font-bold font-heading text-gray-900 mb-2">Family Fitness Plans</h3>
+              <p className="text-center text-gray-500 text-sm mb-8">Fitness for the whole family.</p>
+
+              {/* 3-Month Family Plan Card */}
               <div className="bg-white border-2 border-secondary rounded-2xl p-8 md:p-10 shadow-sm flex flex-col md:flex-row items-stretch justify-between gap-8 hover:shadow-md transition-all">
                 {/* Left Column: Info */}
                 <div className="flex-grow flex flex-col justify-between">
                   <div>
                     <span className="inline-block bg-secondary text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded mb-4">
-                      Best Value — Special Family Package
+                      Early Bird — Join Before 1st July
                     </span>
                     <h3 className="text-2xl font-extrabold text-gray-900 mb-2 font-heading">
-                      {familyPlan.name}
+                      {family3M.name}
                     </h3>
                     <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-4">
-                      {familyPlan.duration} Membership — Share with up to 3 family members!
+                      {family3M.duration} Membership
                     </p>
                     <p className="text-gray-600 text-sm leading-relaxed max-w-lg mb-6">
-                      Get unlimited interactive fitness classes for your entire household. Train together from home under certified coaches, pause your plan for up to 30 days, or start whenever you are ready.
+                      Get fit together with our Family Fitness Plan. Enjoy unlimited live fitness classes and our complete content library. Valid for up to 3 family members.
                     </p>
                   </div>
 
-                  <div className="flex items-baseline gap-2 mt-auto">
-                    <span className="text-3xl font-extrabold text-gray-900 tracking-tight font-heading">₹{familyPlan.price.toLocaleString()}</span>
-                    <span className="text-gray-500 text-xs uppercase font-bold">/ {familyPlan.duration}</span>
-                    {familyPlan.originalPrice && (
-                      <span className="text-xs text-gray-400 line-through font-semibold ml-2">₹{familyPlan.originalPrice.toLocaleString()}</span>
-                    )}
+                  <div className="mt-auto">
+                    <div className="flex items-center gap-2.5 mb-1">
+                      <span className="text-gray-400 line-through text-base font-semibold">₹{family3M.originalPrice.toLocaleString()}</span>
+                      <span className="text-[10px] bg-green-50 text-green-700 border border-green-200 font-bold px-2 py-0.5 rounded">Regular price after 1st July</span>
+                    </div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-3xl font-extrabold text-gray-900 tracking-tight font-heading">₹{family3M.price.toLocaleString()}</span>
+                      <span className="text-gray-500 text-xs uppercase font-bold">/ {family3M.duration}</span>
+                    </div>
+                    <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block self-start">5% GST Excluded</p>
                   </div>
                 </div>
 
                 {/* Right Column: Features list with left border divider */}
                 <div className="w-full md:w-[320px] flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-8">
                   <div>
-                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Included in Family Package:</h4>
+                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Included in Family Plan:</h4>
                     <div className="space-y-3 mb-6">
-                      {familyPlan.features.map((feature, idx) => (
+                      {family3M.features.map((feature, idx) => (
                         <div key={idx} className="flex items-start gap-2.5">
                           <Check size={16} className="text-secondary shrink-0 mt-0.5" strokeWidth={3} />
                           <span className="text-xs font-semibold text-gray-700 leading-tight">{feature}</span>
@@ -233,18 +185,16 @@ const HomePricing = () => {
                   </div>
 
                   <button
-                    onClick={() => setSelectedPlan(familyPlan)}
-                    className="w-full py-3.5 bg-secondary text-white hover:bg-secondary/95 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
+                    onClick={() => setSelectedPlan(family3M)}
+                    className="w-full py-3.5 bg-secondary hover:bg-secondary/95 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
                   >
-                    Secure Family Spot & Join Now
+                    Secure Family Spot &amp; Join Now
                   </button>
                 </div>
               </div>
             </div>
           );
         })()}
-
-
 
         {/* View All Button */}
         <div className="mt-12 text-center">

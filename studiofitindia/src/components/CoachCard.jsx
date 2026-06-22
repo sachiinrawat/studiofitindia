@@ -13,7 +13,7 @@ const CoachCard = ({ coach, onSelect }) => {
         <img
           src={imageUrl}
           decoding="async"
-          className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-105"
           onError={(e) => {
             e.target.style.display = "none";
             e.target.parentElement.classList.add("bg-gray-100");

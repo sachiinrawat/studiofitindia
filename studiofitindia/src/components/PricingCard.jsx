@@ -62,6 +62,7 @@ const PricingCard = ({ plan, onEnroll }) => {
             </span>
             <span className="text-gray-500 text-xs font-bold tracking-wide uppercase">/ {plan.duration}</span>
           </div>
+          <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block">5% GST Excluded</p>
         </div>
       </div>
 

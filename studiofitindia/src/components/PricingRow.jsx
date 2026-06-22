@@ -48,6 +48,7 @@ const PricingRow = ({ plan, index, onEnroll }) => {
                   </span>
                   <span className="text-gray-400 font-bold">/ {plan.duration.split(' ')[0]}</span>
                 </div>
+                <p className="text-[11px] text-orange-600 font-semibold mt-2 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block">5% GST Excluded</p>
               </div>
 
               <button

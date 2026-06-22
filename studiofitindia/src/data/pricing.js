@@ -18,42 +18,42 @@ export const pricingPlans = [
     {
         id: 2,
         name: "STANDARD",
-        price: 2900,
+        price: 3200,
         originalPrice: 3999,
         duration: "3 Months",
-        offerHighlight: "1 Month Free",
+        offerHighlight: " 15 Days Free",
         features: [
             "85 Live Classes",
             "10 Days Pause",
-            "1 Month Completely Free"
+            "No Content Library"
         ],
         badge: null,
         popular: true,
         paymentLink: "https://rzp.io/rzp/3monthstudiofitindia",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the STANDARD (3 Months + 15 Days Free) plan for ₹2900."
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the STANDARD (3 Months + 15 Days Free) plan for ₹3200."
     },
     {
         id: 3,
         name: "PRO",
-        price: 4600,
+        price: 5000,
         originalPrice: 6999,
         duration: "6 Months",
-        offerHighlight: "2 Months Free",
+        offerHighlight: " 1 Month Free",
         features: [
             "Unlimited Live Classes",
             "15 Days Pause",
             "Content Library",
-            "2 Months Completely Free"
+
         ],
         badge: null,
         popular: true,
         paymentLink: "https://rzp.io/rzp/6monthstudiofitindia",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the PRO (6 Months + 1 Month Free) plan for ₹5500."
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the PRO (6 Months + 1 Month Free) plan for ₹5000."
     },
     {
         id: 4,
         name: "ELITE",
-        price: 7500,
+        price: 7000,
         originalPrice: 8999,
         duration: "1 Year",
         features: [
@@ -64,13 +64,13 @@ export const pricingPlans = [
         badge: null,
         popular: false,
         paymentLink: "https://rzp.io/rzp/1yearstudiofitindia",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the ELITE (1 Year) plan for ₹7500."
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the ELITE (1 Year) plan for ₹7000."
     },
     {
         id: 8,
         name: "1 MONTH TRANSFORMATION PLAN",
-        price: 2900,
-        originalPrice: 3499,
+        price: 1699,
+        originalPrice: 2900,
         duration: "1 Month",
         features: [
             "Unlimited Live Classes",
@@ -80,10 +80,10 @@ export const pricingPlans = [
             "No Pause Option",
             "Priority Support"
         ],
-        badge: "Highly Popular",
+        badge: "Valid till 5th July",
         popular: false,
         paymentLink: "https://rzp.io/rzp/onemonthtransformation",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the 1 Month Transformation Plan for ₹2900."
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the 1 Month Transformation Plan for ₹1699."
     },
     {
         id: 5,
@@ -141,39 +141,24 @@ export const pricingPlans = [
         whatsappMessage: "Hi Studio Fit India, I want to JOIN the 1-on-1 Personal Training (3 Months) plan for ₹38000."
     },
     {
-        id: 9,
-        name: "FAMILY FITNESS PLAN",
-        price: 9900,
-        originalPrice: 21000,
-        duration: "1 Year",
+        id: 11,
+        name: "FAMILY FITNESS PLAN (3 MONTHS)",
+        price: 5000,
+        originalPrice: 6000,
+        duration: "3 Months",
+        earlyBirdDeadline: "1st July",
+        earlyBirdPrice: 5000,
+        regularPrice: 6000,
         features: [
             "Unlimited Classes",
             "Up to 3 Family Members",
             "Content Library",
-            "30-Days Pause Facility",
             "Buy Now, Start Later"
         ],
-        badge: "Special Family Package",
-        popular: true,
-        paymentLink: "https://rzp.io/rzp/familyfitnessplan",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the FAMILY FITNESS PLAN (1 Year) for ₹9900."
-    },
-    {
-        id: 10,
-        name: "2 YEAR PLAN",
-        price: 8900,
-        originalPrice: 15000,
-        duration: "2 Years",
-        features: [
-            "Unlimited Live Classes",
-            "Content Library",
-            "30 Days Pause Facility",
-            "Valid for First 30 Members Only"
-        ],
-        badge: "First 30 Members Only",
-        popular: true,
-        paymentLink: "https://rzp.io/rzp/2yearmembership",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the 2 YEAR PLAN for ₹8900."
+        badge: "Early Bird Offer",
+        popular: false,
+        paymentLink: "https://rzp.io/rzp/3monthsfamilyfitnessplan",
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the FAMILY FITNESS PLAN (3 Months) Early Bird for ₹5000."
     }
 ];
 
