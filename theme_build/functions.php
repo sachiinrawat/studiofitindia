@@ -150,7 +150,7 @@ function studiofitindia_enqueue_scripts() {
   }
 
   // Dynamically find the JS file hash
-  $js_files = glob($theme_dir . '/assets/index-iVwQo4Lg.js');
+  $js_files = glob($theme_dir . '/assets/index-CwKPLVhW.js');
   $js_path = !empty($js_files) ? $js_files[0] : '';
   $js_uri  = !empty($js_path) ? $theme_uri . '/assets/' . basename($js_path) : '';
   $js_ver  = !empty($js_path) && file_exists($js_path) ? filemtime($js_path) : '1.0.0';
@@ -861,7 +861,7 @@ function studiofitindia_preload_assets() {
     echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/' . basename($css_files[0])) . '" as="style">' . "\n";
   }
 
-  $js_files = glob($theme_dir . '/assets/index-iVwQo4Lg.js');
+  $js_files = glob($theme_dir . '/assets/index-CwKPLVhW.js');
   if (!empty($js_files)) {
     echo '<link rel="modulepreload" href="' . esc_url($theme_uri . '/assets/' . basename($js_files[0])) . '">' . "\n";
   }

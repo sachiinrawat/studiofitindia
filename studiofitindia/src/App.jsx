@@ -1,4 +1,5 @@
 import { lazy, Suspense, useState } from "react";
+import useAutoRefresh from "./utils/useAutoRefresh";
 import {
   BrowserRouter as Router,
   Routes,
@@ -72,6 +73,10 @@ function AnimatedRoutes({ onStartQuiz }) {
 
 function App() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
+
+  // Reload the page when user returns after 60 s away — ensures
+  // they always see the latest pricing and content after a deployment.
+  useAutoRefresh(60_000);
 
   return (
     <Router>

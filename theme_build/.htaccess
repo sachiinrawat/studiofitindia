@@ -17,3 +17,23 @@
   Order allow,deny
   Deny from all
 </FilesMatch>
+
+# ── Cache Control ─────────────────────────────────────────────────────
+# HTML & manifest: always revalidate so users get the latest deployment
+# immediately without a manual refresh.
+<FilesMatch "\.(html|htm|xml|json|webmanifest)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </IfModule>
+</FilesMatch>
+
+# JS, CSS, fonts, images: cache for 1 year — safe because Vite adds a
+# unique hash to every filename on each build (e.g. main.a3f2c1.js).
+# A new deployment means new filenames, so stale files are never served.
+<FilesMatch "\.(js|css|woff2?|ttf|otf|eot|svg|png|jpg|jpeg|gif|ico|webp|avif)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </IfModule>
+</FilesMatch>

@@ -34,6 +34,7 @@ const CoachModal = ({ coach, onClose }) => {
                 src={imageUrl}
                 alt={coach.name}
                 className="w-full h-full object-cover"
+                style={{ objectPosition: coach.imagePosition || "center" }}
                 onError={(e) => {
                   e.target.style.display = "none";
                   e.target.parentElement.classList.add("bg-gray-100");

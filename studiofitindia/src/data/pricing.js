@@ -69,8 +69,8 @@ export const pricingPlans = [
     {
         id: 8,
         name: "1 MONTH TRANSFORMATION PLAN",
-        price: 1699,
-        originalPrice: 2900,
+        price: 3500,
+        originalPrice: 4000,
         duration: "1 Month",
         features: [
             "Unlimited Live Classes",
@@ -83,12 +83,12 @@ export const pricingPlans = [
         badge: "Valid till 5th July",
         popular: false,
         paymentLink: "https://rzp.io/rzp/onemonthtransformation",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the 1 Month Transformation Plan for ₹1699."
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the 1 Month Transformation Plan for ₹3500."
     },
     {
         id: 5,
         name: "TRANSFORMATION ELITE",
-        price: 7900,
+        price: 9000,
         originalPrice: 10500,
         duration: "90 Days",
         features: [
