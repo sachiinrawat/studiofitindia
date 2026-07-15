@@ -18,10 +18,10 @@ export const pricingPlans = [
     {
         id: 2,
         name: "STANDARD",
-        price: 3200,
+        price: 2900,
         originalPrice: 3999,
         duration: "3 Months",
-        offerHighlight: " 15 Days Free",
+        offerHighlight: " 1 Month Free",
         features: [
             "85 Live Classes",
             "10 Days Pause",
@@ -30,15 +30,15 @@ export const pricingPlans = [
         badge: null,
         popular: true,
         paymentLink: "https://rzp.io/rzp/3monthstudiofitindia",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the STANDARD (3 Months + 15 Days Free) plan for ₹3200."
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the STANDARD (3 Months + 1 Month Free) plan for ₹2900."
     },
     {
         id: 3,
         name: "PRO",
-        price: 5000,
+        price: 4600,
         originalPrice: 6999,
         duration: "6 Months",
-        offerHighlight: " 1 Month Free",
+        offerHighlight: " 2 Months Free",
         features: [
             "Unlimited Live Classes",
             "15 Days Pause",
@@ -48,7 +48,7 @@ export const pricingPlans = [
         badge: null,
         popular: true,
         paymentLink: "https://rzp.io/rzp/6monthstudiofitindia",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the PRO (6 Months + 1 Month Free) plan for ₹5000."
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the PRO (6 Months + 2 Months Free) plan for ₹4600."
     },
     {
         id: 4,
@@ -146,19 +146,16 @@ export const pricingPlans = [
         price: 5000,
         originalPrice: 6000,
         duration: "3 Months",
-        earlyBirdDeadline: "1st July",
-        earlyBirdPrice: 5000,
-        regularPrice: 6000,
         features: [
             "Unlimited Classes",
             "Up to 3 Family Members",
             "Content Library",
             "Buy Now, Start Later"
         ],
-        badge: "Early Bird Offer",
+        badge: "Join Before 1 August",
         popular: false,
         paymentLink: "https://rzp.io/rzp/3monthsfamilyfitnessplan",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the FAMILY FITNESS PLAN (3 Months) Early Bird for ₹5000."
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the FAMILY FITNESS PLAN (3 Months) for ₹5000."
     }
 ];
 

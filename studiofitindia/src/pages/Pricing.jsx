@@ -182,7 +182,7 @@ const Pricing = () => {
                   <div className="flex-grow flex flex-col justify-between">
                     <div>
                       <span className="inline-block bg-secondary text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded mb-4">
-                        Early Bird — Join Before 1st July
+                        Join Before 1st August
                       </span>
                       <h3 className="text-2xl font-extrabold text-gray-900 mb-2 font-heading">
                         {family3M.name}
@@ -198,7 +198,6 @@ const Pricing = () => {
                     <div className="mt-auto">
                       <div className="flex items-center gap-2.5 mb-1">
                         <span className="text-gray-400 line-through text-base font-semibold">₹{family3M.originalPrice.toLocaleString()}</span>
-                        <span className="text-[10px] bg-green-50 text-green-700 border border-green-200 font-bold px-2 py-0.5 rounded">Regular price after 1st July</span>
                       </div>
                       <div className="flex items-baseline gap-2">
                         <span className="text-3xl font-extrabold text-gray-900 tracking-tight font-heading">₹{family3M.price.toLocaleString()}</span>

@@ -74,9 +74,9 @@ function AnimatedRoutes({ onStartQuiz }) {
 function App() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
 
-  // Reload the page when user returns after 60 s away — ensures
-  // they always see the latest pricing and content after a deployment.
-  useAutoRefresh(60_000);
+  // Instantly reload when a new deployment is detected — on page load
+  // and every time the user returns to this tab.
+  useAutoRefresh();
 
   return (
     <Router>

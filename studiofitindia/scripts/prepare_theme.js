@@ -29,8 +29,8 @@ fs.mkdirSync(themeAssetsDir, { recursive: true });
 console.log('📂 Copying new assets to theme folder...');
 fs.cpSync(path.join(distDir, 'assets'), themeAssetsDir, { recursive: true });
 
-// Copy robots.txt and sitemap.xml to theme root
-const publicFiles = ['robots.txt', 'sitemap.xml'];
+// Copy robots.txt, sitemap.xml and version.json to theme root
+const publicFiles = ['robots.txt', 'sitemap.xml', 'version.json'];
 publicFiles.forEach(file => {
     const srcPath = path.join(distDir, file);
     const destPath = path.join(themeDir, file);

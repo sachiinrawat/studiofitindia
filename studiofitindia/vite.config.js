@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import fs from 'fs'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,7 +9,22 @@ export default defineConfig({
   plugins: [
     react(),
 
-    // ── Dev-only chatbot.php emulator ───────────────────────────────
+    // ── Version file: writes dist/version.json on every build ───────
+    // The useAutoRefresh hook fetches this file at runtime and reloads
+    // the page instantly whenever a new deployment is detected.
+    {
+      name: 'generate-version-json',
+      closeBundle() {
+        const version = { buildTime: Date.now() };
+        const outDir = path.resolve(__dirname, 'dist');
+        fs.writeFileSync(
+          path.join(outDir, 'version.json'),
+          JSON.stringify(version)
+        );
+        console.log(`[version] Wrote dist/version.json → buildTime: ${version.buildTime}`);
+      },
+    },
+
     // Vite can't run PHP; this Node.js middleware handles /chatbot.php
     // so the chatbot works identically on npm run dev.
     // Uses https module (works on ALL Node.js versions, including v16).
