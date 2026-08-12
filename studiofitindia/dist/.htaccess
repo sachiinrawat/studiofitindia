@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Optional but recommended: 
+# Force HTTPS and caching rules for better SEO on Hostinger
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|webp|png|jpg|jpeg|gif|svg)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </FilesMatch>
+</IfModule>

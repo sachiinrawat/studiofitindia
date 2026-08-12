@@ -140,7 +140,7 @@ function studiofitindia_enqueue_scripts() {
   $theme_uri = get_template_directory_uri();
 
   // Dynamically find the CSS file hash
-  $css_files = glob($theme_dir . '/assets/index-DNqyU-D1.css');
+  $css_files = glob($theme_dir . '/assets/index-B-Ri80i8.css');
   $css_path = !empty($css_files) ? $css_files[0] : '';
   $css_uri  = !empty($css_path) ? $theme_uri . '/assets/' . basename($css_path) : '';
   $css_ver  = !empty($css_path) && file_exists($css_path) ? filemtime($css_path) : '1.0.0';
@@ -150,7 +150,7 @@ function studiofitindia_enqueue_scripts() {
   }
 
   // Dynamically find the JS file hash
-  $js_files = glob($theme_dir . '/assets/index-CcD8Bvz8.js');
+  $js_files = glob($theme_dir . '/assets/index-CqeXKqkT.js');
   $js_path = !empty($js_files) ? $js_files[0] : '';
   $js_uri  = !empty($js_path) ? $theme_uri . '/assets/' . basename($js_path) : '';
   $js_ver  = !empty($js_path) && file_exists($js_path) ? filemtime($js_path) : '1.0.0';
@@ -216,7 +216,7 @@ function sfi_get_page_config() {
     '/' => array(
       'title'       => 'Online Fitness Classes in India — Live Yoga, HIIT, Zumba | Studio FIT India',
       'description' => 'Join India\'s #1 online live fitness classes — Yoga, HIIT, Zumba, Strength Training & Personal Training. Certified coaches, flexible timings. Starting ₹1,499/month. Book a trial at just ₹1 today!',
-      'keywords'    => 'online fitness classes India, live yoga classes India, online live yoga classes, live online fitness sessions, studio fit india, online gym India',
+      'keywords'    => 'online fitness classes India, live yoga classes India, online live yoga classes, live online fitness sessions, studio fit india, online gym India, Online Fitness Classes Worldwide, Online Strength Training, Online Zumba Classes, Online HIIIT Classes, Fitness Classes, Premium Fitness Classes',
     ),
     '/pricing' => array(
       'title'       => 'Pricing & Membership Plans | Studio FIT India — Starting ₹1,499/Month',
@@ -413,7 +413,31 @@ function sfi_get_structured_data() {
     "sameAs": [
       "https://www.facebook.com/studiofitindia1/",
       "https://www.instagram.com/studiofitindia1/"
-    ]
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Fitness Plans",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "2 Year Plan - Unlimited Live Classes"
+          },
+          "price": "8900",
+          "priceCurrency": "INR"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Family Fitness Plan - 3 Months"
+          },
+          "price": "5000",
+          "priceCurrency": "INR"
+        }
+      ]
+    }
   }
   </script>';
 }
@@ -782,7 +806,7 @@ function sfi_get_crawlable_html() {
   <a href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1.">Book a Trial at Just ₹1 — WhatsApp +91 93106 66287</a>
 
   <h2>Studio FIT Moments</h2>
-  <p>Explore the energy and community of Studio FIT India. Our gallery showcases official moments from live online sessions, special workshops, and community events. Trusted by <strong>20,000+ Members</strong> with <strong>8+ Certified Coaches</strong> leading the way.</p>
+  <p>Explore the energy and community of Studio FIT India. Our gallery showcases official moments from live online sessions, special workshops, and community events. Trusted by <strong>25000+ Members</strong> with <strong>20+ Certified Coaches</strong> leading the way.</p>
   
   <h2>Latest Member Transformation Results</h2>
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0;">
@@ -856,12 +880,12 @@ function studiofitindia_preload_assets() {
   $theme_uri = get_template_directory_uri();
   $theme_dir = get_template_directory();
 
-  $css_files = glob($theme_dir . '/assets/index-DNqyU-D1.css');
+  $css_files = glob($theme_dir . '/assets/index-B-Ri80i8.css');
   if (!empty($css_files)) {
     echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/' . basename($css_files[0])) . '" as="style">' . "\n";
   }
 
-  $js_files = glob($theme_dir . '/assets/index-CcD8Bvz8.js');
+  $js_files = glob($theme_dir . '/assets/index-CqeXKqkT.js');
   if (!empty($js_files)) {
     echo '<link rel="modulepreload" href="' . esc_url($theme_uri . '/assets/' . basename($js_files[0])) . '">' . "\n";
   }

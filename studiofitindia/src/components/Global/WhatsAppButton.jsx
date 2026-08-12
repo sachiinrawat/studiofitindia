@@ -19,7 +19,7 @@ const WA_LINK = `https://api.whatsapp.com/send?phone=${WA_NUMBER}&text=${WA_MESS
 
 const WhatsAppButton = () => {
   return (
-    <div className="fixed bottom-24 right-5 z-40 flex flex-col items-end gap-3">
+    <div className="fixed bottom-40 md:bottom-24 right-5 z-40 flex flex-col items-end gap-3">
 
       {/* Tooltip label */}
       <div className="group-hover:opacity-100 opacity-0 pointer-events-none absolute right-16 bottom-1 bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap shadow-lg transition-opacity duration-200 select-none">

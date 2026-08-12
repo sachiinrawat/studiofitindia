@@ -1,5 +1,3 @@
-
-
 export const coaches = [
     {
         id: 1,
@@ -19,22 +17,6 @@ export const coaches = [
     },
     {
         id: 3,
-        name: "Nitin Dabhade",
-        role: "Yoga & Aerobics Trainer",
-        specializations: ["Power Yoga", "Choreography"],
-        image: "/assets/coaches/nitin-dabhade.webp",
-        bio: "Meet Our Expert Trainer – Nitin Dabhade. At Studio FIT India, we are proud to introduce Nitin Dabhade, a highly experienced fitness professional with over 10 years of expertise in Yoga and holistic wellness. Nitin specializes in a wide range of yoga styles including Traditional Yoga, Power Yoga, Fat-Burning Yoga, Ashtanga Yoga, Pranayama, Meditation, Musical Yoga, and Face Yoga — helping members achieve balance, strength, and mental clarity. Beyond yoga, he brings 7–8 years of dynamic group fitness experience, conducting high-energy sessions such as Zumba, MMA workouts, CrossFit, and Aerobics. His sessions are designed to be engaging, result-driven, and suitable for all fitness levels. In addition to fitness training, Nitin is also a talented choreographer who organizes and teaches wedding performances, including Sangeet Sandhya choreography. With a strong belief in discipline, transformation, and positive energy, Nitin is dedicated to helping every member at Studio FIT India unlock their full potential and lead a healthier, stronger life."
-    },
-    {
-        id: 4,
-        name: "Yashi Tiwari",
-        role: "Yoga Trainer",
-        specializations: ["Asanas", "Meditation", "Mindfulness", "Flexibility"],
-        image: "/assets/coaches/yashi-tiwari.webp",
-        bio: "Meet Our Women's Fitness & Yoga Expert – Yashi Tiwari. At Studio FIT India, we are proud to introduce Yashi Tiwari, a passionate and certified Women's Fitness & Weight Loss Yoga Instructor with over 4 years of teaching experience. Originally from Rishikesh, Uttarakhand — the Yoga Capital of the World — Yashi brings authentic yogic knowledge blended with modern fitness techniques to every session. She holds prestigious certifications including 200 Hours Teacher Training, 500 Hours RYT, and ACE (American Council of Exercise). Yashi specializes in women's fitness, weight loss programs, pranayama, meditation, Danda Yoga, and strength-based yoga workouts. Her sessions are thoughtfully designed to build strength, improve flexibility, and create inner balance through mindful and structured movement. Her approach combines traditional yoga practices with result-driven fitness methods, ensuring physical transformation along with mental clarity and emotional well-being. She strongly believes in guiding members toward a disciplined, sustainable, and healthy lifestyle through consistency and self-awareness. With her calm energy and focused training style, Yashi is dedicated to helping every member feel stronger, more confident, and empowered."
-    },
-    {
-        id: 5,
         name: "Jyoti Yadav",
         role: "Yoga Trainer",
         specializations: ["Mudras", "Bandha ", "Face Yoga", "Meditation", "Ashtanga Yoga"],
@@ -43,23 +25,16 @@ export const coaches = [
 
     },
     {
-        id: 6,
+        id: 4,
         name: "Geeta Khatri",
         role: "Dance Fitness Instructor",
         specializations: ["Dance Fitness", "Zumba", "Choreography"],
         image: "/assets/coaches/geeta-khatri.jpeg",
         bio: "Meet Our Dance Fitness Specialist – Geeta Khatri\n\nAt Studio FIT India, we are delighted to introduce Geeta Khatri, our passionate and energetic Dance Fitness Instructor with 2 years of experience in the fitness industry.\n\nGeeta has been working as a Bollywood Dance Fitness Instructor, bringing vibrant energy, rhythm, and positivity into every session.She specializes in Dance Fitness, expressive choreography- based workouts, and is also a dedicated 5th - year Kathak student, beautifully blending classical grace with modern fitness techniques.\n\nHer sessions focus on improving stamina, flexibility, coordination, and overall fitness — all while making workouts feel fun, engaging, and full of life.\n\nGeeta believes fitness should be joyful and expressive.Through her choreography - driven workouts, she helps members build confidence, stay consistent, and enjoy every step of their fitness journey.\n\nAt Studio FIT India, she ensures that every class feels less like a workout and more like a celebration of movement."
     },
+
     {
-        id: 7,
-        name: "Jurul Thomas Daimari",
-        role: "Licensed Zumba® Instructor",
-        specializations: ["Zumba®", "Dance Fitness", "High-Energy Training", "Group Fitness"],
-        image: "/assets/coaches/Jurul Thomas.jpeg",
-        bio: "With over 8 years of experience transforming lives through movement, I am a dedicated fitness professional committed to bringing high-energy, inclusive, and rhythmic workouts to the community. My journey has been defined by a passion for dance and a track record of leading large-scale events across prestigious institutions and platforms.\n\nProfessional Highlights & Achievements:\nI have had the honor of leading and participating in some of the most significant fitness events in India, including:\n\nNational Masterclasses:\nPerformed at the Beto Perez (Zumba® Creator) Mega Master Class in Bangalore (2025).\nJoined the Zumba® Tour India in Kolkata (2023 & 2024).\nLed a Masterclass with Sucheta Pal (Zumba Education Specialist) in Guwahati (2018).\n\nDefense & Civic Partnerships:\nConducted sessions for the Indian Army (Guwahati Marathon) and the Assam Rifles in Shillong.\nLed the PRERANA IASOWA Guwahati Marathon (2025).\nPartnered with ONGC Assam (Jorhat) and Decathlon Azara (2018–2019).\n\nEducational Outreach:\nInvited instructor for CIT Kokrajhar, Auxilium College, Kendriya Vidyalaya, and Jawahar Navodaya Vidyalaya across Assam.\n\nMy Philosophy:\nI believe that fitness should feel like a celebration. Whether I am leading thousands at a marathon or a local class in a studio, my goal is to create an environment where every participant feels empowered, energized, and successful.\n\nLet’s move the world together!"
-    },
-    {
-        id: 8,
+        id: 5,
         name: "Mamta Bisht",
         role: "Yoga Trainer & Holistic Wellness Coach",
         specializations: ["Hatha Yoga", "Power Yoga", "Pranayama", "Holistic Wellness"],
@@ -67,7 +42,7 @@ export const coaches = [
         bio: "Mamta Bisht is a certified Yoga Trainer with a Master’s degree in Yoga and a 1 Year Yoga Teacher Training Program certification. She has 7+ years of experience in teaching Yoga and guiding individuals towards a healthier, balanced, and holistic lifestyle.\n\nWith a strong foundation in Yogic practices and competitive achievements, she is a State Yoga Championship Winner and a 3rd Place Holder at the National Yogasana Championship.\n\nShe believes in a holistic approach to wellness through Yoga, focusing on physical fitness, mental well-being, mindfulness, proper alignment, and overall lifestyle transformation.\n\nExpertise Includes:\n• Hatha Yoga\n• Power Yoga\n• Ashtanga Vinyasa Yoga\n• Pranayama\n• Meditation\n• Yoga Props Based Practice (Alignment & Supportive Yoga)\n\nAchievements:\n🏆 State Yoga Championship Winner\n🥉 National Yogasana Championship – 3rd Place Holder\n\nSpecialization:\nYoga Training | Holistic Wellness | Yoga Props & Alignment Techniques | Lifestyle Transformation | Mind-Body Balance"
     },
     {
-        id: 9,
+        id: 6,
         name: "Khushi Tinker",
         role: "Yoga Instructor",
         specializations: ["Hatha Yoga", "Vinyasa Yoga", "Therapeutic Yoga", "Meditation", "Pranayama"],
@@ -75,12 +50,21 @@ export const coaches = [
         bio: "Khushi Tinker is a professional, passionate, and dedicated yoga instructor with over 4 years of experience in guiding both individual and group sessions. She holds a Master's degree in Yogic Science and specializes in Hatha Yoga, Vinyasa Yoga, Therapeutic Yoga, Meditation, and Pranayama. Throughout her career, Khushi has worked with a diverse range of clients, tailoring sessions to meet each individual's unique needs and health goals. She competed in the National Yoga Championship, securing second place. Her teaching approach seamlessly blends traditional yogic principles with modern therapeutic techniques, empowering students of all ages and backgrounds to build strength, balance, and mindful living. She is committed to fostering a holistic, supportive environment for every student on their wellness journey."
     },
     {
-        id: 10,
+        id: 7,
         name: "Manjari Rastogi",
         role: "Yoga Instructor",
         specializations: ["Hatha Yoga", "Pranayama", "Meditation", "Chair & Wall Yoga", "Yoga Props Practice"],
         image: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1782550446/a3e9add2-f9bb-4876-8bea-6b637b69381b.png",
         imagePosition: "left",
         bio: "Manjari Rastogi is a certified Yoga Trainer with a Diploma in Yoga and a 200hrs Teacher Training Course. She has 6+ years of experience in teaching Yoga (online and offline) and is a certified Prenatal & Postnatal Dietician with a Diploma in Dietetics, helping individuals towards a holistic approach with the combination of right food and exercises.\n\nShe specializes in Slip Disc (back pain issues), Sciatica, Diabetes, PCOD/PCOS, Infertility, and Weight Loss.\n\nShe believes in a holistic approach to wellness through Yoga, focusing on physical fitness, mental well-being, mindfulness, proper alignment, and overall lifestyle transformation with the right nutrition.\n\nExpertise Includes:\n• Hatha Yoga\n• Pranayama\n• Meditation\n• Chair and Wall Yoga\n• Yoga Props Based Practice (Alignment & Supportive Yoga)"
+    },
+    {
+        id: 8,
+        name: "Nikita",
+        role: "Yoga & Strength Training Instructor",
+        specializations: ["Strength Training", "Yoga"],
+        image: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1785827262/IMG_1788_ytsjra.jpg",
+        // imagePosition: "top",
+        bio: "Nikita Lalwani is a Certified Personal Trainer, Certified Nutrition & Lifestyle Coach, and Certified 500-Hour Yoga Instructor with internationally aligned yoga education and certification from USA Aligned Yoga Training and AYUSH Ministry, Government of India recognized board programs. With 7+ years of experience in fitness, yoga, and nutrition coaching, she helps individuals achieve sustainable transformation through a holistic combination of exercise, yoga, nutrition, and lifestyle management Having personally overcome challenges related to Rheumatoid Arthritis, thyroid imbalance, gut health issues, and weight management, she deeply understands the importance of creating realistic and healing-focused wellness programs. Her approach is centered on improving strength, mobility, posture, fat loss, energy levels, and overall quality of life rather than following extreme or temporary methods.She specializes in Weight Loss & Fat Loss Transformation, Women’s Health & Hormonal Balance, Prenatal & Postnatal Fitness, Arthritis & Joint Pain Management, Thyroid & PCOD/PCOS Support, Back Pain, Slip Disc & Sciatica Care, Mobility & Flexibility Training, and Disease-Specific Nutrition & Lifestyle Coaching.She believes in a holistic and mindful approach to wellness, combining strength training, yoga therapy, breathwork, meditation, corrective exercises, and personalized nutrition to create long-term physical and mental transformation.Expertise Includes* Personal Training Strength & Fat Loss)* HIIT Workout * Cardiovascular Training (Cardio Workouts / Aerobic Exercise)* power & Functional Yoga* Pranayama & Breathwork* Mindfulness * Mobility & Flexibility Training* Women’s Fitness & Hormonal Wellness* Weight Management & Therapeutic Nutrition"
     }
 ];

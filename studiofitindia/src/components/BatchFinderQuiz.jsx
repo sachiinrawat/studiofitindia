@@ -2,7 +2,7 @@ import { useState } from "react";
 import { X, ArrowRight, CheckCircle, Smartphone, User, ChevronRight, Target, Clock, ShieldCheck } from "lucide-react";
 
 // Google Sheets Web App URL
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw89GrGS0f2eCuhPx6AJzteuTOvccQxYNIyZYx6Bp-YN-enFvMabkEe1vhdI9k7nupA/exec"; 
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLN-vD6jSO-n52LnhmwKkXrmsBDOFqNd0RQ3TNr9VcrmDLKebT-R90cyOJoyb1m_mt/exec";
 
 const BatchFinderQuiz = ({ isOpen, onClose }) => {
   const [step, setStep] = useState(1);

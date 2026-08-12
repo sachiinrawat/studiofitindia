@@ -1,8 +1,7 @@
 export const faqs = [
     { q: "Who can join Studio Fit India?", a: "Anyone can join! Our programs are suitable for beginners, intermediate, and advanced fitness levels. Whether you are a student, working professional, homemaker, or senior, we design workouts according to your ability." },
     { q: "Do I need prior gym or workout experience?", a: "Not at all. Many of our members start with zero experience. Our trainers guide you step-by-step to ensure safe and effective training." },
-    { q: "Do you provide personal training?", a: "Yes, we offer one-on-one personal training sessions for clients who want focused attention, faster results, or have specific fitness goals." },
-    { q: "What programs do you offer?", a: "We offer Strength Training, Yoga & Mindfulness, HIIT & Functional Training, Weight Loss Programs, Personal Training, and Group Fitness Classes." },
+    { q: "What programs do you offer?", a: "We offer Strength Training, Yoga & Mindfulness, HIIT & Functional Training, Weight Loss Programs, Zumba & Dance Fitness, and Group Fitness Classes." },
     { q: "Is diet or nutrition guidance included?", a: "Yes, basic diet and nutrition guidance is provided as part of our weight loss and transformation programs. Personalized diet plans may be available depending on the package." },
     { q: "How many days a week should I work out?", a: "This depends on your goal, but generally 3–6 days per week is recommended. Our trainers help you decide the best schedule for your body and lifestyle." },
     { q: "Are your programs suitable for weight loss?", a: "Absolutely. Our workouts and guidance are designed to support healthy and sustainable fat loss along with strength and endurance improvement." },

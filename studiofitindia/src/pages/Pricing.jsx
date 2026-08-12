@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import PricingComparison from "../components/PricingComparison";
 import PaymentModal from "../components/PaymentModal";
 import SEO from "../components/SEO";
+import PaymentBadges from "../components/PaymentBadges";
 import { pricingPlans } from "../data/pricing";
 
 const Pricing = () => {
@@ -38,7 +39,7 @@ const Pricing = () => {
         ]}
       />
       {/* Header Section */}
-      <section className="pt-6 pb-12 bg-white">
+      <section className="pt-6 pb-12 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-bold font-heading mb-4 text-gray-900 tracking-tight">
             Premium <span className="text-secondary">Memberships</span>
@@ -49,8 +50,79 @@ const Pricing = () => {
         </div>
       </section>
 
+      {/* 2-Year Special Plan */}
+      {(() => {
+        const twoYearPlan = pricingPlans.find(p => p.id === 12);
+        if (!twoYearPlan) return null;
+        return (
+          <section className="bg-gradient-to-b from-gray-50 via-white to-gray-50 pb-8">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto px-4">
+                <div className="bg-white border-2 border-secondary rounded-2xl p-8 md:p-10 shadow-sm flex flex-col md:flex-row items-stretch justify-between gap-8 hover:shadow-md transition-all">
+                  {/* Left Column: Info */}
+                  <div className="flex-grow flex flex-col justify-between">
+                    <div>
+                      <span className="inline-block bg-secondary text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded mb-4">
+                        {twoYearPlan.badge}
+                      </span>
+                      <h3 className="text-2xl font-extrabold text-gray-900 mb-2 font-heading">
+                        {twoYearPlan.name}
+                      </h3>
+                      <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-4">
+                        {twoYearPlan.duration} Membership
+                      </p>
+                      <p className="text-gray-600 text-sm leading-relaxed max-w-lg mb-6">
+                        Commit to your long-term health with our exclusive 2 Year Plan. Get full access to unlimited live classes, the complete content library, and flexible pause options.
+                      </p>
+                    </div>
+
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-2.5 mb-1">
+                        <span className="text-gray-400 line-through text-base font-semibold">₹{twoYearPlan.originalPrice.toLocaleString()}</span>
+                      </div>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-3xl font-extrabold text-gray-900 tracking-tight font-heading">₹{twoYearPlan.price.toLocaleString()}</span>
+                        <span className="text-gray-500 text-xs uppercase font-bold">/ {twoYearPlan.duration}</span>
+                      </div>
+                      <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block self-start">5% GST Excluded</p>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Features list with left border divider */}
+                  <div className="w-full md:w-[320px] flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-8">
+                    <div>
+                      <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Included in 2 Year Plan:</h4>
+                      <div className="space-y-3 mb-6">
+                        {twoYearPlan.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-2.5">
+                            <Check size={16} className="text-secondary shrink-0 mt-0.5" strokeWidth={3} />
+                            <span className="text-xs font-semibold text-gray-700 leading-tight">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <PaymentBadges className="mb-3" />
+                    <button
+                      onClick={() => setSelectedPlan(twoYearPlan)}
+                      className="w-full py-3.5 bg-secondary hover:bg-secondary/95 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
+                    >
+                      Join Now
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
       {/* Pricing Cards Grid */}
-      <section className="bg-white pb-16">
+      <section className="relative bg-gradient-to-b from-gray-50 to-white pb-16 overflow-hidden">
+        {/* Subtle decorative glow blobs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
         <div className="container mx-auto px-4">
 
           {/* First Row of cards */}
@@ -102,6 +174,7 @@ const Pricing = () => {
                       })}
                     </div>
 
+                    <PaymentBadges className="mb-3" />
                     <button 
                       onClick={() => setSelectedPlan(plan)}
                       className={`w-full py-3 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl transition-all active:scale-95 ${isMothersDay ? 'bg-pink-600 hover:bg-pink-700 shadow-sm' : 'bg-gray-900 hover:bg-gray-800'}`}
@@ -109,6 +182,7 @@ const Pricing = () => {
                       Join Now
                     </button>
                   </div>
+
                 </div>
               )
             })}
@@ -151,6 +225,7 @@ const Pricing = () => {
                     ))}
                   </div>
 
+                  <PaymentBadges className="mb-3" />
                   <button 
                     onClick={() => setSelectedPlan(plan)}
                     className="w-full py-3 bg-gray-900 hover:bg-gray-800 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl transition-all active:scale-95 shadow-sm"
@@ -158,6 +233,7 @@ const Pricing = () => {
                     Join Now
                   </button>
                 </div>
+
               </div>
             ))}
           </div>
@@ -221,12 +297,14 @@ const Pricing = () => {
                       </div>
                     </div>
 
+                    <PaymentBadges className="mb-3" />
                     <button
                       onClick={() => setSelectedPlan(family3M)}
                       className="w-full py-3.5 bg-secondary hover:bg-secondary/95 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
                     >
                       Secure Family Spot &amp; Join Now
                     </button>
+
                   </div>
                 </div>
               </div>

@@ -19,7 +19,6 @@ const LeadForm = ({ source = "Hero Form", programDefault = "", onSuccessRedirect
     { value: "Zumba", label: "Zumba & Dance Fitness" },
     { value: "Strength Training", label: "Strength Training" },
     { value: "Weight Loss", label: "Weight Loss Program" },
-    { value: "Personal Training", label: "1-on-1 Personal Training" },
   ];
 
   const handleChange = (e) => {

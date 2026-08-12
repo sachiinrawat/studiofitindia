@@ -12,6 +12,7 @@ import Footer from "./components/Global/Footer";
 import ScrollToTop from "./components/Global/ScrollToTop";
 
 import WhatsAppButton from "./components/Global/WhatsAppButton";
+import InstagramButton from "./components/Global/InstagramButton";
 import StickyMobileCTA from "./components/Global/StickyMobileCTA";
 import ExitIntentPopup from "./components/Global/ExitIntentPopup";
 import BatchFinderQuiz from "./components/BatchFinderQuiz";
@@ -61,7 +62,7 @@ function AnimatedRoutes({ onStartQuiz }) {
         <Route path="/zumba-classes-online" element={<ProgramDetails />} />
         <Route path="/strength-training-online" element={<ProgramDetails />} />
         <Route path="/weight-loss-program-online" element={<ProgramDetails />} />
-        <Route path="/personal-training-online" element={<ProgramDetails />} />
+
 
         {/* SEO Blog Routing */}
         <Route path="/blog" element={<Blog />} />
@@ -87,6 +88,7 @@ function App() {
           <AnimatedRoutes onStartQuiz={() => setIsQuizOpen(true)} />
         </main>
         <Footer />
+        <InstagramButton />
         <WhatsAppButton />
         <StickyMobileCTA onStartQuiz={() => setIsQuizOpen(true)} />
         <ExitIntentPopup />

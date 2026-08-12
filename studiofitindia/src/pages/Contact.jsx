@@ -23,7 +23,6 @@ const Contact = () => {
       "Pilates classes online",
       "Strength training classes online",
       "Weight loss programs online",
-      "Personal training online",
     ],
     schema: {
       "@context": "https://schema.org",
@@ -306,9 +305,6 @@ const Contact = () => {
                         Strength Training
                       </option>
                       <option value="Pilates">Pilates</option>
-                      <option value="Personal Training">
-                        Personal Training
-                      </option>
                       <option value="Not sure">Not sure yet</option>
                     </select>
                   </div>

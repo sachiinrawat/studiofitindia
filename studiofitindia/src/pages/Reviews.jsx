@@ -12,6 +12,7 @@ const getThemeUrl = (path) => {
 };
 
 const transformationImages = [
+  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1784811005/5be07b3c-1dd5-4b6e-bab3-40e10647a65b.png",
   "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.33_PM_igdral.jpg",
   "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.33_PM_2_lxdqdo.jpg",
   "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.32_PM_qsnh4s.jpg",
@@ -110,9 +111,8 @@ const VideoCarousel = () => {
             <button
               key={i}
               onClick={() => scrollTo(i)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                i === active ? "bg-secondary w-6" : "bg-gray-300 w-2.5"
-              }`}
+              className={`h-2.5 rounded-full transition-all duration-300 ${i === active ? "bg-secondary w-6" : "bg-gray-300 w-2.5"
+                }`}
               aria-label={`Video ${i + 1}`}
             />
           ))}

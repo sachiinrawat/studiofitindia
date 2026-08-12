@@ -68,7 +68,19 @@ const useAutoRefresh = () => {
     // Every time the user comes back to this tab, re-check the server version.
     // Handles: switching back from another app, returning after hours, etc.
     const handleVisibilityChange = () => {
-      if (!document.hidden) {
+      if (document.hidden) {
+        localStorage.setItem("lastHiddenTime", Date.now().toString());
+      } else {
+        const lastHidden = localStorage.getItem("lastHiddenTime");
+        if (lastHidden) {
+          const timeInactive = Date.now() - parseInt(lastHidden, 10);
+          // If inactive for more than 1 minute (60,000 ms), force a fresh reload
+          if (timeInactive >= 60000) {
+            localStorage.removeItem("lastHiddenTime");
+            window.location.reload(true);
+            return;
+          }
+        }
         checkAndRefresh();
       }
     };

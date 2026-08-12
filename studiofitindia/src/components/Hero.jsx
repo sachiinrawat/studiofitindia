@@ -1,104 +1,177 @@
-import { ArrowDown, Calendar, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useAssetUrl } from "../utils/assets";
-import FitnessBackground from "./FitnessBackground";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
-// Wrapper so useAssetUrl hook can be called per-image
-const ThemeImage = ({ path, alt, className, loading = "lazy", width, height }) => {
-  const src = useAssetUrl(path);
-  return <img src={src} alt={alt} className={className} loading={loading} width={width} height={height} />;
-};
+/* ════════════════════════════════════════════════════════
+   BANNER SLIDES
+   ─ Replace each "image" src with your Cloudinary URL.
+   ─ Best image size:  1920 × 700 px  (wide landscape JPG/WebP)
+   ─ Keep images clean — no text baked into the image needed,
+     but you CAN use promotional images with your own text.
+════════════════════════════════════════════════════════ */
+const SLIDES = [
+  {
+    id: 1,
+    image: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1786532256/15_wxm393.png",
+    alt: "Studio FIT India — Live Online Fitness Classes",
+  },
+];
 
-const Hero = ({ onStartQuiz }) => {
+const SWIPE_THRESHOLD = 50;
+
+/* ════════════════════════════════════════════════════════
+   HERO BANNER SLIDER — image only, no text overlay
+════════════════════════════════════════════════════════ */
+const Hero = () => {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
+  const dragStart = useRef(null);
+  const total = SLIDES.length;
+
+  /* Scroll Zoom Effect */
+  const { scrollY } = useScroll();
+  const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
+
+  const goTo = useCallback((idx, dir) => {
+    setDirection(dir);
+    setCurrent(idx);
+  }, []);
+
+  /* Auto-advance every 5 s */
+  useEffect(() => {
+    if (isPaused || total <= 1) return;
+    const t = setTimeout(() => goTo((current + 1) % total, 1), 5000);
+    return () => clearTimeout(t);
+  }, [current, isPaused, total, goTo]);
+
+  const prev = () => goTo((current - 1 + total) % total, -1);
+  const next = () => goTo((current + 1) % total, 1);
+
+  /* Drag/swipe */
+  const handleDragStart = (_, info) => { dragStart.current = info.point.x; };
+  const handleDragEnd = (_, info) => {
+    const delta = info.point.x - (dragStart.current ?? info.point.x);
+    if (delta < -SWIPE_THRESHOLD) next();
+    else if (delta > SWIPE_THRESHOLD) prev();
+  };
+
+  const variants = {
+    enter: (dir) => ({ x: dir > 0 ? "100%" : "-100%" }),
+    center: { x: 0 },
+    exit:  (dir) => ({ x: dir > 0 ? "-100%" : "100%" }),
+  };
+
   return (
-    <section className="relative min-h-[75vh] w-full flex flex-col justify-center overflow-hidden bg-white pt-16 pb-7 border-b border-gray-100">
-      {/* === Static Clean Background Layers === */}
-      <div className="absolute inset-0 z-0 bg-gray-50/50"></div>
+    <section
+      className="relative w-full overflow-hidden bg-gray-100 select-none aspect-[4/3] sm:aspect-[16/9] md:aspect-[16/7] max-h-[820px]"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* ── SLIDES ── */}
+      <AnimatePresence custom={direction} initial={false}>
+        <motion.div
+          key={SLIDES[current].id}
+          custom={direction}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+          drag={total > 1 ? "x" : false}
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.08}
+          onDragStart={total > 1 ? handleDragStart : undefined}
+          onDragEnd={total > 1 ? handleDragEnd : undefined}
+          className={`absolute inset-0 w-full h-full ${total > 1 ? 'cursor-grab active:cursor-grabbing' : ''}`}
+        >
+          <motion.img
+            style={{ scale }}
+            src={SLIDES[current].image}
+            alt={SLIDES[current].alt}
+            className="w-full h-full object-cover object-center"
+            loading={SLIDES[current].id === 1 ? "eager" : "lazy"}
+            fetchpriority={SLIDES[current].id === 1 ? "high" : "auto"}
+            draggable={false}
+          />
+        </motion.div>
+      </AnimatePresence>
 
-      <FitnessBackground />
+      {/* ── TOP & BOTTOM VIGNETTE SHADOWS (Cult.fit style) ── */}
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/30 to-transparent z-10 pointer-events-none" />
+      {/* Bottom: fades image into the white section below — seamless blend */}
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white via-white/60 to-transparent z-10 pointer-events-none" />
 
-      {/* === Main Centered Content === */}
-      <div className="container mx-auto px-4 relative z-10 max-w-4xl text-center flex-grow flex flex-col justify-center pt-2">
+      {/* ── CTA BUTTON ── */}
+      <div className="absolute bottom-3 md:bottom-10 left-1/2 -translate-x-1/2 z-20 w-full px-4 text-center">
+        <a
+          href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20book%20a%20trial%20at%20just%20%E2%82%B91."
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Book a trial class at just ₹1"
+          className="inline-flex justify-center items-center gap-2 bg-secondary text-white font-semibold text-[13px] md:text-sm px-6 py-3 md:px-7 md:py-2.5 rounded-full transition-all active:scale-95 whitespace-nowrap hover:bg-secondary/90 w-full sm:w-auto max-w-[280px] mx-auto"
+          style={{
+            boxShadow: "0 -2px 8px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.22), 0 1px 3px rgba(0,0,0,0.12)",
+          }}
+          onMouseEnter={e => e.currentTarget.style.boxShadow = "0 -3px 12px rgba(0,0,0,0.25), 0 6px 22px rgba(0,0,0,0.28), 0 2px 6px rgba(0,0,0,0.15)"}
+          onMouseLeave={e => e.currentTarget.style.boxShadow = "0 -2px 8px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.22), 0 1px 3px rgba(0,0,0,0.12)"}
+        >
+          Book a Trial at Just ₹1
+        </a>
+      </div>
 
-
-        {/* Dynamic Typography Title */}
-        <h1 className="text-4xl md:text-6xl font-extrabold font-heading text-gray-900 mb-6 leading-tight max-w-3xl mx-auto uppercase tracking-tight">
-          Your <span className="text-secondary">Online Fitness Studio</span>
-        </h1>
-
-        {/* Human-Written High-Performance Copywriting */}
-        <p className="text-gray-600 text-base md:text-lg mb-8 max-w-2xl mx-auto font-medium">
-          Experience the best in <strong>online fitness</strong>. Join our interactive <strong>online live workout classes</strong> led by certified coaches. We offer the top <strong>fitness classes online</strong> including Yoga, HIIT, Zumba, and Strength Training.
-        </p>
-
-        {/* Flexible Symmetrical CTAs */}
-        <div className="flex flex-wrap items-center justify-center gap-4 max-w-md md:max-w-none mx-auto mb-16">
+      {/* ── ARROWS & DOTS (only if multiple slides) ── */}
+      {total > 1 && (
+        <>
+          {/* ── LEFT ARROW ── */}
           <button
-            onClick={onStartQuiz}
-            aria-label="Find my batch slot and custom diet plan"
-            className="w-full sm:w-auto px-8 py-4 bg-secondary hover:bg-secondary/95 text-white font-bold text-sm rounded-full transition-all active:scale-95 shadow-sm"
+            onClick={prev}
+            aria-label="Previous slide"
+            className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full bg-white/80 backdrop-blur-sm border border-white/60 shadow-md flex items-center justify-center hover:bg-white hover:scale-105 transition-all active:scale-95"
           >
-            Find My Batch & Diet Plan
+            <ChevronLeft size={18} className="text-gray-800" />
           </button>
 
-          <Link
-            to="/schedule"
-            aria-label="View our class schedules"
-            className="w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 hover:border-gray-300 transition-all active:scale-95 flex items-center justify-center gap-2"
+          {/* ── RIGHT ARROW ── */}
+          <button
+            onClick={next}
+            aria-label="Next slide"
+            className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full bg-white/80 backdrop-blur-sm border border-white/60 shadow-md flex items-center justify-center hover:bg-white hover:scale-105 transition-all active:scale-95"
           >
-            <Calendar size={16} className="text-gray-400" />
-            View Schedule
-          </Link>
+            <ChevronRight size={18} className="text-gray-800" />
+          </button>
 
-          <Link
-            to="/pricing"
-            aria-label="View our membership plans"
-            className="w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 hover:border-gray-300 transition-all active:scale-95 flex items-center justify-center"
-          >
-            View Membership Plans
-          </Link>
-        </div>
-      </div>
-
-      {/* Verification Strip: Verified Results Marquee */}
-      <div className="w-full border-t border-b border-gray-100 py-6 bg-gray-50/30 overflow-hidden relative select-none">
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
-
-        <div className="marquee-track flex gap-4 items-center">
-          {[
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.33_PM_igdral.jpg",
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.33_PM_2_lxdqdo.jpg",
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.32_PM_qsnh4s.jpg",
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446567/WhatsApp_Image_2026-04-29_at_12.34.33_PM_1_umnvjz.jpg",
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446567/WhatsApp_Image_2026-04-29_at_12.34.32_PM_1_rltu0l.jpg",
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777449106/new_aezcxf.jpg",
-            // Duplicate for infinite scroll
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.33_PM_igdral.jpg",
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.33_PM_2_lxdqdo.jpg",
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.32_PM_qsnh4s.jpg",
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446567/WhatsApp_Image_2026-04-29_at_12.34.33_PM_1_umnvjz.jpg",
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446567/WhatsApp_Image_2026-04-29_at_12.34.32_PM_1_rltu0l.jpg",
-            "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777449106/new_aezcxf.jpg",
-          ].map((path, idx) => (
-            <ThemeImage
-              key={`hero-result-${idx}`}
-              path={path}
-              loading="eager"
-              width={240}
-              height={320}
-              alt="Studio Fit India Client Result"
-              className="h-56 w-40 md:h-80 md:w-60 object-contain bg-white border border-gray-200 shadow-sm flex-shrink-0 rounded-xl"
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-4 pb-2 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 animate-bounce pointer-events-none opacity-40">
-        <ArrowDown size={20} className="text-gray-400" />
-      </div>
+          {/* ── DOT INDICATORS ── */}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+            {SLIDES.map((s, i) => (
+              <button
+                key={s.id}
+                onClick={() => goTo(i, i > current ? 1 : -1)}
+                aria-label={`Go to slide ${i + 1}`}
+                className="relative overflow-hidden rounded-full transition-all duration-300 focus:outline-none"
+                style={{ width: i === current ? 24 : 7, height: 7 }}
+              >
+                <span
+                  className={`absolute inset-0 rounded-full transition-colors duration-300 ${
+                    i === current ? "bg-white" : "bg-white/50"
+                  }`}
+                />
+                {/* Progress bar on active dot */}
+                {i === current && !isPaused && (
+                  <motion.span
+                    key={`prog-${current}`}
+                    className="absolute inset-0 rounded-full bg-secondary"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 5, ease: "linear" }}
+                    style={{ transformOrigin: "left" }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
     </section>
   );
 };

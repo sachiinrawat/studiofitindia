@@ -165,44 +165,6 @@ export const programs = [
         - **Lifestyle Coaching:** Sleep and stress management.`
     },
     {
-        id: 5,
-        name: "Personal Training",
-        slug: "personal-training-online",
-        description: "One-on-one coaching for faster, focused results.",
-        bestFor: ["Beginners", "Injury recovery", "Target-based training"],
-        features: ["Fully customized", "Trainer accountability", "Faster progress"],
-        icon: "User",
-        image: "https://res.cloudinary.com/dvrwadsfh/image/upload/f_auto,q_auto/v1774685140/aerobics_xc7vkd.jpg",
-        seo: {
-            title: "Online Personal Training India | 1-on-1 Fitness Coach | Studio FIT India",
-            description: "Get a dedicated online personal trainer in India for 1-on-1 live fitness coaching. Customized workouts, form correction & accountability. All fitness levels welcome. Book a trial at just ₹1!",
-            keywords: [
-                "online personal trainer India",
-                "personal training online India",
-                "1 on 1 fitness coaching online",
-                "certified personal trainer online India",
-                "online fitness coach India",
-                "individual fitness training online",
-                "online workout coach India",
-            ],
-            h1: "Online Personal Training in India — 1-on-1 Live Fitness Coaching",
-            h2s: [
-                "Why Choose Personal Training Over Group Classes?",
-                "What Your Personal Training Plan Includes",
-                "Who Is Personal Training Best For?",
-                "How to Get Started",
-            ],
-        },
-        details: `**What is Personal Training?**
-        Personal training is a one-on-one fitness instruction led by a certified professional. The trainer assesses your bodily strengths and weaknesses and creates customized workout plans.
-        
-        **The 1-on-1 Advantage:**
-        - **Custom Plans:** Designed specifically for your body.
-        - **Perfect Form:** Constant supervision for safety.
-        - **Motivation:** A dedicated partner in your success.
-        - **Flexibility:** Schedule sessions that fit your life.`
-    },
-    {
         id: 6,
         name: "Zumba & Aerobics",
         slug: "zumba-classes-online",

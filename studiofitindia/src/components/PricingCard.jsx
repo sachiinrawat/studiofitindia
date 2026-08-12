@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import PaymentBadges from "./PaymentBadges";
 
 const PricingCard = ({ plan, onEnroll }) => {
   const handleEnroll = () => {
@@ -75,6 +76,7 @@ const PricingCard = ({ plan, onEnroll }) => {
         ))}
       </ul>
 
+      <PaymentBadges className="mb-3" />
       <button
         onClick={() => {
           handleEnroll();

@@ -18,27 +18,44 @@ export const pricingPlans = [
     {
         id: 2,
         name: "STANDARD",
-        price: 2900,
+        price: 3200,
         originalPrice: 3999,
         duration: "3 Months",
-        offerHighlight: " 1 Month Free",
+        offerHighlight: " 15  Free",
         features: [
-            "85 Live Classes",
+            "85 Live Classes + 15 Days Free",
             "10 Days Pause",
             "No Content Library"
         ],
         badge: null,
         popular: true,
         paymentLink: "https://rzp.io/rzp/3monthstudiofitindia",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the STANDARD (3 Months + 1 Month Free) plan for ₹2900."
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the STANDARD (3 Months + 15 Days Free) plan for ₹3200."
+    },
+    {
+        id: 3,
+        name: "3 MONTHS PREMIUM PLAN",
+        price: 4999,
+        originalPrice: 6499,
+        duration: "3 Months",
+        features: [
+            "Unlimited Classes",
+            "10 Days Pause",
+            "Content Library",
+            "Monthly Diet Consultation",
+        ],
+        badge: null,
+        popular: false,
+        paymentLink: "https://rzp.io/rzp/3monthpremiumstudiofitindia",
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the 3 MONTHS PREMIUM PLAN (3 Months + 15 Days Free) plan for ₹4999."
     },
     {
         id: 3,
         name: "PRO",
-        price: 4600,
+        price: 5000,
         originalPrice: 6999,
         duration: "6 Months",
-        offerHighlight: " 2 Months Free",
+        offerHighlight: " 1 Month Free",
         features: [
             "Unlimited Live Classes",
             "15 Days Pause",
@@ -48,7 +65,7 @@ export const pricingPlans = [
         badge: null,
         popular: true,
         paymentLink: "https://rzp.io/rzp/6monthstudiofitindia",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the PRO (6 Months + 2 Months Free) plan for ₹4600."
+        whatsappMessage: "Hi Studio Fit India, I want to JOIN the PRO (6 Months + 1 Month Free) plan for ₹5000."
     },
     {
         id: 4,
@@ -105,42 +122,6 @@ export const pricingPlans = [
         whatsappMessage: "Hi Studio Fit India, I want to JOIN the TRANSFORMATION ELITE (90 Days) plan for ₹7900."
     },
     {
-        id: 6,
-        name: "PERSONAL TRAINING (1 MONTH)",
-        price: 16000,
-        originalPrice: 20000,
-        duration: "1 Month",
-        features: [
-            "1-on-1 Personal Training",
-            "16 Sessions in a Month",
-            "WhatsApp Chat Support",
-            "Customized Workout Plan",
-            "Diet Guidance"
-        ],
-        badge: "20% OFF",
-        popular: false,
-        paymentLink: "https://rzp.io/rzp/personal-training-1month",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the 1-on-1 Personal Training (1 Month) plan for ₹16000."
-    },
-    {
-        id: 7,
-        name: "PERSONAL TRAINING (3 MONTHS)",
-        price: 38000,
-        originalPrice: 48000,
-        duration: "3 Months",
-        features: [
-            "1-on-1 Personal Training",
-            "48 Sessions in 3 Months",
-            "WhatsApp Chat Support",
-            "Dedicated Fitness Coach",
-            "Full Nutrition Support"
-        ],
-        badge: "Best Value",
-        popular: true,
-        paymentLink: "https://rzp.io/rzp/personal-training-3months",
-        whatsappMessage: "Hi Studio Fit India, I want to JOIN the 1-on-1 Personal Training (3 Months) plan for ₹38000."
-    },
-    {
         id: 11,
         name: "FAMILY FITNESS PLAN (3 MONTHS)",
         price: 5000,
@@ -152,20 +133,21 @@ export const pricingPlans = [
             "Content Library",
             "Buy Now, Start Later"
         ],
-        badge: "Join Before 1 August",
+        // badge: "Join Before 1 August",
         popular: false,
         paymentLink: "https://rzp.io/rzp/3monthsfamilyfitnessplan",
         whatsappMessage: "Hi Studio Fit India, I want to JOIN the FAMILY FITNESS PLAN (3 Months) for ₹5000."
-    }
+    },
+
 ];
 
 // Feature comparison matrix for the comparison table
 // Each feature maps plan IDs to true (included) or false (not included)
 export const comparisonFeatures = [
-    { label: "Live Classes", values: { 1: "30", 2: "90", 3: "Unlimited", 4: "Unlimited", 8: "Unlimited", 5: "Unlimited", 6: "PT", 7: "PT", 9: "Unlimited" } },
-    { label: "Pause Option", values: { 1: false, 2: "10 Days", 3: "15 Days", 4: "30 Days", 8: false, 5: "15 Days", 6: false, 7: false, 9: "30 Days" } },
-    { label: "Content Library", values: { 1: false, 2: false, 3: true, 4: true, 8: true, 5: true, 6: false, 7: false, 9: true } },
-    { label: "Diet Consultation", values: { 1: false, 2: false, 3: false, 4: false, 8: "Customized", 5: "Customized", 6: "Included", 7: "Included", 9: false } },
-    { label: "Progress Monitoring", values: { 1: false, 2: false, 3: false, 4: true, 8: "Weekly", 5: "Weekly", 6: "Daily", 7: "Daily", 9: false } },
-    { label: "Priority Support", values: { 1: false, 2: false, 3: false, 4: false, 8: true, 5: true, 6: "Direct Coach", 7: "Direct Coach", 9: false } },
+    { label: "Live Classes", values: { 1: "30", 2: "90", 3: "Unlimited", 4: "Unlimited", 8: "Unlimited", 5: "Unlimited", 9: "Unlimited" } },
+    { label: "Pause Option", values: { 1: false, 2: "10 Days", 3: "15 Days", 4: "30 Days", 8: false, 5: "15 Days", 9: "30 Days" } },
+    { label: "Content Library", values: { 1: false, 2: false, 3: true, 4: true, 8: true, 5: true, 9: true } },
+    { label: "Diet Consultation", values: { 1: false, 2: false, 3: false, 4: false, 8: "Customized", 5: "Customized", 9: false } },
+    { label: "Progress Monitoring", values: { 1: false, 2: false, 3: false, 4: true, 8: "Weekly", 5: "Weekly", 9: false } },
+    { label: "Priority Support", values: { 1: false, 2: false, 3: false, 4: false, 8: true, 5: true, 9: false } },
 ];

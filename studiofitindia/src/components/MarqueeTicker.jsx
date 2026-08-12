@@ -8,7 +8,7 @@ const items = [
   { text: "STRENGTH TRAINING", icon: Dumbbell },
   { text: "YOGA & MINDFULNESS", icon: Leaf },
   { text: "HIIT & FUNCTIONAL", icon: Flame },
-  { text: "PERSONAL TRAINING", icon: Zap },
+  { text: "PILATES & AEROBICS", icon: Zap },
   { text: "GROUP CLASSES", icon: Users },
   { text: "WEIGHT LOSS", icon: TrendingDown },
   { text: "ONLINE LIVE CLASSES", icon: Sparkles },

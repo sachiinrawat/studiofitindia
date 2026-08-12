@@ -30,7 +30,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 flex flex-col w-full">
 
       <nav
-        className={`transition-all duration-500 ${isScrolled ? "bg-white/95 backdrop-blur-sm shadow-md py-3" : "bg-white py-4 shadow-sm"}`}
+        className={`transition-all duration-500 ${isScrolled ? "bg-white/95 backdrop-blur-sm shadow-md py-1.5" : "bg-white py-2.5 shadow-sm"}`}
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
           <Link
@@ -44,7 +44,7 @@ const Navbar = () => {
               width="180"
               height="50"
               fetchPriority="high"
-              className="h-10 w-auto"
+              className="h-8 md:h-9 w-auto"
             />
           </Link>
 
