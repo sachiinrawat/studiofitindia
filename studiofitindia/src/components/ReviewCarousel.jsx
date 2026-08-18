@@ -46,14 +46,14 @@ const ReviewCarousel = () => {
       <div className="flex justify-center mt-4 gap-4">
         <button
           onClick={() => scroll("left")}
-          className="p-3 rounded-full bg-white border border-gray-200 text-gray-900 hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95 shadow-md"
+          className="p-3 rounded-full bg-white border border-gray-200 text-gray-900 hover:bg-primary hover:text-white hover:border-primary btn-pop shadow-md"
           aria-label="Scroll left"
         >
           <ChevronLeft size={24} />
         </button>
         <button
           onClick={() => scroll("right")}
-          className="p-3 rounded-full bg-white border border-gray-200 text-gray-900 hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95 shadow-md"
+          className="p-3 rounded-full bg-white border border-gray-200 text-gray-900 hover:bg-primary hover:text-white hover:border-primary btn-pop shadow-md"
           aria-label="Scroll right"
         >
           <ChevronRight size={24} />

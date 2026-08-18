@@ -182,9 +182,10 @@ const Contact = () => {
     },
     {
       label: "Sales & Classes",
-      contact: "+91 93106 66287",
+      contact: "+91 87964 42732",
+      contact2: "+91 93106 66287",
       icon: Phone,
-      link: "tel:+919310666287",
+      link: "tel:+918796442732",
     },
     {
       label: "Collaboration",
@@ -324,7 +325,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-secondary hover:bg-secondary/90 text-white font-bold py-4 px-10 rounded-full transition-all flex items-center justify-center w-full disabled:opacity-70 disabled:cursor-not-allowed shadow-sm active:scale-95"
+                    className="bg-secondary hover:bg-secondary/90 text-white font-bold py-4 px-10 rounded-full transition-all flex items-center justify-center w-full disabled:opacity-70 disabled:cursor-not-allowed shadow-sm btn-pop"
                   >
                     <span className="mr-2">
                       {isSubmitting ? "Syncing..." : "Send Message"}
@@ -358,6 +359,11 @@ const Contact = () => {
                 <p className="text-gray-600 text-sm break-all font-medium">
                   {card.contact}
                 </p>
+                {card.contact2 && (
+                  <p className="text-gray-500 text-sm break-all font-medium mt-1">
+                    {card.contact2}
+                  </p>
+                )}
               </a>
             ))}
           </div>
@@ -371,7 +377,7 @@ const Contact = () => {
           <div className="mt-10 text-center bg-gray-50 p-8 rounded-2xl border border-gray-200 max-w-md mx-auto shadow-sm">
             <p className="text-gray-700 mb-4 font-bold uppercase tracking-wider text-xs">Still have questions?</p>
             <a
-              href="https://api.whatsapp.com/send?phone=919310666287"
+              href="https://api.whatsapp.com/send?phone=918796442732"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center text-secondary font-bold hover:underline transition-colors"

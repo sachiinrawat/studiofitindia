@@ -53,7 +53,7 @@ const PricingRow = ({ plan, index, onEnroll }) => {
 
               <button
                 onClick={onEnroll}
-                className="w-full bg-gradient-to-r from-primary to-secondary text-white font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-sm shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-primary to-secondary text-white font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-sm shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 btn-pop flex items-center justify-center gap-2"
               >
                 Enroll Now <ArrowRight size={18} />
               </button>

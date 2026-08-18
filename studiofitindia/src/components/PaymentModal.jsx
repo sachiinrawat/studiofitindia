@@ -7,7 +7,7 @@ const PaymentModal = ({ plan, onClose }) => {
   if (!plan) return null;
 
   const fallbackWhatsapp = `Hi! I'm interested in the ${plan.name} plan (₹${plan.price}). Can you help me enroll?`;
-  const paymentUrl = plan.paymentLink || `https://wa.me/919310666287?text=${encodeURIComponent(plan.whatsappMessage || fallbackWhatsapp)}`;
+  const paymentUrl = plan.paymentLink || `https://wa.me/918796442732?text=${encodeURIComponent(plan.whatsappMessage || fallbackWhatsapp)}`;
 
   const handleProceed = () => {
     if (!agreed) return;

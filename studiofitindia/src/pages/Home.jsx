@@ -36,8 +36,8 @@ const StatPill = ({ value, label, delay = 0 }) => {
       transition={{ duration: 0.5, delay, ease: "easeOut" }}
       className="flex flex-col items-center"
     >
-      <span className="text-xl md:text-2xl font-extrabold font-heading text-secondary leading-none">{value}</span>
-      <span className="text-[10px] text-gray-400 font-semibold mt-1 uppercase tracking-widest">{label}</span>
+      <span className="text-3xl md:text-5xl font-extrabold font-heading text-secondary leading-none mb-1 md:mb-2">{value}</span>
+      <span className="text-[11px] md:text-xs text-gray-400 font-bold uppercase tracking-[0.2em]">{label}</span>
     </motion.div>
   );
 };
@@ -213,11 +213,11 @@ const Home = ({ onStartQuiz }) => {
         }}
       />
       {/* ── BANNER SLIDER (image only, no text) ── */}
-      <Hero />
+      <Hero onStartQuiz={onStartQuiz} />
 
       {/* ── HERO CONTENT — starts below the banner ── */}
-      <section className="py-16 md:py-24 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-6 max-w-5xl text-center">
+      <section className="py-20 md:py-32 bg-white border-b border-gray-100">
+        <div className="container mx-auto px-6 max-w-6xl text-center">
           {/* Eyebrow */}
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -235,7 +235,7 @@ const Home = ({ onStartQuiz }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.6, delay: 0.08 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-heading text-gray-900 leading-tight uppercase tracking-tight mb-5 whitespace-normal md:whitespace-nowrap px-2"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-heading text-gray-900 leading-tight uppercase tracking-tight mb-6 whitespace-normal md:whitespace-nowrap px-2"
           >
             Your <span className="text-secondary">Online Fitness Studio</span>
           </motion.h1>
@@ -246,7 +246,7 @@ const Home = ({ onStartQuiz }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.55, delay: 0.16 }}
-            className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto mb-8 font-medium leading-relaxed"
+            className="text-gray-500 text-lg md:text-xl max-w-3xl mx-auto mb-10 font-medium leading-relaxed"
           >
             Experience the best in <strong className="text-gray-700">online fitness</strong>. Join our interactive{" "}
             <strong className="text-gray-700">live workout classes</strong> led by certified coaches — Yoga, HIIT, Zumba &amp; Strength Training.
@@ -260,23 +260,25 @@ const Home = ({ onStartQuiz }) => {
             transition={{ duration: 0.5, delay: 0.24 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-3 mb-14 w-full px-4 sm:px-0"
           >
-            <button
-              onClick={onStartQuiz}
-              aria-label="Find my batch slot and custom diet plan"
-              className="w-full sm:w-auto px-8 py-4 bg-secondary text-white font-bold text-sm rounded-full hover:bg-secondary/90 transition-all active:scale-95 shadow-md shadow-secondary/20"
+            <a
+              href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20book%20a%20trial%20at%20just%20%E2%82%B91."
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Book a trial class at just ₹1"
+              className="btn-pop w-full sm:w-auto px-8 py-4 bg-secondary text-white font-bold text-sm rounded-full text-center"
             >
-              Find My Batch &amp; Diet Plan
-            </button>
+              Book a Trial at Just ₹1
+            </a>
             <Link
               to="/schedule"
-              className="w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 hover:border-gray-300 transition-all active:scale-95 flex items-center justify-center gap-2"
+              className="btn-pop w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full flex items-center justify-center gap-2"
             >
               <Calendar size={15} className="text-gray-400" />
               View Schedule
             </Link>
             <Link
               to="/pricing"
-              className="w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 hover:border-gray-300 transition-all active:scale-95"
+              className="btn-pop w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full"
             >
               View Plans
             </Link>
@@ -288,27 +290,27 @@ const Home = ({ onStartQuiz }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.5, delay: 0.32 }}
-            className="max-w-3xl mx-auto mb-16 bg-gray-50/50 rounded-2xl p-6 md:p-8 border border-gray-100/80"
+            className="max-w-4xl mx-auto mb-20 bg-gray-50/50 rounded-3xl p-8 md:p-12 border border-gray-100/80"
           >
-            <p className="font-heading font-bold text-gray-900 text-lg mb-5">Monday to Sunday — All 7 Days</p>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 mb-5">
+            <p className="font-heading font-bold text-gray-900 text-xl md:text-2xl mb-8">Monday to Sunday — All 7 Days</p>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-8">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-secondary block mb-1.5">Morning</span>
-                <p className="text-gray-600 font-medium text-sm">5:00 AM, 6:00 AM, 7:00 AM, 8:00 AM, 9:00 AM, 10:30 AM</p>
+                <span className="text-xs font-bold uppercase tracking-widest text-secondary block mb-2">Morning</span>
+                <p className="text-gray-600 font-medium text-base md:text-lg">5:00 AM, 6:00 AM, 7:00 AM, 8:00 AM, 9:00 AM, 10:30 AM</p>
               </div>
-              <div className="hidden md:block w-px h-10 bg-gray-200"></div>
+              <div className="hidden md:block w-px h-12 bg-gray-200"></div>
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-secondary block mb-1.5">Evening</span>
-                <p className="text-gray-600 font-medium text-sm">4:00 PM, 5:00 PM, 6:00 PM, 7:00 PM, 8:00 PM</p>
+                <span className="text-xs font-bold uppercase tracking-widest text-secondary block mb-2">Evening</span>
+                <p className="text-gray-600 font-medium text-base md:text-lg">4:00 PM, 5:00 PM, 6:00 PM, 7:00 PM, 8:00 PM</p>
               </div>
             </div>
-            <p className="text-gray-500 text-sm font-medium">You can join any class, any time, any day.</p>
+            <p className="text-gray-500 text-base md:text-lg font-medium">You can join any class, any time, any day.</p>
           </motion.div>
 
           {/* Stats */}
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-8 sm:gap-8 md:gap-14">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-10 sm:gap-12 md:gap-24">
             <StatPill value="25000+" label="Active Members" delay={0.3} />
-            <StatPill value="20+"    label="Certified Coaches" delay={0.4} />
+            <StatPill value="25+"    label="Certified Coaches" delay={0.4} />
             <StatPill value="4.9★"  label="Average Rating" delay={0.5} />
           </div>
         </div>

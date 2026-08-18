@@ -87,7 +87,7 @@ const ClassSchedule = () => {
         {/* Call to action */}
         <div className="mt-12 text-center">
           <a
-             href="https://wa.me/919310666287?text=Hi! I want to check batch availability for a trial at just ₹1."
+             href="https://wa.me/918796442732?text=Hi! I want to check batch availability for a trial at just ₹1."
              target="_blank"
              rel="noopener noreferrer"
              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-white font-bold py-3.5 px-8 rounded-full hover:brightness-110 shadow-lg shadow-primary/20 transition-all uppercase tracking-widest text-sm"

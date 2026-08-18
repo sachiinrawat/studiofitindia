@@ -120,7 +120,7 @@ const LeadForm = ({ source = "Hero Form", programDefault = "", onSuccessRedirect
       // 5. Automatic WhatsApp Redirect on Success
       if (onSuccessRedirect) {
         const prefilledMsg = `Hi! My name is ${formData.name}. I just registered for a ₹1 Live Trial of the ${formData.program || "fitness"} program on your website. My phone number is ${formData.phone}. Please confirm my slot!`;
-        const whatsappUrl = `https://wa.me/919310666287?text=${encodeURIComponent(prefilledMsg)}`;
+        const whatsappUrl = `https://wa.me/918796442732?text=${encodeURIComponent(prefilledMsg)}`;
         
         setTimeout(() => {
           window.open(whatsappUrl, "_blank");
@@ -152,7 +152,7 @@ const LeadForm = ({ source = "Hero Form", programDefault = "", onSuccessRedirect
           </p>
         </div>
         <a 
-          href={`https://wa.me/919310666287?text=${encodeURIComponent(`Hi! I just registered for a ₹1 Live Trial of the ${formData.program || "fitness"} program on your website. My name is ${formData.name}. Please confirm my slot!`)}`}
+          href={`https://wa.me/918796442732?text=${encodeURIComponent(`Hi! I just registered for a ₹1 Live Trial of the ${formData.program || "fitness"} program on your website. My name is ${formData.name}. Please confirm my slot!`)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-6 text-xs text-secondary font-bold uppercase tracking-wider hover:underline"

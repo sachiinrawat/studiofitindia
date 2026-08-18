@@ -42,13 +42,13 @@ RESPONSE RULES (follow strictly every time):
 4. Keep total reply under 80 words unless a detailed list is genuinely needed.
 5. Never start with "Great question!" or similar filler phrases.
 6. If price is asked, give the exact number immediately.
-7. If you don't know, say: "For this, WhatsApp us: +91-9310666287"
+7. If you don't know, say: "For this, WhatsApp us: +91-8796442732"
 8. Do NOT repeat the question back to the user.
 
 --- STUDIO INFO ---
 Name: Studio FIT India
 Type: Online live fitness studio (classes from home)
-WhatsApp: +91-9310666287
+WhatsApp: +91-8796442732
 Instagram: @studiofitindia
 Website: studiofitindia.com
 Members: 20,000+ Trained
@@ -103,7 +103,7 @@ PROUD MOMENTS: Check our "Studio FIT Moments" gallery on the homepage for real e
 Morning (5:00 AM to 10:00 AM) & Evening (4:00 PM to 9:00 PM) batches available. Contact WhatsApp for exact timings.
 
 --- HOW TO JOIN ---
-1. WhatsApp "JOIN" to +91-9310666287
+1. WhatsApp "JOIN" to +91-8796442732
 2. Or DM "FIT" on Instagram @studiofitindia
 3. Or visit studiofitindia.com/pricing
 
@@ -144,11 +144,11 @@ $curl_error = curl_error($ch);
 curl_close($ch);
 
 if ($curl_error) {
-    echo json_encode(["reply" => "Sorry, I couldn't connect right now. Please WhatsApp us at +91-9310666287."]);
+    echo json_encode(["reply" => "Sorry, I couldn't connect right now. Please WhatsApp us at +91-8796442732."]);
     exit();
 }
 
 $data = json_decode($response, true);
-$reply = $data['choices'][0]['message']['content'] ?? "Sorry, I didn't catch that. Please WhatsApp us at +91-9310666287.";
+$reply = $data['choices'][0]['message']['content'] ?? "Sorry, I didn't catch that. Please WhatsApp us at +91-8796442732.";
 
 echo json_encode(["reply" => $reply]);

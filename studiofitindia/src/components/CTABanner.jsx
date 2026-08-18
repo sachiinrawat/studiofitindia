@@ -65,7 +65,7 @@ const CTABanner = () => {
             </span>
           </Link>
           <a
-            href="https://wa.me/919310666287?text=Hi!%20I%20just%20visited%20your%20website%20and%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1."
+            href="https://wa.me/918796442732?text=Hi!%20I%20just%20visited%20your%20website%20and%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1."
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Book a trial at just ₹1 on WhatsApp"

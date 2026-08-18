@@ -38,15 +38,15 @@ const StickyMobileCTA = ({ onStartQuiz }) => {
 
       <div className="flex items-center gap-3">
         <a
-          href="tel:+919310666287"
-          className="w-10 h-10 bg-gray-50 border border-gray-200 text-gray-700 flex items-center justify-center rounded-full active:scale-95 transition-all"
+          href="tel:+918796442732"
+          className="w-10 h-10 bg-gray-50 border border-gray-200 text-gray-700 flex items-center justify-center rounded-full btn-pop"
           aria-label="Call support"
         >
           <PhoneCall size={18} />
         </a>
         <button
           onClick={onStartQuiz}
-          className="bg-secondary text-white font-bold px-5 py-2.5 rounded-full text-xs uppercase tracking-wider active:scale-95 transition-all flex items-center gap-1.5"
+          className="bg-secondary text-white font-bold px-5 py-2.5 rounded-full text-xs uppercase tracking-wider btn-pop flex items-center gap-1.5"
         >
           Claim Slot
         </button>

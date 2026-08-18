@@ -1,9 +1,18 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { faqs } from "../data/faqs";
 
 const FAQAccordion = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <section className="py-16 bg-gray-50 border-t border-gray-100" id="faq">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-100" id="faq">
+      <div className="container mx-auto px-4 max-w-3xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold font-heading text-gray-900 mb-3">
             Frequently Asked Questions
@@ -13,29 +22,45 @@ const FAQAccordion = () => {
           </p>
         </div>
 
-        {/* 2-column open card grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {faqs.map((faq, idx) => (
-            <div
-              key={idx}
-              className="rounded-2xl border border-gray-200 bg-white hover:border-primary/40 hover:shadow-md transition-all duration-300 p-6 shadow-sm"
-            >
-              {/* Number + Question */}
-              <div className="flex items-start gap-3 mb-3">
-                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center mt-0.5">
-                  {idx + 1}
-                </span>
-                <h3 className="text-gray-900 font-bold font-heading text-base md:text-[15px] leading-snug">
-                  {faq.q}
-                </h3>
+        {/* Accordion List */}
+        <div className="flex flex-col border-t border-gray-200">
+          {faqs.map((faq, idx) => {
+            const isOpen = openIndex === idx;
+            return (
+              <div key={idx} className="border-b border-gray-200">
+                <button
+                  onClick={() => toggle(idx)}
+                  className="w-full flex items-center justify-between py-5 md:py-6 text-left focus:outline-none group"
+                >
+                  <span className="text-gray-900 font-bold font-heading text-[15px] md:text-lg group-hover:text-primary transition-colors pr-4">
+                    {faq.q}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex-shrink-0 text-gray-400 group-hover:text-primary transition-colors"
+                  >
+                    <ChevronDown size={20} />
+                  </motion.div>
+                </button>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="text-gray-600 text-sm md:text-base leading-relaxed pb-6 pr-8">
+                        {faq.a}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-
-              {/* Answer */}
-              <p className="text-gray-600 text-sm leading-relaxed pl-10 border-l-2 border-primary/20 ml-3">
-                {faq.a}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

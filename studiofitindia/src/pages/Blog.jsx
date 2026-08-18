@@ -171,7 +171,7 @@ const Blog = () => {
                     placeholder="yourname@gmail.com"
                     className="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"
                   />
-                  <button className="w-full py-3 bg-secondary text-white font-bold uppercase tracking-wider text-xs rounded-xl hover:bg-secondary/90 transition-all active:scale-95">
+                  <button className="w-full py-3 bg-secondary text-white font-bold uppercase tracking-wider text-xs rounded-xl hover:bg-secondary/90 btn-pop">
                     Subscribe
                   </button>
                 </div>
@@ -205,8 +205,8 @@ const Blog = () => {
               </h4>
               <p className="text-gray-600 text-sm mb-6 font-medium">"Stop reading about results, start feeling them."</p>
               <a 
-                href="https://wa.me/919310666287?text=Hi!%20I%20just%20visited%20your%20website%20and%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1." 
-                className="flex items-center justify-center gap-2 w-full py-4 bg-secondary text-white font-bold uppercase tracking-wider text-xs rounded-xl hover:bg-secondary/90 transition-all active:scale-95"
+                href="https://wa.me/918796442732?text=Hi!%20I%20just%20visited%20your%20website%20and%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1." 
+                className="flex items-center justify-center gap-2 w-full py-4 bg-secondary text-white font-bold uppercase tracking-wider text-xs rounded-xl hover:bg-secondary/90 btn-pop"
               >
                 Join Studio FIT <ArrowRight size={16} />
               </a>
@@ -218,8 +218,8 @@ const Blog = () => {
       {/* Mobile Sticky CTA */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 md:hidden w-[calc(100%-32px)]">
         <a 
-          href="https://wa.me/919310666287?text=Hi!%20I%20just%20visited%20your%20website%20and%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1." 
-          className="flex items-center justify-center gap-2 w-full py-4 bg-secondary text-white font-bold uppercase tracking-wider text-xs rounded-full shadow-lg hover:bg-secondary/90 active:scale-95 transition-all"
+          href="https://wa.me/918796442732?text=Hi!%20I%20just%20visited%20your%20website%20and%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1." 
+          className="flex items-center justify-center gap-2 w-full py-4 bg-secondary text-white font-bold uppercase tracking-wider text-xs rounded-full shadow-lg hover:bg-secondary/90 btn-pop"
         >
           Book a Trial at Just ₹1 <ArrowRight size={16} />
         </a>

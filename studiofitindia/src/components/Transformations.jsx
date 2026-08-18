@@ -209,13 +209,13 @@ const Transformations = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/pricing"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-secondary text-white font-bold uppercase tracking-wider py-4 px-8 rounded-full shadow hover:bg-secondary/95 active:scale-95 transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-secondary text-white font-bold uppercase tracking-wider py-4 px-8 rounded-full shadow hover:bg-secondary/95 btn-pop"
             >
               Book a Trial at Just ₹1
             </Link>
             <Link
               to="/programs"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-bold uppercase tracking-wider py-4 px-8 rounded-full active:scale-95 transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-bold uppercase tracking-wider py-4 px-8 rounded-full btn-pop"
             >
               View Our Programs
             </Link>

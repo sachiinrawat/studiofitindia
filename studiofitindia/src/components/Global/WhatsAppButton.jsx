@@ -11,7 +11,7 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-const WA_NUMBER = "919310666287";
+const WA_NUMBER = "918796442732";
 const WA_MESSAGE = encodeURIComponent(
   "Hi, I want to know more about the ₹1 live fitness trial class."
 );

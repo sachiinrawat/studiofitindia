@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, Zap } from "lucide-react";
 
-const WA_NUMBER = "919310666287";
+const WA_NUMBER = "918796442732";
 const WA_MESSAGE = encodeURIComponent(
   "Hi! I saw your ₹1 trial offer and I want to book my first live fitness class."
 );

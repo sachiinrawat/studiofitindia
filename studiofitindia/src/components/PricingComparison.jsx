@@ -105,7 +105,7 @@ const PricingComparison = ({ onEnroll }) => {
                   onClick={() => onEnroll && onEnroll(plan)}
                   className="w-full py-4 text-[10px] font-black uppercase tracking-[0.2em] bg-gray-900 text-white rounded-xl hover:bg-primary transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-gray-200"
                 >
-                  Join Now
+                  Enroll Now
                 </button>
               </div>
             ))}

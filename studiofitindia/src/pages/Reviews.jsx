@@ -101,7 +101,7 @@ const VideoCarousel = () => {
         <button
           onClick={() => scrollTo(Math.max(active - 1, 0))}
           disabled={active === 0}
-          className="p-3 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-secondary hover:text-white transition-all shadow-sm active:scale-95 disabled:opacity-30"
+          className="p-3 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-secondary hover:text-white transition-all shadow-sm btn-pop disabled:opacity-30"
           aria-label="Previous video"
         >
           <ChevronLeft size={20} />
@@ -120,7 +120,7 @@ const VideoCarousel = () => {
         <button
           onClick={() => scrollTo(Math.min(active + 1, total - 1))}
           disabled={active === total - 1}
-          className="p-3 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-secondary hover:text-white transition-all shadow-sm active:scale-95 disabled:opacity-30"
+          className="p-3 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-secondary hover:text-white transition-all shadow-sm btn-pop disabled:opacity-30"
           aria-label="Next video"
         >
           <ChevronRight size={20} />
@@ -227,14 +227,14 @@ const LocalVideoRow = () => {
       <div className="flex items-center justify-center gap-4 mt-5">
         <button
           onClick={scrollLeft}
-          className="p-3 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-secondary hover:text-white transition-all shadow-sm active:scale-95"
+          className="p-3 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-secondary hover:text-white transition-all shadow-sm btn-pop"
           aria-label="Scroll left"
         >
           <ChevronLeft size={20} />
         </button>
         <button
           onClick={scrollRight}
-          className="p-3 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-secondary hover:text-white transition-all shadow-sm active:scale-95"
+          className="p-3 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-secondary hover:text-white transition-all shadow-sm btn-pop"
           aria-label="Scroll right"
         >
           <ChevronRight size={20} />

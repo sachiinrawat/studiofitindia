@@ -1,15 +1,200 @@
 import { useState, useEffect } from "react";
-import { Check } from "lucide-react";
+import { Check, Users } from "lucide-react";
+import { motion } from "framer-motion";
 import PricingComparison from "../components/PricingComparison";
 import PaymentModal from "../components/PaymentModal";
 import SEO from "../components/SEO";
 import PaymentBadges from "../components/PaymentBadges";
-import { pricingPlans } from "../data/pricing";
+import { workoutPlans, dietPlans, familyPlan } from "../data/pricing";
 
+/* ── Animation variants ──────────────────────────────────── */
+const zoomIn = {
+  hidden:  { opacity: 0, scale: 0.88, y: 24 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.09,
+      duration: 0.52,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
+const fadeUp = {
+  hidden:  { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+};
+
+/* ────────────────────────────────────────────────────────────
+   Ladder prominence levels:
+     "side"   → smallest, grayed border, less padding
+     "mid"    → medium, subtle border
+     "center" → tallest, accent border, elevated shadow
+   ──────────────────────────────────────────────────────────── */
+const LADDER_4 = ["side", "center", "center", "side"];  // 4 plans — both middle cards prominent
+const LADDER_3 = ["side", "center", "side"];           // 3 plans
+
+const PlanCard = ({ plan, onEnroll, prominence = "mid" }) => {
+  const isCenter = prominence === "center";
+  const isSide   = prominence === "side";
+
+  const isMostValuable = plan.badge === "Most Valuable";
+  const BRAND = "#D3365F"; // Studio FIT India brand color
+
+  const wrapperClass = [
+    "relative flex flex-col bg-white rounded-2xl border transition-all duration-300",
+    isCenter
+      ? isMostValuable
+        ? "border-rose-400 shadow-2xl shadow-rose-200/60 ring-2 ring-rose-300/40 z-10"
+        : "border-secondary shadow-2xl shadow-secondary/15 ring-2 ring-secondary/20 z-10"
+      : isSide
+      ? "border-gray-200 shadow-sm opacity-95"
+      : "border-gray-200 shadow-md",
+  ].join(" ");
+
+  // Vertical padding varies by prominence — smaller on mobile, larger on desktop
+  const innerPad = isCenter ? "p-8 md:p-12" : isSide ? "p-7 md:p-10" : "p-8 md:p-11";
+
+  return (
+    <div
+      className={[
+        "relative flex flex-col bg-white rounded-2xl border transition-all duration-300",
+        isCenter
+          ? isMostValuable
+            ? "z-10"
+            : "border-secondary shadow-2xl shadow-secondary/15 ring-2 ring-secondary/20 z-10"
+          : isSide
+          ? "border-gray-200 shadow-sm opacity-95"
+          : "border-gray-200 shadow-md",
+      ].join(" ")}
+      style={isCenter && isMostValuable ? {
+        borderColor: BRAND,
+        boxShadow: `0 20px 60px -10px ${BRAND}40, 0 0 0 2px ${BRAND}30`,
+      } : {}}
+    >
+      {/* Badge ribbon */}
+      {plan.badge && (
+        <div className="absolute top-0 right-0 z-10">
+          <span
+            className="text-[9px] font-bold uppercase tracking-wider py-1 px-3 rounded-bl-xl rounded-tr-2xl block text-white"
+            style={isMostValuable ? { backgroundColor: BRAND } : {}}
+            {...(!isMostValuable && { className: "bg-secondary text-white text-[9px] font-bold uppercase tracking-wider py-1 px-3 rounded-bl-xl rounded-tr-2xl block" })}
+          >
+            {plan.badge}
+          </span>
+        </div>
+      )}
+      {isCenter && !plan.badge && (
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+          <span className="bg-secondary text-white text-[9px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md whitespace-nowrap">
+            Most Popular
+          </span>
+        </div>
+      )}
+
+      <div className={`${innerPad} flex flex-col flex-1`}>
+        {/* Name + duration */}
+        <div className="mb-4">
+          <h3 className={`font-extrabold font-heading text-gray-900 leading-tight mb-1 ${isCenter ? "text-xl md:text-2xl" : "text-lg md:text-xl"}`}>
+            {plan.name}
+          </h3>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+            {plan.duration}
+            {plan.offerHighlight && (
+              <span className="text-secondary ml-1.5">(+ {plan.offerHighlight})</span>
+            )}
+          </p>
+        </div>
+
+        {/* Price */}
+        <div className="mb-5">
+          <div className="flex items-baseline gap-1.5 flex-wrap">
+            <span className={`font-black text-gray-900 font-heading tracking-tight ${isCenter ? "text-4xl md:text-5xl" : "text-2xl md:text-3xl"}`}>
+              ₹{plan.price.toLocaleString()}
+            </span>
+            <span className="text-gray-400 text-[11px] font-bold uppercase shrink-0">/ {plan.duration}</span>
+          </div>
+          {plan.originalPrice && (
+            <p className="text-xs text-gray-400 line-through mt-0.5">₹{plan.originalPrice.toLocaleString()}</p>
+          )}
+          <span className="mt-2 inline-block text-[10px] text-orange-600 font-semibold bg-orange-50 border border-orange-200 rounded px-2 py-0.5">
+            5% GST Excluded
+          </span>
+        </div>
+
+        {/* Features */}
+        <ul className="space-y-2 mb-6 flex-1">
+          {plan.features.map((f, i) => (
+            <li key={i} className="flex items-start gap-2">
+              <Check size={14} className="text-secondary shrink-0 mt-0.5" strokeWidth={3} />
+              <span className="text-xs md:text-sm font-semibold text-gray-600 leading-snug">{f}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA */}
+        <PaymentBadges className="mb-3" />
+        <button
+          onClick={() => onEnroll(plan)}
+          className={`btn-pop w-full text-[11px] font-bold uppercase tracking-widest rounded-xl text-white transition-all ${
+            isCenter ? "py-3.5 shadow-md" : "py-3"
+          } ${!isMostValuable && isCenter ? "bg-secondary hover:bg-secondary/90" : ""} ${
+            !isMostValuable && !isCenter ? "bg-gray-900 hover:bg-gray-800" : ""
+          }`}
+          style={isMostValuable ? { backgroundColor: BRAND } : {}}
+        >
+          Enroll Now
+        </button>
+      </div>
+    </div>
+  );
+};
+
+/* ────────────────────────────────────────────────────────────
+   Section heading — animated
+   ──────────────────────────────────────────────────────────── */
+const SectionHeading = ({ title, description }) => (
+  <motion.div
+    className="mb-12 text-center"
+    variants={fadeUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.5 }}
+  >
+    <h2 className="text-4xl md:text-5xl font-black font-heading text-gray-900 mb-4 tracking-tight">{title}</h2>
+    <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto font-semibold">{description}</p>
+  </motion.div>
+);
+
+/* ────────────────────────────────────────────────────────────
+   Ladder row — animated zoom-through per card
+   ──────────────────────────────────────────────────────────── */
+const LadderRow = ({ plans, prominence, onEnroll, maxWidth = "max-w-7xl" }) => (
+  <div className={`${maxWidth} mx-auto flex flex-col md:flex-row md:items-end gap-5 md:gap-6`}>
+    {plans.map((plan, i) => (
+      <motion.div
+        key={plan.id}
+        className="w-full md:flex-1 md:min-w-[200px]"
+        custom={i}
+        variants={zoomIn}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
+        <PlanCard plan={plan} onEnroll={onEnroll} prominence={prominence[i] ?? "mid"} />
+      </motion.div>
+    ))}
+  </div>
+);
+
+/* ────────────────────────────────────────────────────────────
+   Pricing Page
+   ──────────────────────────────────────────────────────────── */
 const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
 
-  // Meta Pixel: track pricing page view
   useEffect(() => {
     if (typeof fbq === "function") {
       fbq("track", "ViewContent", {
@@ -22,306 +207,150 @@ const Pricing = () => {
 
   return (
     <div className="w-full">
-      <SEO 
+      <SEO
         title="Fitness Membership Plans & Pricing"
-        description="Affordable monthly, quarterly and annual fitness memberships. Live online yoga, HIIT and Zumba classes starting at ₹999/month. First class free — no credit card needed."
+        description="Affordable monthly, quarterly and annual fitness memberships. Live online yoga, HIIT and Zumba classes starting at ₹1499/month. First class free — no credit card needed."
         keywords={[
           "online fitness classes price India",
-          "affordable yoga classes online",
-          "online fitness class price India",
           "online gym membership India",
-          "affordable online yoga classes",
+          "online yoga classes",
+          "online zumba classes",
+          "online aerobics classes",
+          "online Strength Training",
           "fitness subscription India",
           "online gym subscription plan",
           "Studio FIT India pricing",
           "live fitness class monthly plan",
           "online fitness classes cost",
+          "online fitness studio",
+          "online fitness classes",
+          "online gym",
+          "online weight loss programs",
+          "premium fitness classes",
+          "premium live fitness classes"
         ]}
       />
-      {/* Header Section */}
-      <section className="pt-6 pb-12 bg-gradient-to-b from-white to-gray-50">
+
+      {/* ── Page Header ──────────────────────────────────── */}
+      <section className="pt-8 pb-14 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold font-heading mb-4 text-gray-900 tracking-tight">
-            Premium <span className="text-secondary">Memberships</span>
+          <h1 className="text-3xl md:text-5xl font-black font-heading text-gray-900 tracking-tight mb-4">
+            Choose Your <span className="text-secondary">Membership</span>
           </h1>
           <p className="text-gray-500 text-base max-w-2xl mx-auto font-normal">
-            Your journey to a healthier, stronger, and more confident version of yourself starts with the right plan.
+            Every plan includes live expert-led sessions. Pick the category that fits your goal.
           </p>
         </div>
       </section>
 
-      {/* 2-Year Special Plan */}
-      {(() => {
-        const twoYearPlan = pricingPlans.find(p => p.id === 12);
-        if (!twoYearPlan) return null;
-        return (
-          <section className="bg-gradient-to-b from-gray-50 via-white to-gray-50 pb-8">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto px-4">
-                <div className="bg-white border-2 border-secondary rounded-2xl p-8 md:p-10 shadow-sm flex flex-col md:flex-row items-stretch justify-between gap-8 hover:shadow-md transition-all">
-                  {/* Left Column: Info */}
-                  <div className="flex-grow flex flex-col justify-between">
-                    <div>
-                      <span className="inline-block bg-secondary text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded mb-4">
-                        {twoYearPlan.badge}
-                      </span>
-                      <h3 className="text-2xl font-extrabold text-gray-900 mb-2 font-heading">
-                        {twoYearPlan.name}
-                      </h3>
-                      <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-4">
-                        {twoYearPlan.duration} Membership
-                      </p>
-                      <p className="text-gray-600 text-sm leading-relaxed max-w-lg mb-6">
-                        Commit to your long-term health with our exclusive 2 Year Plan. Get full access to unlimited live classes, the complete content library, and flexible pause options.
-                      </p>
-                    </div>
-
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-2.5 mb-1">
-                        <span className="text-gray-400 line-through text-base font-semibold">₹{twoYearPlan.originalPrice.toLocaleString()}</span>
-                      </div>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-extrabold text-gray-900 tracking-tight font-heading">₹{twoYearPlan.price.toLocaleString()}</span>
-                        <span className="text-gray-500 text-xs uppercase font-bold">/ {twoYearPlan.duration}</span>
-                      </div>
-                      <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block self-start">5% GST Excluded</p>
-                    </div>
-                  </div>
-
-                  {/* Right Column: Features list with left border divider */}
-                  <div className="w-full md:w-[320px] flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-8">
-                    <div>
-                      <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Included in 2 Year Plan:</h4>
-                      <div className="space-y-3 mb-6">
-                        {twoYearPlan.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-start gap-2.5">
-                            <Check size={16} className="text-secondary shrink-0 mt-0.5" strokeWidth={3} />
-                            <span className="text-xs font-semibold text-gray-700 leading-tight">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <PaymentBadges className="mb-3" />
-                    <button
-                      onClick={() => setSelectedPlan(twoYearPlan)}
-                      className="w-full py-3.5 bg-secondary hover:bg-secondary/95 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
-                    >
-                      Join Now
-                    </button>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        );
-      })()}
-
-      {/* Pricing Cards Grid */}
-      <section className="relative bg-gradient-to-b from-gray-50 to-white pb-16 overflow-hidden">
-        {/* Subtle decorative glow blobs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      {/* ── Workout Plans ────────────────────────────────── */}
+      <section className="py-16 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4">
-
-          {/* First Row of cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
-            {pricingPlans.slice(0, 4).map((plan) => {
-              const isMothersDay = plan.badge === "Mother's Day Offer";
-              return (
-                <div key={plan.id} className="group h-full relative">
-                  <div className={`flex flex-col h-full bg-white rounded-2xl transition-all duration-300 overflow-hidden border p-8 shadow-sm ${isMothersDay ? 'border-pink-400' : 'border-gray-200'}`}>
-                    {isMothersDay && (
-                      <div className="absolute top-0 right-0 bg-pink-600 text-white text-[9px] font-bold uppercase tracking-wider py-1 px-3.5 rounded-bl-xl z-10">
-                        Mother's Day Offer
-                      </div>
-                    )}
-                    <div className="mb-4">
-                      <h3 className={`text-lg font-bold font-heading mb-1 ${isMothersDay ? 'text-pink-600' : 'text-gray-900'}`}>{plan.name}</h3>
-                      <p className="text-gray-400 font-semibold uppercase tracking-wider text-[10px]">
-                        {plan.duration}
-                        {plan.offerHighlight && (
-                          <span className="text-pink-600 ml-1 font-bold">
-                            (+ {plan.offerHighlight})
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                    
-                    <div className="mb-6">
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-3xl font-extrabold text-gray-900 font-heading">₹{plan.price.toLocaleString()}</span>
-                        <span className="text-gray-400 text-xs font-medium uppercase">/ {plan.duration}</span>
-                      </div>
-                      {plan.originalPrice && (
-                        <p className="text-xs text-gray-400 line-through mt-0.5">₹{plan.originalPrice.toLocaleString()}</p>
-                      )}
-                      <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block">5% GST Excluded</p>
-                    </div>
-
-                    <div className="space-y-3.5 mb-6 flex-grow">
-                      {plan.features.map((feature, idx) => {
-                        const highlightFeature = isMothersDay && feature.includes('Free');
-                        return (
-                          <div key={idx} className={`flex items-start gap-2.5 ${highlightFeature ? 'bg-pink-50 -mx-2 px-2 py-1.5 rounded-lg' : ''}`}>
-                            <div className="shrink-0 mt-0.5">
-                              <Check size={14} className={isMothersDay ? "text-pink-500" : "text-secondary"} strokeWidth={3} />
-                            </div>
-                            <span className={`text-xs leading-tight ${highlightFeature ? 'font-bold text-pink-600' : 'font-semibold text-gray-600'}`}>{feature}</span>
-                          </div>
-                        )
-                      })}
-                    </div>
-
-                    <PaymentBadges className="mb-3" />
-                    <button 
-                      onClick={() => setSelectedPlan(plan)}
-                      className={`w-full py-3 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl transition-all active:scale-95 ${isMothersDay ? 'bg-pink-600 hover:bg-pink-700 shadow-sm' : 'bg-gray-900 hover:bg-gray-800'}`}
-                    >
-                      Join Now
-                    </button>
-                  </div>
-
-                </div>
-              )
-            })}
-          </div>
-
-          {/* Second Row for remaining 4 cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {pricingPlans.slice(4, 8).map((plan) => (
-              <div key={plan.id} className="group h-full">
-                <div className="flex flex-col h-full bg-white rounded-2xl border border-gray-200 p-8 shadow-sm transition-all duration-300 hover:shadow-md">
-                  <div className="mb-4">
-                    <div className="flex items-center justify-between mb-1">
-                      <h3 className="text-lg font-bold font-heading text-gray-900">{plan.name}</h3>
-                      {(plan.id === 6 || plan.id === 7) && (
-                        <span className="bg-gray-100 text-gray-600 text-[8px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">1-on-1</span>
-                      )}
-                    </div>
-                    <p className="text-gray-400 font-semibold uppercase tracking-wider text-[10px]">{plan.duration}</p>
-                  </div>
-                  
-                  <div className="mb-6">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-3xl font-extrabold text-gray-900 font-heading">₹{plan.price.toLocaleString()}</span>
-                      <span className="text-gray-400 text-xs font-medium uppercase">/ {plan.duration.split(' ')[0]}</span>
-                    </div>
-                    {plan.originalPrice && (
-                      <p className="text-xs text-gray-400 line-through mt-0.5">₹{plan.originalPrice.toLocaleString()}</p>
-                    )}
-                    <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block">5% GST Excluded</p>
-                  </div>
-
-                  <div className="space-y-3.5 mb-6 flex-grow">
-                    {plan.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5">
-                        <div className="shrink-0 mt-0.5">
-                          <Check size={14} className="text-secondary" strokeWidth={3} />
-                        </div>
-                        <span className="text-xs font-semibold text-gray-600 leading-tight">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <PaymentBadges className="mb-3" />
-                  <button 
-                    onClick={() => setSelectedPlan(plan)}
-                    className="w-full py-3 bg-gray-900 hover:bg-gray-800 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl transition-all active:scale-95 shadow-sm"
-                  >
-                    Join Now
-                  </button>
-                </div>
-
-              </div>
-            ))}
-          </div>
-
+          <SectionHeading
+            title="Workout Plans"
+            description="Live daily workouts — Yoga, HIIT, Zumba & Strength Training. Structured fitness without a diet plan."
+          />
+          <LadderRow
+            plans={workoutPlans}
+            prominence={LADDER_4}
+            onEnroll={setSelectedPlan}
+            maxWidth="max-w-7xl"
+          />
         </div>
       </section>
 
-      {/* Family Fitness Plans */}
-      {(() => {
-        const family3M = pricingPlans.find(p => p.id === 11);
-        if (!family3M) return null;
-        return (
-          <section className="bg-white pb-16">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto px-4">
-                <h3 className="text-center text-xl font-bold font-heading text-gray-900 mb-2">Family Fitness Plans</h3>
-                <p className="text-center text-gray-500 text-sm mb-8">Fitness for the whole family.</p>
+      {/* ── Divider ──────────────────────────────────────── */}
+      <div className="container mx-auto px-4">
+        <div className="border-t border-dashed border-gray-200" />
+      </div>
 
-                {/* 3-Month Family Plan Card */}
-                <div className="bg-white border-2 border-secondary rounded-2xl p-8 md:p-10 shadow-sm flex flex-col md:flex-row items-stretch justify-between gap-8 hover:shadow-md transition-all">
-                  {/* Left Column: Info */}
-                  <div className="flex-grow flex flex-col justify-between">
-                    <div>
-                      <span className="inline-block bg-secondary text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded mb-4">
-                        Join Before 1st August
-                      </span>
-                      <h3 className="text-2xl font-extrabold text-gray-900 mb-2 font-heading">
-                        {family3M.name}
-                      </h3>
-                      <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-4">
-                        {family3M.duration} Membership
-                      </p>
-                      <p className="text-gray-600 text-sm leading-relaxed max-w-lg mb-6">
-                        Get fit together with our Family Fitness Plan. Enjoy unlimited live fitness classes and our complete content library. Valid for up to 3 family members.
-                      </p>
-                    </div>
+      {/* ── Workout + Diet Plans ─────────────────────────── */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            title="Workout + Diet Plans"
+            description="Complete transformation with personalised diet consultations, weekly monitoring, and priority coach support."
+          />
+          <LadderRow
+            plans={dietPlans}
+            prominence={LADDER_3}
+            onEnroll={setSelectedPlan}
+            maxWidth="max-w-5xl"
+          />
+        </div>
+      </section>
 
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-2.5 mb-1">
-                        <span className="text-gray-400 line-through text-base font-semibold">₹{family3M.originalPrice.toLocaleString()}</span>
-                      </div>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-extrabold text-gray-900 tracking-tight font-heading">₹{family3M.price.toLocaleString()}</span>
-                        <span className="text-gray-500 text-xs uppercase font-bold">/ {family3M.duration}</span>
-                      </div>
-                      <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block self-start">5% GST Excluded</p>
-                    </div>
+      {/* ── Divider ──────────────────────────────────────── */}
+      <div className="container mx-auto px-4">
+        <div className="border-t border-dashed border-gray-200" />
+      </div>
+
+      {/* ── Family Fitness Plan ───────────────────────────── */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            title="Family Fitness Plan"
+            description="Train together, grow together. One plan for up to 3 family members — all in one subscription."
+          />
+
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white border-2 border-secondary rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+              {/* Left pane */}
+              <div className="flex-1 p-8 md:p-10">
+                <h3 className="text-2xl font-extrabold font-heading text-gray-900 mb-2">{familyPlan.name}</h3>
+                <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+                  Get fit together with our Family Fitness Plan. Enjoy unlimited live fitness classes and our complete content library — valid for up to 3 family members.
+                </p>
+                <div>
+                  <div className="flex items-baseline gap-2 mb-1">
+                    <span className="text-4xl font-black text-gray-900 font-heading">₹{familyPlan.price.toLocaleString()}</span>
+                    <span className="text-gray-400 text-xs font-bold uppercase">/ {familyPlan.duration}</span>
                   </div>
+                  <p className="text-xs text-gray-400 line-through mb-2">₹{familyPlan.originalPrice.toLocaleString()}</p>
+                  <span className="text-[10px] text-orange-600 font-semibold bg-orange-50 border border-orange-200 rounded px-2 py-0.5">
+                    5% GST Excluded
+                  </span>
+                </div>
+              </div>
 
-                  {/* Right Column: Features list with left border divider */}
-                  <div className="w-full md:w-[320px] flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-8">
-                    <div>
-                      <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Included in Family Plan:</h4>
-                      <div className="space-y-3 mb-6">
-                        {family3M.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-start gap-2.5">
-                            <Check size={16} className="text-secondary shrink-0 mt-0.5" strokeWidth={3} />
-                            <span className="text-xs font-semibold text-gray-700 leading-tight">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <PaymentBadges className="mb-3" />
-                    <button
-                      onClick={() => setSelectedPlan(family3M)}
-                      className="w-full py-3.5 bg-secondary hover:bg-secondary/95 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
-                    >
-                      Secure Family Spot &amp; Join Now
-                    </button>
-
-                  </div>
+              {/* Right pane */}
+              <div className="w-full md:w-[300px] shrink-0 flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-100 p-8 bg-gray-50/60">
+                <div>
+                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">What's Included</h4>
+                  <ul className="space-y-3 mb-8">
+                    {familyPlan.features.map((f, i) => (
+                      <li key={i} className="flex items-start gap-2.5">
+                        <Check size={14} className="text-secondary shrink-0 mt-0.5" strokeWidth={3} />
+                        <span className="text-xs font-semibold text-gray-700 leading-snug">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <PaymentBadges className="mb-4" />
+                  <button
+                    onClick={() => setSelectedPlan(familyPlan)}
+                    className="btn-pop w-full py-3.5 bg-secondary hover:bg-secondary/90 text-white text-[11px] font-bold uppercase tracking-widest rounded-xl shadow-sm flex items-center justify-center gap-2"
+                  >
+                    <Users size={14} />
+                    Secure Family Spot &amp; Enroll Now
+                  </button>
                 </div>
               </div>
             </div>
-          </section>
-        );
-      })()}
+          </div>
+        </div>
+      </section>
 
-      {/* Comparison Table */}
+      {/* ── Comparison Table ──────────────────────────────── */}
       <PricingComparison onEnroll={setSelectedPlan} />
 
-      {/* Terms */}
+      {/* ── Terms ─────────────────────────────────────────── */}
       <section className="pb-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center text-gray-400 text-xs leading-relaxed">
             <p>* All plans include access to community support.</p>
-            <p>* Terms & Conditions apply.</p>
+            <p>* Terms &amp; Conditions apply.</p>
           </div>
         </div>
       </section>

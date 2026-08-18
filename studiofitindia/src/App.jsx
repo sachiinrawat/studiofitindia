@@ -14,7 +14,6 @@ import ScrollToTop from "./components/Global/ScrollToTop";
 import WhatsAppButton from "./components/Global/WhatsAppButton";
 import InstagramButton from "./components/Global/InstagramButton";
 import StickyMobileCTA from "./components/Global/StickyMobileCTA";
-import ExitIntentPopup from "./components/Global/ExitIntentPopup";
 import BatchFinderQuiz from "./components/BatchFinderQuiz";
 import Home from "./pages/Home";
 
@@ -91,7 +90,6 @@ function App() {
         <InstagramButton />
         <WhatsAppButton />
         <StickyMobileCTA onStartQuiz={() => setIsQuizOpen(true)} />
-        <ExitIntentPopup />
         <BatchFinderQuiz isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />
       </div>
     </Router>

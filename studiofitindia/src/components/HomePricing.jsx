@@ -71,9 +71,9 @@ const HomePricing = () => {
 
                   <button 
                     onClick={() => setSelectedPlan(plan)}
-                    className={`w-full py-3 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl transition-all active:scale-95 ${isMothersDay ? 'bg-pink-600 hover:bg-pink-700 shadow-sm' : 'bg-gray-900 hover:bg-gray-800'}`}
+                    className={`w-full py-3 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl btn-pop ${isMothersDay ? 'bg-pink-600 hover:bg-pink-700 shadow-sm' : 'bg-gray-900 hover:bg-gray-800'}`}
                   >
-                    Join Now
+                    Enroll Now
                   </button>
                 </div>
               </div>
@@ -120,9 +120,9 @@ const HomePricing = () => {
 
                 <button 
                   onClick={() => setSelectedPlan(plan)}
-                  className="w-full py-3 bg-gray-900 hover:bg-gray-800 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl transition-all active:scale-95 shadow-sm"
+                  className="w-full py-3 bg-gray-900 hover:bg-gray-800 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl btn-pop shadow-sm"
                 >
-                  Join Now
+                  Enroll Now
                 </button>
               </div>
             </div>
@@ -143,9 +143,6 @@ const HomePricing = () => {
                 {/* Left Column: Info */}
                 <div className="flex-grow flex flex-col justify-between">
                   <div>
-                    <span className="inline-block bg-secondary text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded mb-4">
-                      Join Before 1st August
-                    </span>
                     <h3 className="text-2xl font-extrabold text-gray-900 mb-2 font-heading">
                       {family3M.name}
                     </h3>
@@ -185,9 +182,9 @@ const HomePricing = () => {
 
                   <button
                     onClick={() => setSelectedPlan(family3M)}
-                    className="w-full py-3.5 bg-secondary hover:bg-secondary/95 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
+                    className="btn-pop w-full py-3.5 bg-secondary hover:bg-secondary/95 text-white text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm flex items-center justify-center gap-2"
                   >
-                    Secure Family Spot &amp; Join Now
+                    Secure Family Spot &amp; Enroll Now
                   </button>
                 </div>
               </div>

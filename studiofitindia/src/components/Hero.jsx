@@ -10,10 +10,13 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
      but you CAN use promotional images with your own text.
 ════════════════════════════════════════════════════════ */
 const SLIDES = [
+
   {
     id: 1,
-    image: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1786532256/15_wxm393.png",
-    alt: "Studio FIT India — Live Online Fitness Classes",
+    image: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1786901367/Untitled_design_sz6u4c.png",
+    mobileImage: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1786901733/Untitled_400_x_300_px_grnism.png",
+    alt: "Studio FIT India Banner",
+    objectPosition: "object-top",
   },
 ];
 
@@ -22,7 +25,7 @@ const SWIPE_THRESHOLD = 50;
 /* ════════════════════════════════════════════════════════
    HERO BANNER SLIDER — image only, no text overlay
 ════════════════════════════════════════════════════════ */
-const Hero = () => {
+const Hero = ({ onStartQuiz }) => {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
@@ -59,7 +62,7 @@ const Hero = () => {
   const variants = {
     enter: (dir) => ({ x: dir > 0 ? "100%" : "-100%" }),
     center: { x: 0 },
-    exit:  (dir) => ({ x: dir > 0 ? "-100%" : "100%" }),
+    exit: (dir) => ({ x: dir > 0 ? "-100%" : "100%" }),
   };
 
   return (
@@ -85,15 +88,20 @@ const Hero = () => {
           onDragEnd={total > 1 ? handleDragEnd : undefined}
           className={`absolute inset-0 w-full h-full ${total > 1 ? 'cursor-grab active:cursor-grabbing' : ''}`}
         >
-          <motion.img
-            style={{ scale }}
-            src={SLIDES[current].image}
-            alt={SLIDES[current].alt}
-            className="w-full h-full object-cover object-center"
-            loading={SLIDES[current].id === 1 ? "eager" : "lazy"}
-            fetchpriority={SLIDES[current].id === 1 ? "high" : "auto"}
-            draggable={false}
-          />
+          <picture>
+            {SLIDES[current].mobileImage && (
+              <source media="(max-width: 639px)" srcSet={SLIDES[current].mobileImage} />
+            )}
+            <motion.img
+              style={{ scale }}
+              src={SLIDES[current].image}
+              alt={SLIDES[current].alt}
+              className={`w-full h-full object-cover ${SLIDES[current].objectPosition ?? 'object-center'}`}
+              loading={SLIDES[current].id === 1 ? "eager" : "lazy"}
+              fetchpriority={SLIDES[current].id === 1 ? "high" : "auto"}
+              draggable={false}
+            />
+          </picture>
         </motion.div>
       </AnimatePresence>
 
@@ -102,22 +110,17 @@ const Hero = () => {
       {/* Bottom: fades image into the white section below — seamless blend */}
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white via-white/60 to-transparent z-10 pointer-events-none" />
 
-      {/* ── CTA BUTTON ── */}
+      {/* ── CTA BUTTONS ── */}
       <div className="absolute bottom-3 md:bottom-10 left-1/2 -translate-x-1/2 z-20 w-full px-4 text-center">
-        <a
-          href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20book%20a%20trial%20at%20just%20%E2%82%B91."
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Book a trial class at just ₹1"
-          className="inline-flex justify-center items-center gap-2 bg-secondary text-white font-semibold text-[13px] md:text-sm px-6 py-3 md:px-7 md:py-2.5 rounded-full transition-all active:scale-95 whitespace-nowrap hover:bg-secondary/90 w-full sm:w-auto max-w-[280px] mx-auto"
-          style={{
-            boxShadow: "0 -2px 8px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.22), 0 1px 3px rgba(0,0,0,0.12)",
-          }}
-          onMouseEnter={e => e.currentTarget.style.boxShadow = "0 -3px 12px rgba(0,0,0,0.25), 0 6px 22px rgba(0,0,0,0.28), 0 2px 6px rgba(0,0,0,0.15)"}
-          onMouseLeave={e => e.currentTarget.style.boxShadow = "0 -2px 8px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.22), 0 1px 3px rgba(0,0,0,0.12)"}
-        >
-          Book a Trial at Just ₹1
-        </a>
+        {onStartQuiz && (
+          <button
+            onClick={onStartQuiz}
+            aria-label="Find my batch slot and custom diet plan"
+            className="btn-pop inline-flex justify-center items-center bg-[#D3365F] hover:bg-[#b0294b] text-white font-bold text-[13px] md:text-sm px-6 py-3 md:px-8 md:py-3.5 rounded-full whitespace-nowrap w-full sm:w-auto max-w-[320px] mx-auto shadow-lg shadow-black/20"
+          >
+            Find My Batch & Diet Plan
+          </button>
+        )}
       </div>
 
       {/* ── ARROWS & DOTS (only if multiple slides) ── */}
@@ -127,7 +130,7 @@ const Hero = () => {
           <button
             onClick={prev}
             aria-label="Previous slide"
-            className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full bg-white/80 backdrop-blur-sm border border-white/60 shadow-md flex items-center justify-center hover:bg-white hover:scale-105 transition-all active:scale-95"
+            className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full bg-white/80 backdrop-blur-sm border border-white/60 shadow-md flex items-center justify-center hover:bg-white hover:scale-105 btn-pop"
           >
             <ChevronLeft size={18} className="text-gray-800" />
           </button>
@@ -136,7 +139,7 @@ const Hero = () => {
           <button
             onClick={next}
             aria-label="Next slide"
-            className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full bg-white/80 backdrop-blur-sm border border-white/60 shadow-md flex items-center justify-center hover:bg-white hover:scale-105 transition-all active:scale-95"
+            className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full bg-white/80 backdrop-blur-sm border border-white/60 shadow-md flex items-center justify-center hover:bg-white hover:scale-105 btn-pop"
           >
             <ChevronRight size={18} className="text-gray-800" />
           </button>
@@ -152,9 +155,8 @@ const Hero = () => {
                 style={{ width: i === current ? 24 : 7, height: 7 }}
               >
                 <span
-                  className={`absolute inset-0 rounded-full transition-colors duration-300 ${
-                    i === current ? "bg-white" : "bg-white/50"
-                  }`}
+                  className={`absolute inset-0 rounded-full transition-colors duration-300 ${i === current ? "bg-white" : "bg-white/50"
+                    }`}
                 />
                 {/* Progress bar on active dot */}
                 {i === current && !isPaused && (

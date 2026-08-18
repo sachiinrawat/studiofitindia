@@ -140,7 +140,7 @@ function studiofitindia_enqueue_scripts() {
   $theme_uri = get_template_directory_uri();
 
   // Dynamically find the CSS file hash
-  $css_files = glob($theme_dir . '/assets/index-B-Ri80i8.css');
+  $css_files = glob($theme_dir . '/assets/index-DOiOsO9y.css');
   $css_path = !empty($css_files) ? $css_files[0] : '';
   $css_uri  = !empty($css_path) ? $theme_uri . '/assets/' . basename($css_path) : '';
   $css_ver  = !empty($css_path) && file_exists($css_path) ? filemtime($css_path) : '1.0.0';
@@ -150,7 +150,7 @@ function studiofitindia_enqueue_scripts() {
   }
 
   // Dynamically find the JS file hash
-  $js_files = glob($theme_dir . '/assets/index-CqeXKqkT.js');
+  $js_files = glob($theme_dir . '/assets/index-COT7SwA9.js');
   $js_path = !empty($js_files) ? $js_files[0] : '';
   $js_uri  = !empty($js_path) ? $theme_uri . '/assets/' . basename($js_path) : '';
   $js_ver  = !empty($js_path) && file_exists($js_path) ? filemtime($js_path) : '1.0.0';
@@ -275,7 +275,7 @@ function sfi_get_page_config() {
     ),
     '/contact' => array(
       'title'       => 'Contact Studio FIT India — WhatsApp, Email & Location',
-      'description' => 'Get in touch with Studio FIT India. WhatsApp: +91 93106 66287. Email: info@studiofitindia.com. Office: Greater Noida, Uttar Pradesh.',
+      'description' => 'Get in touch with Studio FIT India. WhatsApp: +91 87964 42732. Email: info@studiofitindia.com. Office: Greater Noida, Uttar Pradesh.',
       'keywords'    => 'contact studio fit india, studio fit india phone number, studio fit india location',
     ),
     '/schedule' => array(
@@ -393,7 +393,7 @@ function sfi_get_structured_data() {
     "description": "India\'s leading online live fitness studio offering Yoga, HIIT, Zumba, Strength Training and Pilates.",
     "url": "' . $site_url . '",
     "logo": "' . $logo . '",
-    "telephone": "+91 93106 66287",
+    "telephone": "+91 87964 42732",
     "email": "studiofitindiahelpdesk@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -504,7 +504,7 @@ function sfi_get_crawlable_html() {
   <ul><li>1-on-1 Personal Training</li><li>16 sessions in a month</li><li>WhatsApp Chat Support</li><li><a href="https://rzp.io/rzp/personal-training-1month">Pay Now</a></li></ul>
   <h2>Personal Training (3 Months) — ₹38,000</h2>
   <ul><li>1-on-1 Personal Training</li><li>48 sessions in 3 months</li><li>WhatsApp Chat Support</li><li><a href="https://rzp.io/rzp/personal-training-3months">Pay Now</a></li></ul>
-  <p><a href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20join%20Studio%20FIT%20India.">Join Now on WhatsApp — +91 93106 66287</a></p>
+  <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20Studio%20FIT%20India.">Join Now on WhatsApp — +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
 
@@ -527,7 +527,7 @@ function sfi_get_crawlable_html() {
   <p>A structured online weight loss program that combines live exercise classes, diet consultation and weekly progress monitoring. <a href="/weight-loss-program-online">Learn more about Weight Loss Program</a>.</p>
   <h2>Personal Training Online (1-on-1)</h2>
   <p>One-on-one online personal training sessions with a dedicated certified coach, customized to your specific fitness goals. <a href="/personal-training-online">Learn more about Personal Training</a>.</p>
-  <p><a href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1.">Book a Trial at Just ₹1 — WhatsApp +91 93106 66287</a></p>
+  <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1.">Book a Trial at Just ₹1 — WhatsApp +91 87964 42732</a></p>
 </div>';
   }
 
@@ -542,7 +542,7 @@ function sfi_get_crawlable_html() {
   <h2>Yoga Programs Offered</h2>
   <ul><li>Hatha Yoga — classical postures for flexibility and balance</li><li>Ashtanga Yoga — dynamic, strength-building sequences</li><li>Power Yoga — intense, calorie-burning yoga flow</li><li>Pranayama &amp; Breathwork — respiratory health and stress relief</li><li>Meditation — mindfulness and mental clarity</li><li>Face Yoga — natural facial toning exercises</li></ul>
   <p>Plans start at just ₹1,499/month. <a href="/pricing">Compare All Plans*</a>.</p>
-  <p><a href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20join%20online%20Yoga%20classes.">Join Yoga Classes — WhatsApp +91 93106 66287</a></p>
+  <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20online%20Yoga%20classes.">Join Yoga Classes — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
 
@@ -557,7 +557,7 @@ function sfi_get_crawlable_html() {
   <h2>HIIT Programs Available</h2>
   <ul><li>Functional HIIT Training</li><li>Cardio HIIT Circuits</li><li>Strength &amp; HIIT Combination</li><li>Beginner-Friendly HIIT</li></ul>
   <p>Plans start at ₹1,499/month. <a href="/pricing">Compare All Plans*</a>.</p>
-  <p><a href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20join%20HIIT%20training%20classes.">Join HIIT Classes — WhatsApp +91 93106 66287</a></p>
+  <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20HIIT%20training%20classes.">Join HIIT Classes — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
 
@@ -570,7 +570,7 @@ function sfi_get_crawlable_html() {
   <h2>Why Zumba at Studio FIT India?</h2>
   <ul><li>Burns 400-600 calories per session</li><li>No prior dance experience needed</li><li>Bollywood, Latin &amp; International dance styles</li><li>High-energy, motivating live sessions</li><li>Morning and evening batch options</li></ul>
   <p>Plans start at ₹1,499/month. <a href="/pricing">Compare All Plans*</a>.</p>
-  <p><a href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20join%20Zumba%20classes.">Join Zumba Classes — WhatsApp +91 93106 66287</a></p>
+  <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20Zumba%20classes.">Join Zumba Classes — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
 
@@ -583,7 +583,7 @@ function sfi_get_crawlable_html() {
   <h2>Strength Training Programs</h2>
   <ul><li>Bodyweight Functional Training</li><li>CrossFit-Style Circuit Training</li><li>Progressive Muscle Building</li><li>Core Strength &amp; Stability</li><li>Mobility and Flexibility Training</li></ul>
   <p>Plans start at ₹1,499/month. <a href="/pricing">Compare All Plans*</a>.</p>
-  <p><a href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20join%20Strength%20Training%20classes.">Join Strength Training — WhatsApp +91 93106 66287</a></p>
+  <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20Strength%20Training%20classes.">Join Strength Training — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
 
@@ -598,7 +598,7 @@ function sfi_get_crawlable_html() {
   <h2>Real Results from Real Members</h2>
   <p>Plans start at ₹1,499/month. <a href="/reviews">Read member transformation stories</a>.</p>
   <p>Plans start at ₹1,499/month. <a href="/pricing">Compare All Plans*</a>.</p>
-  <p><a href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20join%20the%20Weight%20Loss%20Program.">Join Weight Loss Program — WhatsApp +91 93106 66287</a></p>
+  <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20the%20Weight%20Loss%20Program.">Join Weight Loss Program — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
 
@@ -611,7 +611,7 @@ function sfi_get_crawlable_html() {
   <h2>Benefits of Online Personal Training</h2>
   <ul><li>100% personalized workout plan built for your goals</li><li>Direct 1-on-1 attention from your dedicated coach</li><li>Real-time posture correction and feedback</li><li>Flexible scheduling — choose your preferred time</li><li>Diet guidance included in premium plans</li></ul>
   <p><a href="/pricing">Compare All Plans* and pricing</a>.</p>
-  <p><a href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20join%20Personal%20Training.">Book Personal Training — WhatsApp +91 93106 66287</a></p>
+  <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20Personal%20Training.">Book Personal Training — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
 
@@ -716,7 +716,7 @@ function sfi_get_crawlable_html() {
   <blockquote><p>"Losing weight and staying fit is almost everyone\'s dream. No crash diet, no difficult exercises. Just a daily routine with balanced diet plan and light physical workout is giving me results." — Shwetha Farsinavis</p></blockquote>
   <blockquote><p>"Studio FIT offers a wide range of workout options that cater to different fitness levels. I\'ve noticed significant improvements in my strength and stamina since joining." — Haritha Mandavilli</p></blockquote>
   <blockquote><p>"It\'s a very amazing online fitness studio where housewives especially can do exercises at home. Instructors are very helpful." — Jyoti Yadav</p></blockquote>
-  <p><a href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1.">Start Your Transformation — Book a Trial at Just ₹1</a></p>
+  <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1.">Start Your Transformation — Book a Trial at Just ₹1</a></p>
 </div>' . $footer_html;
   }
 
@@ -737,7 +737,7 @@ function sfi_get_crawlable_html() {
     <li><strong>Geeta Khatri</strong> — Bollywood Dance, Zumba (2 years experience)</li>
     <li><strong>Jurul Thomas Daimari</strong> — Licensed Zumba® Instructor (8+ years experience)</li>
   </ul>
-  <p><a href="https://wa.me/919310666287">Connect with our coaches — WhatsApp +91 93106 66287</a></p>
+  <p><a href="https://wa.me/918796442732">Connect with our coaches — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
 
@@ -749,7 +749,7 @@ function sfi_get_crawlable_html() {
   <p>Get in touch with Studio FIT India for membership enquiries, trial classes at just ₹1, or any questions about our online fitness programs.</p>
   <h2>Contact Details</h2>
   <ul>
-    <li><strong>WhatsApp:</strong> <a href="https://wa.me/919310666287">+91 93106 66287</a></li>
+    <li><strong>WhatsApp:</strong> <a href="https://wa.me/918796442732">+91 87964 42732</a></li>
     <li><strong>Email:</strong> <a href="mailto:info@studiofitindia.com">info@studiofitindia.com</a></li>
     <li><strong>Instagram:</strong> <a href="https://instagram.com/studiofitindia1">@studiofitindia1</a></li>
     <li><strong>Website:</strong> <a href="https://studiofitindia.com">studiofitindia.com</a></li>
@@ -770,7 +770,7 @@ function sfi_get_crawlable_html() {
   <p>Classes available from 6:00 AM to 11:00 AM IST. Programs include Yoga, HIIT, Pilates and Strength Training.</p>
   <h2>Evening Batches</h2>
   <p>Classes available from 5:00 PM to 9:00 PM IST. Programs include Zumba, HIIT, Yoga and Aerobics.</p>
-  <p><a href="https://wa.me/919310666287?text=Hi!%20Please%20share%20the%20current%20class%20schedule.">Get the Latest Schedule on WhatsApp</a> | <a href="/pricing">Compare All Plans*</a></p>
+  <p><a href="https://wa.me/918796442732?text=Hi!%20Please%20share%20the%20current%20class%20schedule.">Get the Latest Schedule on WhatsApp</a> | <a href="/pricing">Compare All Plans*</a></p>
 </div>' . $footer_html;
   }
 
@@ -803,7 +803,7 @@ function sfi_get_crawlable_html() {
     <li><strong>Personal Training:</strong> ₹16,000/Month — 1-on-1 Direct Coaching</li>
   </ul>
   
-  <a href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1.">Book a Trial at Just ₹1 — WhatsApp +91 93106 66287</a>
+  <a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20book%20a%20trial%20at%20just%20₹1.">Book a Trial at Just ₹1 — WhatsApp +91 87964 42732</a>
 
   <h2>Studio FIT Moments</h2>
   <p>Explore the energy and community of Studio FIT India. Our gallery showcases official moments from live online sessions, special workshops, and community events. Trusted by <strong>25000+ Members</strong> with <strong>20+ Certified Coaches</strong> leading the way.</p>
@@ -835,7 +835,7 @@ function sfi_get_crawlable_html() {
     <li>Train from any device: phone, tablet or laptop</li>
   </ul>
   <h2>Contact Us</h2>
-  <p>WhatsApp: <a href="https://wa.me/919310666287">+91 93106 66287</a> | Email: <a href="mailto:info@studiofitindia.com">info@studiofitindia.com</a><br>
+  <p>WhatsApp: <a href="https://wa.me/918796442732">+91 87964 42732</a> | Email: <a href="mailto:info@studiofitindia.com">info@studiofitindia.com</a><br>
   Address: 6th Floor, I-Thum\'s Galleria Mall, Greater Noida, Uttar Pradesh 201310</p>
 </div>' . $footer_html;
 }
@@ -880,12 +880,12 @@ function studiofitindia_preload_assets() {
   $theme_uri = get_template_directory_uri();
   $theme_dir = get_template_directory();
 
-  $css_files = glob($theme_dir . '/assets/index-B-Ri80i8.css');
+  $css_files = glob($theme_dir . '/assets/index-DOiOsO9y.css');
   if (!empty($css_files)) {
     echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/' . basename($css_files[0])) . '" as="style">' . "\n";
   }
 
-  $js_files = glob($theme_dir . '/assets/index-CqeXKqkT.js');
+  $js_files = glob($theme_dir . '/assets/index-COT7SwA9.js');
   if (!empty($js_files)) {
     echo '<link rel="modulepreload" href="' . esc_url($theme_uri . '/assets/' . basename($js_files[0])) . '">' . "\n";
   }

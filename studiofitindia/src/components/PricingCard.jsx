@@ -82,13 +82,13 @@ const PricingCard = ({ plan, onEnroll }) => {
           handleEnroll();
           if (onEnroll) onEnroll();
         }}
-        className={`w-full flex-shrink-0 py-3.5 mt-auto font-bold uppercase tracking-wider transition-all text-xs flex justify-center items-center rounded-xl active:scale-95 ${
+        className={`btn-pop w-full flex-shrink-0 py-3.5 mt-auto font-bold uppercase tracking-wider text-xs flex justify-center items-center rounded-xl ${
           plan.badge?.includes('Free') || plan.badge?.includes('Offer') || isPopular
             ? "bg-secondary text-white hover:bg-secondary/95 shadow-sm"
             : "bg-gray-900 text-white hover:bg-gray-800"
         }`}
       >
-        Join Now
+        Enroll Now
       </button>
     </div>
   );

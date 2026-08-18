@@ -176,11 +176,16 @@ const Footer = () => {
                   Noida, Uttar Pradesh 201310
                 </span>
               </li>
-              <li className="flex items-center">
-                <Phone size={20} className="mr-3 text-secondary flex-shrink-0" />
-                <a href="tel:+919310666287" className="hover:text-secondary transition-colors">
-                  +91 93106 66287
-                </a>
+              <li className="flex items-start">
+                <Phone size={20} className="mr-3 text-secondary flex-shrink-0 mt-1" />
+                <div className="flex flex-col gap-1">
+                  <a href="tel:+918796442732" className="hover:text-secondary transition-colors">
+                    +91 87964 42732
+                  </a>
+                  <a href="tel:+919310666287" className="hover:text-secondary transition-colors">
+                    +91 93106 66287
+                  </a>
+                </div>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="mr-3 text-secondary flex-shrink-0" />

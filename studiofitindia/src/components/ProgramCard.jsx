@@ -72,7 +72,7 @@ const ProgramCard = ({ program, onSelect }) => {
         {/* Actions */}
         <div className="mt-auto flex flex-col gap-3 pt-2">
           <a
-            href={`https://wa.me/919310666287?text=${encodeURIComponent(
+            href={`https://wa.me/918796442732?text=${encodeURIComponent(
               `Hi! I'm interested in the ${program.name} program. Can I book a trial at just ₹1?`
             )}`}
             target="_blank"

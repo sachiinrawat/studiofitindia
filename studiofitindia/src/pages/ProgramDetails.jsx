@@ -54,7 +54,7 @@ const ProgramDetails = () => {
     },
   };
 
-  const whatsappUrl = `https://wa.me/919310666287?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/918796442732?text=${encodeURIComponent(
     `Hi! I'm interested in the ${program.name} program. Can I book a trial at just ₹1?`,
   )}`;
 
@@ -350,7 +350,7 @@ const ProgramDetails = () => {
                   <p className="text-center text-gray-400 text-[10px] mt-4 font-semibold">
                     Call us:{" "}
                     <a
-                      href="tel:+919310666287"
+                      href="tel:+918796442732"
                       className="text-gray-600 hover:text-secondary font-bold"
                     >
                       +91 93106 66287

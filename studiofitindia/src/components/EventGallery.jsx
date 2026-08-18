@@ -165,7 +165,7 @@ const EventGallery = () => {
           <div className="w-px h-16 bg-gray-100 hidden md:block"></div>
           <div className="flex flex-col items-center">
             <span className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
-              15+
+              25+
             </span>
             <span className="text-xs md:text-sm text-gray-500 uppercase tracking-[0.2em] font-bold">
               Certified Coaches

@@ -98,7 +98,7 @@ const BlogPost = () => {
               <p className="text-gray-600 mb-6 max-w-xl mx-auto font-medium">Join Studio FIT India today and get access to expert coaches, personalized feedback, and a community that pushes you to excel.</p>
               <a 
                 href="/pricing" 
-                className="inline-block bg-secondary hover:bg-secondary/90 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-sm active:scale-95"
+                className="inline-block bg-secondary hover:bg-secondary/90 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-sm btn-pop"
               >
                 View Plans & Enroll
               </a>

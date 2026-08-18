@@ -17,7 +17,7 @@ const Modal = ({ isOpen, onClose, plan }) => {
       const message =
         plan.whatsappMessage ||
         `Hi, I'm interested in the ${plan.name} plan (₹${plan.price}). Please help me enroll.`;
-      const url = `https://api.whatsapp.com/send?phone=919310666287&text=${encodeURIComponent(message)}`;
+      const url = `https://api.whatsapp.com/send?phone=918796442732&text=${encodeURIComponent(message)}`;
       window.open(url, "_blank");
     }
 

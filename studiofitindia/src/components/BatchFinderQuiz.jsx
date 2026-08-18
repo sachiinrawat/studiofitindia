@@ -135,7 +135,7 @@ My preferred batch timing is: ${answers.timing}
 
 Please send my batch slot invitation!`;
 
-      const whatsappUrl = `https://wa.me/919310666287?text=${encodeURIComponent(prefilledMsg)}`;
+      const whatsappUrl = `https://wa.me/918796442732?text=${encodeURIComponent(prefilledMsg)}`;
       
       setTimeout(() => {
         window.open(whatsappUrl, "_blank");
@@ -369,7 +369,7 @@ Please send my batch slot invitation!`;
             </p>
             <div className="w-6 h-6 border-4 border-secondary border-t-transparent rounded-full animate-spin mb-4" />
             <a 
-              href={`https://wa.me/919310666287?text=${encodeURIComponent(`Hi! My name is ${answers.name}. I just completed your Fitness Quiz on your website. Please confirm my batch slots!`)}`}
+              href={`https://wa.me/918796442732?text=${encodeURIComponent(`Hi! My name is ${answers.name}. I just completed your Fitness Quiz on your website. Please confirm my batch slots!`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[10px] text-secondary font-bold uppercase tracking-wider hover:underline flex items-center gap-1.5"

@@ -8,7 +8,25 @@
   body {
     @apply bg-white text-gray-900 font-body;
   }
+}
 
+@layer components {
+  /* ── Premium Button Animation ── */
+  .btn-pop {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .btn-pop:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 14px 24px -8px rgba(0, 0, 0, 0.25) !important;
+  }
+  .btn-pop:active {
+    transform: translateY(1px) scale(0.96);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
   /* ── Critical Hero Shell (migrated from index.html) ── */
   .hero-shell {
     position: relative;

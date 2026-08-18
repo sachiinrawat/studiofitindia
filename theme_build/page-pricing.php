@@ -126,7 +126,7 @@ get_header(); ?>
 
                                 <?php 
                                 $isPT = strpos($plan['name'], 'Personal Training') !== false;
-                                $targetLink = $isPT ? (strpos($plan['name'], '1 Month') !== false ? 'https://rzp.io/rzp/personal-training-1month' : 'https://rzp.io/rzp/personal-training-3months') : "https://wa.me/919310666287?text=Hi! I just visited your website and I want to book a trial at just ₹1.";
+                                $targetLink = $isPT ? (strpos($plan['name'], '1 Month') !== false ? 'https://rzp.io/rzp/personal-training-1month' : 'https://rzp.io/rzp/personal-training-3months') : "https://wa.me/918796442732?text=Hi! I just visited your website and I want to book a trial at just ₹1.";
                                 ?>
                                 <a href="<?php echo $targetLink; ?>" target="_blank" class="block w-full bg-gradient-to-r from-primary to-secondary text-white text-center font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-sm shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all">
                                     Enroll Now
