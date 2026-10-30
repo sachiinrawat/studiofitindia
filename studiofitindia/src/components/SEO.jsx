@@ -35,7 +35,7 @@ export default function SEO({ title, description, keywords = [], schema = null }
           url: siteUrl,
           logo: {
               "@type": "ImageObject",
-              url: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777445549/image_ks0v7p.png",
+              url: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1787160047/sfi_pdk6so.png",
           },
       },
   };

@@ -28,8 +28,11 @@ const Refund = lazy(() => import("./pages/Refund"));
 const Shipping = lazy(() => import("./pages/Shipping"));
 const Schedule = lazy(() => import("./pages/Schedule"));
 const ProgramDetails = lazy(() => import("./pages/ProgramDetails"));
+const Transformations = lazy(() => import("./pages/Transformations"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const Results = lazy(() => import("./pages/Results"));
+const Sfi = lazy(() => import("./pages/Sfi"));
 
 function AnimatedRoutes({ onStartQuiz }) {
   const location = useLocation();
@@ -44,8 +47,10 @@ function AnimatedRoutes({ onStartQuiz }) {
     >
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home onStartQuiz={onStartQuiz} />} />
+        <Route path="/sfi" element={<Sfi />} />
         <Route path="/programs" element={<Programs />} />
         <Route path="/program" element={<Navigate to="/programs" replace />} />
+        <Route path="/transformation" element={<Transformations />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/about" element={<About />} />
         <Route path="/reviews" element={<Reviews />} />
@@ -58,22 +63,46 @@ function AnimatedRoutes({ onStartQuiz }) {
         {/* SEO Program Landing Pages */}
         <Route path="/yoga-classes-online" element={<ProgramDetails />} />
         <Route path="/hiit-training-online" element={<ProgramDetails />} />
+        <Route path="/functional-training-online" element={<ProgramDetails />} />
         <Route path="/zumba-classes-online" element={<ProgramDetails />} />
+        <Route path="/aerobics-classes-online" element={<ProgramDetails />} />
         <Route path="/strength-training-online" element={<ProgramDetails />} />
         <Route path="/weight-loss-program-online" element={<ProgramDetails />} />
+        <Route path="/pilates-classes-online" element={<ProgramDetails />} />
 
 
         {/* SEO Blog Routing */}
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+
+        {/* Results (Transformation Photos) */}
+        <Route path="/results" element={<Results />} />
       </Routes>
     </Suspense>
   );
 }
 
-function App() {
+function AppLayout() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
+  const location = useLocation();
+  const isLandingPage = location.pathname === "/sfi";
 
+  return (
+    <div className="bg-white font-body text-gray-900 min-h-screen flex flex-col">
+      {!isLandingPage && <Navbar />}
+      <main className="flex-grow">
+        <AnimatedRoutes onStartQuiz={() => setIsQuizOpen(true)} />
+      </main>
+      {!isLandingPage && <Footer />}
+      {!isLandingPage && <InstagramButton />}
+      {!isLandingPage && <WhatsAppButton />}
+      {!isLandingPage && <StickyMobileCTA onStartQuiz={() => setIsQuizOpen(true)} />}
+      {!isLandingPage && <BatchFinderQuiz isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />}
+    </div>
+  );
+}
+
+function App() {
   // Instantly reload when a new deployment is detected — on page load
   // and every time the user returns to this tab.
   useAutoRefresh();
@@ -81,17 +110,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="bg-white font-body text-gray-900 min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow">
-          <AnimatedRoutes onStartQuiz={() => setIsQuizOpen(true)} />
-        </main>
-        <Footer />
-        <InstagramButton />
-        <WhatsAppButton />
-        <StickyMobileCTA onStartQuiz={() => setIsQuizOpen(true)} />
-        <BatchFinderQuiz isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />
-      </div>
+      <AppLayout />
     </Router>
   );
 }

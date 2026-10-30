@@ -1,5 +1,5 @@
 
-import { Dumbbell, Leaf, Zap, TrendingDown, User, Users } from "lucide-react";
+import { Dumbbell, Leaf, Zap, TrendingDown, User, Users, Activity, Music, Heart, Layers } from "lucide-react";
 import { useAssetUrl } from "../utils/assets";
 import { Link } from "react-router-dom";
 
@@ -10,6 +10,10 @@ const iconMap = {
   TrendingDown: TrendingDown,
   User: User,
   Users: Users,
+  Activity: Activity,
+  Music: Music,
+  Heart: Heart,
+  Layers: Layers,
 };
 
 const ProgramCard = ({ program, onSelect }) => {
@@ -52,14 +56,14 @@ const ProgramCard = ({ program, onSelect }) => {
         </p>
 
         <div className="mb-5">
-          <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-600 mb-2">
+          <h4 className="text-xs font-bold uppercase tracking-widest text-gray-600 mb-2">
             Best For:
           </h4>
           <div className="flex flex-wrap gap-1.5">
             {program.bestFor.map((item, idx) => (
               <span
                 key={idx}
-                className="bg-gray-100 text-[10px] px-2 py-0.5 text-gray-700 border border-gray-200 font-medium tracking-wide"
+                className="bg-gray-100 text-xs px-2 py-0.5 text-gray-700 border border-gray-200 font-medium tracking-wide"
               >
                 {item}
               </span>
@@ -71,31 +75,11 @@ const ProgramCard = ({ program, onSelect }) => {
 
         {/* Actions */}
         <div className="mt-auto flex flex-col gap-3 pt-2">
-          <a
-            href={`https://wa.me/918796442732?text=${encodeURIComponent(
-              `Hi! I'm interested in the ${program.name} program. Can I book a trial at just ₹1?`
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-center bg-gradient-to-r from-primary to-secondary hover:brightness-110 text-white font-bold py-3 rounded-full transition-all text-sm shadow-lg shadow-primary/20"
-            onClick={() => {
-              if (typeof window !== "undefined" && window.gtag) {
-                window.gtag("event", "conversion", {
-                  send_to: "AW-17925563887/NUd8CJnlipEcEO_LyeNC",
-                });
-              }
-            }}
-          >
-            Book a Trial at Just ₹1
-          </a>
           <Link
             to={`/${program.slug}`}
-            className="text-gray-500 font-bold hover:text-gray-900 transition-colors flex items-center justify-center uppercase tracking-widest text-xs group/btn"
+            className="w-full text-center bg-gradient-to-r from-primary to-secondary hover:brightness-110 text-white font-bold py-3 rounded-full transition-all text-sm shadow-lg shadow-primary/20"
           >
-            View Details
-            <span className="ml-2 group-hover/btn:translate-x-2 transition-transform duration-300">
-              →
-            </span>
+            Learn More
           </Link>
         </div>
       </div>

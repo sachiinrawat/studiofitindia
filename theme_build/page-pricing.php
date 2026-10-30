@@ -32,42 +32,44 @@ get_header(); ?>
             ),
             array(
                 "name" => "Standard",
-                "duration" => "3 Months + 15 Days",
+                "duration" => "3+1 Months",
                 "price" => 2900,
-                "originalPrice" => 3000,
-                "badge" => "Best for Weight Loss",
-                "features" => ["90+ Live Classes", "15 Days Extra", "10 Days Pause Option"]
+                "originalPrice" => 3999,
+                "badge" => "Festive Offer",
+                "features" => ["120 Sessions", "10 Days Pause", "1 Month Free", "Content Library"]
             ),
             array(
                 "name" => "PRO",
-                "duration" => "6+1 Months",
+                "duration" => "6+2 Months",
                 "price" => 4600,
-                "originalPrice" => 6999,
+                "originalPrice" => 5999,
                 "badge" => "Most Popular",
-                "features" => ["Unlimited Live Classes", "15 Days Pause Option", "+1 Month Free", "Recorded Library Access"]
+                "features" => ["Unlimited Classes", "20 Days Pause", "2 Months Free", "Content Library"]
             ),
             array(
                 "name" => "ELITE",
-                "duration" => "1 Year",
-                "price" => 6500,
-                "originalPrice" => 8000,
-                "badge" => "Total Commitment",
-                "features" => ["Unlimited Classes", "30 Days Pause Option", "Full Recorded Library", "Progress Monitoring"]
+                "duration" => "1 Year + 3 Months",
+                "price" => 5900,
+                "originalPrice" => 8999,
+                "badge" => "Best Value",
+                "features" => ["Unlimited Classes", "30 Days Pause", "3 Months Free", "Content Library"]
             ),
             array(
                 "name" => "1 Month Transformation Plan",
                 "duration" => "1 Month",
-                "price" => 2499,
-                "originalPrice" => 3499,
-                "badge" => "Highly Popular",
-                "features" => ["30 Day Intense Program", "Unlimited Classes", "Customized Diet Plan", "Weekly Tracking", "Priority Support"]
+                "price" => 3500,
+                "originalPrice" => 4000,
+                "badge" => "Transformation",
+                "features" => ["Unlimited Classes", "Customized Diet Plan", "Weekly Monitoring", "Priority Support"]
             ),
             array(
-                "name" => "Transformation Elite",
+                "name" => "90-Day Transformation",
                 "duration" => "90 Days",
-                "price" => 7900,
-                "originalPrice" => 10500,
-                "badge" => "Best Results",
+                "price" => 6000,
+                "originalPrice" => 12000,
+                "badge" => "50% OFF",
+                "features" => ["Customized Diet + Daily Tracking", "Weekly Counselling", "15 Days Pause", "Unlimited Live Classes", "Priority Support"]
+            ),
                 "features" => ["90 Day Intense Program", "Unlimited Classes", "Customized Diet Plan", "Weekly Tracking", "Priority Support"]
             ),
             array(

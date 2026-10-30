@@ -4,8 +4,8 @@ export const workoutPlans = [
         id: 1,
         category: "workout",
         name: "STARTER",
-        price: 1499,
-        originalPrice: 1699,
+        price: 1699,
+        originalPrice: 1999,
         duration: "1 Month",
         features: [
             "30 Live Classes",
@@ -15,64 +15,67 @@ export const workoutPlans = [
         badge: null,
         popular: false,
         paymentLink: "https://rzp.io/rzp/1monthstudiofitindia",
-        whatsappMessage: "Hi Studio Fit India, I want to ENROLL in the STARTER (1 Month) plan for ₹1499."
+        whatsappMessage: "Hi Studio Fit India, I want to ENROLL in the STARTER (1 Month) plan for ₹1699."
     },
     {
         id: 2,
         category: "workout",
         name: "STANDARD",
-        price: 3200,
+        price: 2900,
         originalPrice: 3999,
-        duration: "3 Months",
-        offerHighlight: "15 Days Free",
+        duration: "3+1 Months",
+        offerHighlight: "1 Month FREE",
         features: [
-            "90 Sessions",
+            "120 Sessions",
             "10 Days Pause",
             "Content Library",
             "Workout Guidance",
-            "15 Days Free"
+            "1 Month FREE"
         ],
-        badge: "Most Valuable",
+        badge: "Festive Offer",
         popular: true,
         paymentLink: "https://rzp.io/rzp/3monthstudiofitindia",
-        whatsappMessage: "Hi Studio Fit India, I want to ENROLL in the STANDARD (3 Months + 15 Days Free) plan for ₹3200."
+        whatsappMessage: "Hi Studio Fit India, I want to ENROLL in the 3+1 Months Festive Offer for ₹2900."
     },
     {
         id: 3,
         category: "workout",
         name: "PRO",
-        price: 4999,
-        originalPrice: 6999,
-        duration: "6 Months",
-        offerHighlight: "1 Month Free",
+        price: 4600,
+        originalPrice: 5999,
+        duration: "6+2 Months",
+        offerHighlight: "2 Months FREE",
         features: [
-            "Unlimited Sessions",
+            "Unlimited Classes",
             "20 Days Pause",
             "Content Library",
             "Workout Guidance",
-            "1 Month Free"
+            "2 Months FREE"
         ],
-        badge: "Most Valuable",
+        badge: "Most Popular",
         popular: true,
         paymentLink: "https://rzp.io/rzp/6monthstudiofitindia",
-        whatsappMessage: "Hi Studio Fit India, I want to ENROLL in the PRO (6 Months + 1 Month Free) plan for ₹4999."
+        whatsappMessage: "Hi Studio Fit India, I want to ENROLL in the PRO (6+2 Months) Festive Offer for ₹4600."
     },
     {
         id: 4,
         category: "workout",
         name: "ELITE",
-        price: 7000,
+        price: 5900,
         originalPrice: 8999,
-        duration: "1 Year",
+        duration: "1 Year + 3 Months",
+        offerHighlight: "3 Months FREE",
         features: [
-            "Unlimited Live Classes",
+            "Unlimited Classes",
             "30 Days Pause",
-            "Content Library"
+            "Content Library",
+            "Workout Guidance",
+            "3 Months FREE"
         ],
-        badge: null,
+        badge: "Best Value",
         popular: false,
         paymentLink: "https://rzp.io/rzp/1yearstudiofitindia",
-        whatsappMessage: "Hi Studio Fit India, I want to ENROLL in the ELITE (1 Year) plan for ₹7000."
+        whatsappMessage: "Hi Studio Fit India, I want to ENROLL in the ELITE (1 Year + 3 Months) Festive Offer for ₹5900."
     },
 ];
 
@@ -119,22 +122,22 @@ export const dietPlans = [
     {
         id: 5,
         category: "diet",
-        name: "TRANSFORMATION ELITE",
-        price: 9000,
-        originalPrice: 10500,
+        name: "90-DAY TRANSFORMATION",
+        price: 6000,
+        originalPrice: 12000,
         duration: "90 Days",
         features: [
-            "Unlimited Live Classes",
+            "Customized Diet + Daily Tracking",
+            "Weekly Counselling",
             "15 Days Pause",
+            "Unlimited Live Classes",
             "Content Library",
-            "Customized Diet",
-            "Weekly Monitoring",
             "Priority Support"
         ],
-        badge: "Best Results",
+        badge: "50% OFF",
         popular: true,
         paymentLink: "https://rzp.io/rzp/90dayselitetransformation",
-        whatsappMessage: "Hi Studio Fit India, I want to ENROLL in the TRANSFORMATION ELITE (90 Days) plan for ₹9000."
+        whatsappMessage: "Hi Studio Fit India, I want to ENROLL in the 90-DAY TRANSFORMATION plan for ₹6000 (50% OFF)."
     },
 ];
 
@@ -160,12 +163,26 @@ export const familyPlan = {
 // ─── LEGACY FLAT ARRAY (used by HomePricing, PricingCard etc.) ─────────────
 export const pricingPlans = [...workoutPlans, ...dietPlans, familyPlan];
 
+
+// Great Festive Fit Sale Details
+export const FESTIVE_SALE_CONFIG = {
+    saleName: "GREAT FESTIVE FIT SALE",
+    tagline: "BUY NOW, START LATER! Book Now & Start When You're Ready",
+    bonus: "Renew by 31st Oct & Get 21-Day FAT TO FIT CHALLENGE FREE!",
+    validity: "Sale Valid Till 9th November",
+    phones: ["8796442732", "9310666287"],
+    commitment: "Your Fitness, Our Commitment!"
+};
+
+// Offer expiry (Valid till 9th November)
+export const FESTIVE_OFFER_EXPIRY = new Date("2026-11-09T23:59:59+05:30");
+
 // Feature comparison matrix
 export const comparisonFeatures = [
-    { label: "Live Classes", values: { 1: "30", 2: "90", 3: "Unlimited", 4: "Unlimited", 8: "Unlimited", 5: "Unlimited", 9: "Unlimited" } },
-    { label: "Pause Option", values: { 1: false, 2: "10 Days", 3: "20 Days", 4: "30 Days", 8: false, 5: "15 Days", 9: false } },
-    { label: "Content Library", values: { 1: false, 2: true, 3: true, 4: true, 8: true, 5: true, 9: false } },
-    { label: "Diet Consultation", values: { 1: false, 2: false, 3: false, 4: false, 8: "Customized", 5: "Customized", 9: false } },
-    { label: "Progress Monitoring", values: { 1: false, 2: false, 3: false, 4: false, 8: "Weekly", 5: "Weekly", 9: false } },
-    { label: "Priority Support", values: { 1: false, 2: false, 3: false, 4: false, 8: true, 5: true, 9: false } },
+    { label: "Live Classes", values: { 1: "30", 2: "120", 3: "Unlimited", 4: "Unlimited", 8: "Unlimited", 5: "Unlimited" } },
+    { label: "Pause Option", values: { 1: false, 2: "10 Days", 3: "20 Days", 4: "30 Days", 8: false, 5: "15 Days" } },
+    { label: "Content Library", values: { 1: false, 2: true, 3: true, 4: true, 8: true, 5: true } },
+    { label: "Diet Consultation", values: { 1: false, 2: false, 3: false, 4: false, 8: "Customized", 5: "Customized + Daily Tracking" } },
+    { label: "Progress Monitoring", values: { 1: false, 2: false, 3: false, 4: false, 8: "Weekly", 5: "Weekly Counselling" } },
+    { label: "Priority Support", values: { 1: false, 2: false, 3: false, 4: false, 8: true, 5: true } },
 ];

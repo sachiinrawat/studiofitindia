@@ -1,5 +1,3 @@
-mereko yei chahiye ki jo yei button ahi Trial wala banne ke uppr eski jagaah
-find my batch wala button aajaye or Trial wala neeche 
-coz direct nazar pehle banner pe pdegi eseliyee.
-
-kaisa rhega idea
+Want to update my design but in my color theme 
+i have attached the image 
+don't change the hero section try below thata

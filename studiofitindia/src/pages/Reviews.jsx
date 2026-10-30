@@ -1,25 +1,14 @@
 import { useState, useRef } from "react";
 import SectionHeader from "../components/SectionHeader";
 import ReviewCarousel from "../components/ReviewCarousel";
-import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ZoomIn, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import SEO from "../components/SEO";
 
 // In WordPress, public assets are served from the theme directory, not the root domain.
-// functions.php exposes the theme directory URL via window.siteSettings.
 const getThemeUrl = (path) => {
   const themeUrl = window.siteSettings?.themeUrl || "";
   return `${themeUrl}${path}`;
 };
-
-const transformationImages = [
-  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1784811005/5be07b3c-1dd5-4b6e-bab3-40e10647a65b.png",
-  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.33_PM_igdral.jpg",
-  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.33_PM_2_lxdqdo.jpg",
-  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446568/WhatsApp_Image_2026-04-29_at_12.34.32_PM_qsnh4s.jpg",
-  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446567/WhatsApp_Image_2026-04-29_at_12.34.33_PM_1_umnvjz.jpg",
-  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777446567/WhatsApp_Image_2026-04-29_at_12.34.32_PM_1_rltu0l.jpg",
-  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777449106/new_aezcxf.jpg",
-];
 
 const testimonialVideos = [
   { id: "0A6a6jhrEhc", title: "Customer Testimonial 1" },
@@ -36,7 +25,7 @@ const VideoCarousel = () => {
   const scrollTo = (index) => {
     if (!scrollRef.current) return;
     const el = scrollRef.current;
-    const cardWidth = el.querySelector("div").offsetWidth + 16; // card + gap
+    const cardWidth = el.querySelector("div").offsetWidth + 16;
     el.scrollTo({ left: cardWidth * index, behavior: "smooth" });
   };
 
@@ -47,7 +36,6 @@ const VideoCarousel = () => {
     setActive(Math.round(el.scrollLeft / cardWidth));
   };
 
-  // Mouse drag support
   const isDragging = useRef(false);
   const dragStartX = useRef(0);
   const dragStartScroll = useRef(0);
@@ -69,7 +57,6 @@ const VideoCarousel = () => {
 
   return (
     <div className="w-full">
-      {/* Track — 3 videos in a row on desktop, swipeable on mobile */}
       <div
         ref={scrollRef}
         onScroll={handleScroll}
@@ -111,8 +98,9 @@ const VideoCarousel = () => {
             <button
               key={i}
               onClick={() => scrollTo(i)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${i === active ? "bg-secondary w-6" : "bg-gray-300 w-2.5"
-                }`}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                i === active ? "bg-secondary w-6" : "bg-gray-300 w-2.5"
+              }`}
               aria-label={`Video ${i + 1}`}
             />
           ))}
@@ -150,7 +138,6 @@ const LocalVideoRow = () => {
   const dragStartX = useRef(0);
   const dragStartScroll = useRef(0);
   const rafId = useRef(null);
-
   const SCROLL_AMOUNT = 220;
 
   const scrollLeft = () =>
@@ -163,15 +150,11 @@ const LocalVideoRow = () => {
     dragStartX.current = e.pageX;
     dragStartScroll.current = scrollRef.current.scrollLeft;
     scrollRef.current.style.cursor = "grabbing";
-    // Prevent text selection during drag
     e.preventDefault();
   };
-
   const onMouseMove = (e) => {
     if (!isDragging.current) return;
-    // Cancel any pending RAF
     if (rafId.current) cancelAnimationFrame(rafId.current);
-    // Schedule update on next animation frame for smooth 60fps movement
     rafId.current = requestAnimationFrame(() => {
       if (scrollRef.current) {
         scrollRef.current.scrollLeft =
@@ -179,7 +162,6 @@ const LocalVideoRow = () => {
       }
     });
   };
-
   const onMouseUp = () => {
     isDragging.current = false;
     if (rafId.current) cancelAnimationFrame(rafId.current);
@@ -192,7 +174,6 @@ const LocalVideoRow = () => {
         More Stories From Our Members
       </h3>
 
-      {/* Scrollable video track */}
       <div
         ref={scrollRef}
         onMouseDown={onMouseDown}
@@ -200,11 +181,7 @@ const LocalVideoRow = () => {
         onMouseUp={onMouseUp}
         onMouseLeave={onMouseUp}
         className="flex gap-4 overflow-x-auto no-scrollbar pb-2"
-        style={{
-          cursor: "grab",
-          WebkitOverflowScrolling: "touch", // native momentum on iOS
-          willChange: "scroll-position", // GPU hint
-        }}
+        style={{ cursor: "grab", WebkitOverflowScrolling: "touch", willChange: "scroll-position" }}
       >
         {localVideos.map((file) => (
           <div
@@ -223,7 +200,6 @@ const LocalVideoRow = () => {
         ))}
       </div>
 
-      {/* Nav buttons below */}
       <div className="flex items-center justify-center gap-4 mt-5">
         <button
           onClick={scrollLeft}
@@ -244,19 +220,29 @@ const LocalVideoRow = () => {
   );
 };
 
+/* ── WhatsApp screenshot lightbox images ─────────────────────────── */
+const whatsappImages = [
+  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777464218/WhatsApp_Image_2026-04-29_at_5.15.46_PM_1_uakzat.jpg",
+  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777464217/WhatsApp_Image_2026-04-29_at_5.15.45_PM_vgwb3b.jpg",
+  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777464217/WhatsApp_Image_2026-04-29_at_5.15.45_PM_1_skbx0d.jpg",
+  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777464217/WhatsApp_Image_2026-04-29_at_5.15.46_PM_jpxywy.jpg",
+  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777464217/WhatsApp_Image_2026-04-29_at_5.15.45_PM_2_gnpzzt.jpg",
+  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1778484586/WhatsApp_Image_2026-05-09_at_7.24.07_PM_da61yd.jpg",
+  "https://res.cloudinary.com/dvrwadsfh/image/upload/v1778484563/WhatsApp_Image_2026-05-09_at_7.30.30_PM_hssp1i.jpg",
+];
+
 const Reviews = () => {
   const seoProps = {
-    title: "Member Reviews & Results | Studio FIT India — Real Transformations",
-    description: "Read hundreds of real reviews from Studio FIT India members. See weight loss results, fitness transformations and success stories from our online yoga, HIIT and Zumba classes.",
+    title: "Member Reviews & Testimonials | Studio FIT India — 4.9 Stars on Google",
+    description:
+      "Read hundreds of real reviews and video testimonials from Studio FIT India members. 4.9 stars on Google. Hear directly from our online yoga, HIIT and Zumba class members.",
     keywords: [
       "studio fit india reviews",
       "online fitness class reviews India",
-      "Studio FIT India reviews",
-      "online fitness class reviews India",
-      "fitness transformation India",
-      "online gym results India",
-      "Studio FIT India testimonials",
-      "online yoga class results",
+      "studio fit india testimonials",
+      "fitness class reviews India",
+      "online gym reviews India",
+      "studio fit india google reviews",
     ],
     schema: {
       "@context": "https://schema.org",
@@ -285,70 +271,16 @@ const Reviews = () => {
             "Lost 8kg in 3 months through their HIIT program. Highly recommend Studio FIT India.",
         },
       ],
-    }
+    },
   };
+
   const [lightboxImg, setLightboxImg] = useState(null);
 
   return (
     <div className="w-full">
       <SEO {...seoProps} />
-      {/* Hero */}
 
-      {/* Transformation Gallery */}
-      <section className="py-20 bg-navy-mid">
-        <div className="container mx-auto px-4">
-          <SectionHeader
-            heading="Transformation Gallery"
-            subheading="Real results from real members. Witness the dedication and progress of our champions."
-          />
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            {transformationImages.map((src, index) => (
-              <div
-                key={index}
-                onClick={() => setLightboxImg(src)}
-                className="relative overflow-hidden cursor-pointer group bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 aspect-[4/5]"
-              >
-                <img
-                  src={src}
-                  alt={`Transformation ${index + 1}`}
-                  className="w-full h-full object-contain transition-transform duration-500"
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center rounded-xl">
-                  <ZoomIn
-                    size={36}
-                    className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Lightbox */}
-      {lightboxImg && (
-        <div
-          onClick={() => setLightboxImg(null)}
-          className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
-        >
-          <button
-            onClick={() => setLightboxImg(null)}
-            className="absolute top-6 right-6 text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition"
-          >
-            <X size={28} />
-          </button>
-          <img
-            src={lightboxImg}
-            alt="Transformation"
-            onClick={(e) => e.stopPropagation()}
-            className="max-h-[90vh] max-w-[90vw] shadow-2xl object-contain transition-transform duration-300"
-          />
-        </div>
-      )}
-
-      {/* WhatsApp Reviews */}
+      {/* ── WhatsApp Reviews ──────────────────────────────────────── */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <SectionHeader
@@ -356,15 +288,7 @@ const Reviews = () => {
             subheading="Real reviews shared by our members on WhatsApp."
           />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
-            {[
-              "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777464218/WhatsApp_Image_2026-04-29_at_5.15.46_PM_1_uakzat.jpg",
-              "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777464217/WhatsApp_Image_2026-04-29_at_5.15.45_PM_vgwb3b.jpg",
-              "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777464217/WhatsApp_Image_2026-04-29_at_5.15.45_PM_1_skbx0d.jpg",
-              "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777464217/WhatsApp_Image_2026-04-29_at_5.15.46_PM_jpxywy.jpg",
-              "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777464217/WhatsApp_Image_2026-04-29_at_5.15.45_PM_2_gnpzzt.jpg",
-              "https://res.cloudinary.com/dvrwadsfh/image/upload/v1778484586/WhatsApp_Image_2026-05-09_at_7.24.07_PM_da61yd.jpg",
-              "https://res.cloudinary.com/dvrwadsfh/image/upload/v1778484563/WhatsApp_Image_2026-05-09_at_7.30.30_PM_hssp1i.jpg",
-            ].map((src, i) => (
+            {whatsappImages.map((src, i) => (
               <div
                 key={i}
                 onClick={() => setLightboxImg(src)}
@@ -382,7 +306,28 @@ const Reviews = () => {
         </div>
       </section>
 
-      {/* Heard By Customers — YouTube Video Testimonials */}
+      {/* ── Lightbox for WhatsApp images ──────────────────────────── */}
+      {lightboxImg && (
+        <div
+          onClick={() => setLightboxImg(null)}
+          className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+        >
+          <button
+            onClick={() => setLightboxImg(null)}
+            className="absolute top-6 right-6 text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition"
+          >
+            <X size={28} />
+          </button>
+          <img
+            src={lightboxImg}
+            alt="WhatsApp Review"
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[90vh] max-w-[90vw] shadow-2xl object-contain transition-transform duration-300"
+          />
+        </div>
+      )}
+
+      {/* ── YouTube Video Testimonials ────────────────────────────── */}
       <section className="py-24 bg-navy">
         <div className="container mx-auto px-4">
           <SectionHeader
@@ -392,20 +337,31 @@ const Reviews = () => {
           <div>
             <VideoCarousel />
           </div>
-
-          {/* Local Story Videos Sub-section */}
           <LocalVideoRow />
         </div>
       </section>
 
-      {/* Reviews Grid */}
+      {/* ── Google Reviews Grid ───────────────────────────────────── */}
       <section className="py-24 bg-navy-mid">
         <div className="container mx-auto px-4">
           <SectionHeader heading="Meet Our Happy Customers" />
-
           <div>
             <ReviewCarousel />
           </div>
+        </div>
+      </section>
+
+      {/* ── CTA to Results page ───────────────────────────────────── */}
+      <section className="py-14 bg-white border-t border-gray-100 text-center">
+        <div className="container mx-auto px-4">
+          <p className="text-gray-500 text-sm mb-3">Want to see the physical transformations?</p>
+          <a
+            href="/results"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-[12px] font-black tracking-widest text-white transition-all hover:opacity-90"
+            style={{ background: "#D3365F" }}
+          >
+            See Transformation Results <ArrowRight size={14} />
+          </a>
         </div>
       </section>
     </div>

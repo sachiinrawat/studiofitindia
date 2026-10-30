@@ -23,10 +23,13 @@ function sfi_is_spa_route($path) {
     // Core dynamic pages from our config
     $pages = array(
         '/', '/pricing', '/programs', '/about', '/contact', '/blog',
-        '/schedule', '/reviews', 
+        '/schedule', '/reviews', '/transformation', '/sfi',
         '/yoga-classes-online', '/hiit-training-online',
-        '/zumba-classes-online', '/strength-training-online',
-        '/weight-loss-program-online', '/personal-training-online',
+        '/functional-training-online',
+        '/zumba-classes-online', '/aerobics-classes-online',
+        '/strength-training-online',
+        '/weight-loss-program-online', '/pilates-classes-online',
+        '/personal-training-online',
         '/privacy-policy', '/terms-and-condition', '/shipping-policy',
         '/cancellation-and-refund'
     );
@@ -55,10 +58,13 @@ function sfi_is_spa_route($path) {
 // =====================================================================
 function studiofitindia_add_spa_rewrite_rules() {
     $spa_paths = array(
-        'pricing', 'programs', 'about', 'contact', 'schedule', 'reviews', 'blog',
+        'pricing', 'programs', 'about', 'contact', 'schedule', 'reviews', 'blog', 'transformation', 'sfi',
         'yoga-classes-online', 'hiit-training-online',
-        'zumba-classes-online', 'strength-training-online',
-        'weight-loss-program-online', 'personal-training-online',
+        'functional-training-online',
+        'zumba-classes-online', 'aerobics-classes-online',
+        'strength-training-online',
+        'weight-loss-program-online', 'pilates-classes-online',
+        'personal-training-online',
         'privacy-policy', 'terms-and-condition', 'shipping-policy',
         'cancellation-and-refund'
     );
@@ -77,10 +83,10 @@ add_action('init', 'studiofitindia_add_spa_rewrite_rules');
 // Forces the server to "Save Changes" and recognize new routes
 // =====================================================================
 function studiofitindia_force_flush_rules() {
-    if (get_option('sfi_rewrite_flushed_v4') !== 'done') {
+    if (get_option('sfi_rewrite_flushed_v6') !== 'done') {
         studiofitindia_add_spa_rewrite_rules();
         flush_rewrite_rules(true); // true = hard flush .htaccess if possible
-        update_option('sfi_rewrite_flushed_v4', 'done');
+        update_option('sfi_rewrite_flushed_v6', 'done');
     }
 }
 add_action('init', 'studiofitindia_force_flush_rules', 20);
@@ -140,7 +146,7 @@ function studiofitindia_enqueue_scripts() {
   $theme_uri = get_template_directory_uri();
 
   // Dynamically find the CSS file hash
-  $css_files = glob($theme_dir . '/assets/index-DOiOsO9y.css');
+  $css_files = glob($theme_dir . '/assets/index-DNODPUSi.css');
   $css_path = !empty($css_files) ? $css_files[0] : '';
   $css_uri  = !empty($css_path) ? $theme_uri . '/assets/' . basename($css_path) : '';
   $css_ver  = !empty($css_path) && file_exists($css_path) ? filemtime($css_path) : '1.0.0';
@@ -150,7 +156,7 @@ function studiofitindia_enqueue_scripts() {
   }
 
   // Dynamically find the JS file hash
-  $js_files = glob($theme_dir . '/assets/index-COT7SwA9.js');
+  $js_files = glob($theme_dir . '/assets/index-Df_yFi1q.js');
   $js_path = !empty($js_files) ? $js_files[0] : '';
   $js_uri  = !empty($js_path) ? $theme_uri . '/assets/' . basename($js_path) : '';
   $js_ver  = !empty($js_path) && file_exists($js_path) ? filemtime($js_path) : '1.0.0';
@@ -215,13 +221,13 @@ function sfi_get_page_config() {
   $pages = array(
     '/' => array(
       'title'       => 'Online Fitness Classes in India — Live Yoga, HIIT, Zumba | Studio FIT India',
-      'description' => 'Join India\'s #1 online live fitness classes — Yoga, HIIT, Zumba, Strength Training & Personal Training. Certified coaches, flexible timings. Starting ₹1,499/month. Book a trial at just ₹1 today!',
+      'description' => 'Join India\'s #1 online live fitness classes — Yoga, HIIT, Zumba, Strength Training & Personal Training. Certified coaches, flexible timings. Starting ₹1,699/month. Book a trial at just ₹1 today!',
       'keywords'    => 'online fitness classes India, live yoga classes India, online live yoga classes, live online fitness sessions, studio fit india, online gym India, Online Fitness Classes Worldwide, Online Strength Training, Online Zumba Classes, Online HIIIT Classes, Fitness Classes, Premium Fitness Classes',
     ),
     '/pricing' => array(
-      'title'       => 'Pricing & Membership Plans | Studio FIT India — Starting ₹1,499/Month',
-      'description' => 'View all Studio FIT India membership plans. Starter at ₹1,499 | Standard at ₹2,900 | PRO at ₹4,600 | Elite at ₹6,500 | 1 Month Transformation at ₹2,499 | Transformation Elite at ₹7,900. Also offering 1-on-1 Personal Training starting at ₹16,000.',
-      'keywords'    => 'studio fit india pricing, online fitness class price India, yoga class subscription India, monthly fitness plan India, personal training price India',
+      'title'       => 'Pricing & Membership Plans | Studio FIT India — Great Festive Fit Sale',
+      'description' => 'Great Festive Fit Sale: Buy Now, Start Later! Standard at ₹2,900 (3+1 Months) | PRO at ₹4,600 (6+2 Months) | Elite at ₹5,900 (1 Year + 3 Months) | 90-Day Transformation at ₹6,000 (50% OFF). Bonus: 21-Day Fat to Fit Challenge Free!',
+      'keywords'    => 'great festive fit sale, studio fit india pricing, online fitness class price India, yoga class subscription India, monthly fitness plan India',
     ),
     '/programs' => array(
       'title'       => 'Online Fitness Programs | Yoga, HIIT, Zumba & More | Studio FIT India',
@@ -299,10 +305,20 @@ function sfi_get_page_config() {
       'description' => 'Detailed information about shipping and delivery for Studio FIT India physical goods and digital service access.',
       'keywords'    => 'shipping policy studio fit india',
     ),
+    '/transformation' => array(
+      'title'       => '90-Day Body Transformation Program | Online Coaching | Studio FIT India',
+      'description' => 'Lose 12–20 KG in 90 days with Studio FIT India\'s expert-led transformation program. Includes unlimited live classes, personalised diet guidance, weekly monitoring & priority coach support. 25,000+ members trained.',
+      'keywords'    => 'body transformation program India, 90 day weight loss program India, online transformation coaching, lose weight fast India, diet and workout plan India, studio fit india transformation',
+    ),
     '/cancellation-and-refund' => array(
       'title'       => 'Cancellation & Refund Policy | Studio FIT India',
       'description' => 'Information regarding cancellations and refunds for Studio FIT India memberships and programs.',
       'keywords'    => 'refund policy studio fit india',
+    ),
+    '/sfi' => array(
+      'title'       => 'Studio FIT India | Live Online Fitness Classes — Your Fitness Journey Starts Here',
+      'description' => 'Join live online fitness classes with expert trainers. Weight Loss, Weight Gain, Strength Training & Regular Fitness — all from the comfort of your home.',
+      'keywords'    => 'studio fit india, online fitness classes, live workout home, weight loss online, personal training india',
     ),
   );
 
@@ -488,18 +504,18 @@ function sfi_get_crawlable_html() {
   <h1>Studio FIT India — Membership Plans &amp; Pricing</h1>
   <p>Choose a membership plan that fits your fitness goals and budget. All plans include access to <strong>live online classes</strong> with certified coaches in Yoga, HIIT, Zumba, Strength Training and more.</p>
   <nav aria-label="Main Navigation"><a href="/">Home</a> <a href="/programs">Programs</a> <a href="/about">About</a> <a href="/reviews">Reviews</a> <a href="/contact">Contact</a></nav>
-  <h2>Starter Plan — ₹1,499 / 1 Month</h2>
+  <h2>Starter Plan — ₹1,699 / 1 Month</h2>
   <ul><li>30 Live Classes per month</li><li>Access to all batch timings</li><li>No pause facility</li><li>No recorded library access</li></ul>
-  <h2>Standard Plan — ₹2,900 / 3 Months + 15 Days</h2>
-  <ul><li>90 Live Classes</li><li>10 Days pause facility</li><li>+15 Days Free Extension</li></ul>
-  <h2>PRO Plan — ₹4,600 / 6+1 Months</h2>
-  <ul><li>Unlimited Live Classes</li><li>15 Days pause facility</li><li>Recorded class library access</li><li>+1 Month Completely Free</li></ul>
-  <h2>Elite Plan — ₹6,500 / 1 Year</h2>
-  <ul><li>Unlimited Live Classes</li><li>30 Days pause facility</li><li>Full Recorded Library access</li><li>Progress Monitoring</li></ul>
-  <h2>1 Month Transformation Plan — ₹2,499 / 1 Month</h2>
+  <h2>Standard Plan — ₹2,900 / 3+1 Months</h2>
+  <ul><li>120 Sessions</li><li>10 Days pause facility</li><li>1 Month Free Extension</li><li>Content Library &amp; Workout Guidance</li></ul>
+  <h2>PRO Plan — ₹4,600 / 6+2 Months</h2>
+  <ul><li>Unlimited Live Classes</li><li>20 Days pause facility</li><li>2 Months Free Extension</li><li>Content Library &amp; Workout Guidance</li></ul>
+  <h2>Elite Plan — ₹5,900 / 1 Year + 3 Months</h2>
+  <ul><li>Unlimited Live Classes</li><li>30 Days pause facility</li><li>3 Months Free Extension</li><li>Content Library &amp; Workout Guidance</li></ul>
+  <h2>1 Month Transformation Plan — ₹3,500 / 1 Month</h2>
   <ul><li>Unlimited Live Classes</li><li>Full Recorded Library access</li><li>Customized Diet Plan</li><li>Weekly Progress Monitoring</li><li>No pause facility</li><li>Priority Support</li></ul>
-  <h2>Transformation Elite — ₹7,900 / 90 Days</h2>
-  <ul><li>Unlimited Live Classes</li><li>Full Recorded Library access</li><li>Customized Diet Plan</li><li>Weekly Progress Monitoring</li><li>15 Days pause facility</li><li>Priority Support</li></ul>
+  <h2>90-Day Transformation — ₹6,000 (50% OFF) / 90 Days</h2>
+  <ul><li>Customized Diet + Daily Tracking</li><li>Weekly Counselling</li><li>15 Days pause facility</li><li>Unlimited Live Classes</li><li>Content Library</li><li>Priority Support</li></ul>
   <h2>Personal Training (1 Month) — ₹16,000</h2>
   <ul><li>1-on-1 Personal Training</li><li>16 sessions in a month</li><li>WhatsApp Chat Support</li><li><a href="https://rzp.io/rzp/personal-training-1month">Pay Now</a></li></ul>
   <h2>Personal Training (3 Months) — ₹38,000</h2>
@@ -541,7 +557,7 @@ function sfi_get_crawlable_html() {
   <ul><li>Certified instructors with 4-10 years of experience</li><li>Live interactive sessions — not pre-recorded videos</li><li>Flexible morning and evening batch timings</li><li>Suitable for all levels: beginners to advanced practitioners</li><li>Affordable monthly and quarterly membership plans</li></ul>
   <h2>Yoga Programs Offered</h2>
   <ul><li>Hatha Yoga — classical postures for flexibility and balance</li><li>Ashtanga Yoga — dynamic, strength-building sequences</li><li>Power Yoga — intense, calorie-burning yoga flow</li><li>Pranayama &amp; Breathwork — respiratory health and stress relief</li><li>Meditation — mindfulness and mental clarity</li><li>Face Yoga — natural facial toning exercises</li></ul>
-  <p>Plans start at just ₹1,499/month. <a href="/pricing">Compare All Plans*</a>.</p>
+  <p>Plans start at just ₹1,699/month. <a href="/pricing">Compare All Plans*</a>.</p>
   <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20online%20Yoga%20classes.">Join Yoga Classes — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
@@ -556,7 +572,7 @@ function sfi_get_crawlable_html() {
   <ul><li>Burns 2-3x more calories than steady-state cardio</li><li>Afterburn effect — keeps burning calories 24 hours after workout</li><li>Builds lean muscle while shedding fat</li><li>No equipment needed — bodyweight-based</li><li>30-45 minute sessions — efficient and effective</li></ul>
   <h2>HIIT Programs Available</h2>
   <ul><li>Functional HIIT Training</li><li>Cardio HIIT Circuits</li><li>Strength &amp; HIIT Combination</li><li>Beginner-Friendly HIIT</li></ul>
-  <p>Plans start at ₹1,499/month. <a href="/pricing">Compare All Plans*</a>.</p>
+  <p>Plans start at ₹1,699/month. <a href="/pricing">Compare All Plans*</a>.</p>
   <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20HIIT%20training%20classes.">Join HIIT Classes — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
@@ -569,7 +585,7 @@ function sfi_get_crawlable_html() {
   <p>Join energetic, fun-filled live Zumba and dance fitness classes online in India. Studio FIT India\'s certified Zumba instructors lead sessions in Bollywood dance, Latin Zumba and Aerobics that make fitness feel effortless.</p>
   <h2>Why Zumba at Studio FIT India?</h2>
   <ul><li>Burns 400-600 calories per session</li><li>No prior dance experience needed</li><li>Bollywood, Latin &amp; International dance styles</li><li>High-energy, motivating live sessions</li><li>Morning and evening batch options</li></ul>
-  <p>Plans start at ₹1,499/month. <a href="/pricing">Compare All Plans*</a>.</p>
+  <p>Plans start at ₹1,699/month. <a href="/pricing">Compare All Plans*</a>.</p>
   <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20Zumba%20classes.">Join Zumba Classes — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
@@ -582,7 +598,7 @@ function sfi_get_crawlable_html() {
   <p>Build functional strength and muscle with live online strength training classes in India. Studio FIT India\'s certified coaches guide you through bodyweight training, CrossFit-style workouts and progressive overload programs from home.</p>
   <h2>Strength Training Programs</h2>
   <ul><li>Bodyweight Functional Training</li><li>CrossFit-Style Circuit Training</li><li>Progressive Muscle Building</li><li>Core Strength &amp; Stability</li><li>Mobility and Flexibility Training</li></ul>
-  <p>Plans start at ₹1,499/month. <a href="/pricing">Compare All Plans*</a>.</p>
+  <p>Plans start at ₹1,699/month. <a href="/pricing">Compare All Plans*</a>.</p>
   <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20Strength%20Training%20classes.">Join Strength Training — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
@@ -596,8 +612,8 @@ function sfi_get_crawlable_html() {
   <h2>What\'s Included in the Weight Loss Program?</h2>
   <ul><li>Daily live workout sessions (HIIT, Yoga, Zumba or Strength)</li><li>Diet consultation with certified nutrition coaches</li><li>Weekly progress monitoring and check-ins</li><li>Customized meal planning guidance</li><li>Ongoing coach support via WhatsApp</li></ul>
   <h2>Real Results from Real Members</h2>
-  <p>Plans start at ₹1,499/month. <a href="/reviews">Read member transformation stories</a>.</p>
-  <p>Plans start at ₹1,499/month. <a href="/pricing">Compare All Plans*</a>.</p>
+  <p>Plans start at ₹1,699/month. <a href="/reviews">Read member transformation stories</a>.</p>
+  <p>Plans start at ₹1,699/month. <a href="/pricing">Compare All Plans*</a>.</p>
   <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20join%20the%20Weight%20Loss%20Program.">Join Weight Loss Program — WhatsApp +91 87964 42732</a></p>
 </div>' . $footer_html;
   }
@@ -777,6 +793,31 @@ function sfi_get_crawlable_html() {
 
 
 
+  // ── SFI LANDING PAGE ──────────────────────────────────────────────
+  if ($path === '/sfi') {
+    return '
+<div id="sfi-noscript-content">
+  <h1>STUDIO FIT INDIA — YOUR FITNESS JOURNEY STARTS HERE</h1>
+  <p><strong>Get Fitter. Get Stronger. Feel Better.</strong></p>
+  <p>Join live online fitness classes with expert trainers and find the right program for your fitness goals — all from the comfort of your home.</p>
+  <ul>
+    <li>✅ Live Online Fitness Classes</li>
+    <li>✅ Expert Trainers</li>
+    <li>✅ Flexible Fitness Programs</li>
+    <li>✅ Workout From Anywhere</li>
+  </ul>
+  <h2>Find The Right Fitness Program For You</h2>
+  <p>Whether your goal is to gain weight, lose weight, build strength, or simply stay active, Studio FIT India can help you take the next step toward your fitness goals.</p>
+  <ul>
+    <li>Weight Gain</li>
+    <li>Weight Loss</li>
+    <li>Strength Training</li>
+    <li>Regular Fitness</li>
+  </ul>
+  <p><a href="https://wa.me/918796442732?text=Hi!%20I%20want%20to%20get%20started%20with%20Studio%20FIT%20India." class="cta-button">Get Started Today</a></p>
+</div>' . $footer_html;
+  }
+
   // ── HOME PAGE (DEFAULT) ───────────────────────────────────────────
   return '
 <div id="sfi-noscript-content">
@@ -794,7 +835,7 @@ function sfi_get_crawlable_html() {
   
   <h2>Membership Plans</h2>
   <ul>
-    <li><strong>Starter:</strong> ₹1,499/Month — 30 Live Classes</li>
+    <li><strong>Starter:</strong> ₹1,699/Month — 30 Live Classes</li>
     <li><strong>Standard:</strong> ₹2,900/3 Months — 90+ Live Classes</li>
     <li><strong>PRO:</strong> ₹4,600/6 Months — Unlimited Classes + 1 Month FREE</li>
     <li><strong>ELITE:</strong> ₹6,500/Year — Unlimited Classes + 30 Days Pause</li>
@@ -824,7 +865,7 @@ function sfi_get_crawlable_html() {
     <li><a href="/personal-training-online">Personal Training Online</a> — 1-on-1 coaching with a dedicated trainer</li>
   </ul>
   <h2>Membership Plans</h2>
-  <p>Starting at just ₹1,499/month for 30 live classes. <a href="/pricing">Compare All Plans*</a> including 3-month, 6-month, yearly and 90-day transformation packages.</p>
+  <p>Starting at just ₹1,699/month for 30 live classes. <a href="/pricing">Compare All Plans*</a> including 3-month, 6-month, yearly and 90-day transformation packages.</p>
   <h2>Why Studio FIT India?</h2>
   <ul>
     <li>Certified coaches with 4 to 15 years of experience</li>
@@ -880,12 +921,12 @@ function studiofitindia_preload_assets() {
   $theme_uri = get_template_directory_uri();
   $theme_dir = get_template_directory();
 
-  $css_files = glob($theme_dir . '/assets/index-DOiOsO9y.css');
+  $css_files = glob($theme_dir . '/assets/index-DNODPUSi.css');
   if (!empty($css_files)) {
     echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/' . basename($css_files[0])) . '" as="style">' . "\n";
   }
 
-  $js_files = glob($theme_dir . '/assets/index-COT7SwA9.js');
+  $js_files = glob($theme_dir . '/assets/index-Df_yFi1q.js');
   if (!empty($js_files)) {
     echo '<link rel="modulepreload" href="' . esc_url($theme_uri . '/assets/' . basename($js_files[0])) . '">' . "\n";
   }

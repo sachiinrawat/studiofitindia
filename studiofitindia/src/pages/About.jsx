@@ -1,17 +1,11 @@
 import SectionHeader from "../components/SectionHeader";
-import CoachCard from "../components/CoachCard";
-import { coaches } from "../data/coaches";
 import { Heart, Globe, Users, Smile } from "lucide-react";
-import { useState } from "react";
-import CoachModal from "../components/CoachModal";
 import EventGallery from "../components/EventGallery";
-
 import SEO from "../components/SEO";
 import { useAssetUrl } from "../utils/assets";
 
 const About = () => {
   const subodhImageUrl = useAssetUrl("/assets/coaches/Subodh.jpg");
-  const [selectedCoach, setSelectedCoach] = useState(null);
 
   const values = [
     {
@@ -38,7 +32,7 @@ const About = () => {
 
   return (
     <div className="w-full">
-      <SEO 
+      <SEO
         title="About Studio FIT India — Certified Online Fitness Coaches"
         description="Meet Studio FIT India's certified fitness coaches with 4-15 years of experience in Yoga, HIIT, Zumba and Strength Training. India's most trusted live online fitness studio."
         keywords={[
@@ -53,24 +47,7 @@ const About = () => {
           "online fitness community India",
         ]}
       />
-      {/* Hero */}
-      {/* Coaches Section */}
-      <section className="pt-6 pb-24 bg-white">
-        <div className="container mx-auto px-4">
-          <SectionHeader
-            heading="Meet The Coaches"
-            subheading="Experts in giving you the best start."
-          />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {coaches.map((coach) => (
-              <div key={coach.id}>
-                <CoachCard coach={coach} onSelect={setSelectedCoach} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
       {/* Intro Section */}
       <section className="py-16 bg-gray-50 border-y border-gray-100">
         <div className="container mx-auto px-4">
@@ -111,14 +88,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Coach Modal */}
 
-      {selectedCoach && (
-        <CoachModal
-          coach={selectedCoach}
-          onClose={() => setSelectedCoach(null)}
-        />
-      )}
       {/* Founder Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">

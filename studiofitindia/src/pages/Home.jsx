@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { Calendar } from "lucide-react";
+import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
 
 import Hero from "../components/Hero";
@@ -25,7 +25,7 @@ const MARQUEE_IMGS = [
 ];
 
 /* ─── Stat pill with scroll-in animation ─── */
-const StatPill = ({ value, label, delay = 0 }) => {
+const StatPill = ({ value, label, delay = 0, isRating = false }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   return (
@@ -36,7 +36,20 @@ const StatPill = ({ value, label, delay = 0 }) => {
       transition={{ duration: 0.5, delay, ease: "easeOut" }}
       className="flex flex-col items-center"
     >
-      <span className="text-3xl md:text-5xl font-extrabold font-heading text-secondary leading-none mb-1 md:mb-2">{value}</span>
+      {isRating ? (
+        <>
+          <div className="flex items-center gap-1 mb-1">
+            {[1,2,3,4,5].map(i => (
+              <svg key={i} className={`w-4 h-4 md:w-5 md:h-5 ${i <= 4 ? 'text-yellow-400' : 'text-yellow-300'}`} fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+          <span className="text-xl md:text-3xl font-extrabold font-heading text-secondary leading-none mb-1 md:mb-2">4.9</span>
+        </>
+      ) : (
+        <span className="text-xl md:text-3xl font-extrabold font-heading text-secondary leading-none mb-1 md:mb-2">{value}</span>
+      )}
       <span className="text-[11px] md:text-xs text-gray-400 font-bold uppercase tracking-[0.2em]">{label}</span>
     </motion.div>
   );
@@ -103,7 +116,7 @@ const ResultsStrip = () => {
 const Home = ({ onStartQuiz }) => {
   return (
     <div className="w-full">
-      <SEO 
+      <SEO
         title="Online Fitness Studio & Gym | Live Online Fitness Classes India"
         description="Join Studio FIT India, the leading online fitness studio. Experience the best online gym and online live workout classes. We offer online fitness classes for Yoga, HIIT, and Zumba."
         keywords={[
@@ -139,7 +152,7 @@ const Home = ({ onStartQuiz }) => {
               telephone: "+91 93106 66287",
               email: "studiofitindia@gmail.com",
               priceRange: "₹₹",
-              image: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777445549/image_ks0v7p.png",
+              image: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1787160047/sfi_pdk6so.png",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Greater Noida",
@@ -216,15 +229,18 @@ const Home = ({ onStartQuiz }) => {
       <Hero onStartQuiz={onStartQuiz} />
 
       {/* ── HERO CONTENT — starts below the banner ── */}
-      <section className="py-20 md:py-32 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-6 max-w-6xl text-center">
+      <section className="relative py-12 md:py-16 border-b border-gray-100 overflow-hidden">
+        {/* Gradient background */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(135deg, #fff7f9 0%, #fff 40%, #f8f4ff 100%)" }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 70% 60% at 80% 20%, rgba(211,54,95,0.05) 0%, transparent 70%)" }} />
+        <div className="relative z-10 container mx-auto px-6 max-w-6xl text-center">
           {/* Eyebrow */}
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.5 }}
-            className="text-[11px] font-bold uppercase tracking-[0.22em] text-secondary mb-4"
+            className="text-xs font-bold uppercase tracking-[0.22em] text-secondary mb-4"
           >
             World's #1 Live Online Fitness Studio
           </motion.p>
@@ -248,8 +264,7 @@ const Home = ({ onStartQuiz }) => {
             transition={{ duration: 0.55, delay: 0.16 }}
             className="text-gray-500 text-lg md:text-xl max-w-3xl mx-auto mb-10 font-medium leading-relaxed"
           >
-            Experience the best in <strong className="text-gray-700">online fitness</strong>. Join our interactive{" "}
-            <strong className="text-gray-700">live workout classes</strong> led by certified coaches — Yoga, HIIT, Zumba &amp; Strength Training.
+            Experience the best in online fitness. Join our interactive live workout classes led by certified coaches — Yoga, HIIT, Zumba, Aerobics, Strength Training, Pilates, Functional Training & Weight Loss Program.
           </motion.p>
 
           {/* CTAs */}
@@ -284,40 +299,177 @@ const Home = ({ onStartQuiz }) => {
             </Link>
           </motion.div>
 
-          {/* Class Timings */}
+          {/* Flexible Schedule Card */}
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.5, delay: 0.32 }}
-            className="max-w-4xl mx-auto mb-20 bg-gray-50/50 rounded-3xl p-8 md:p-12 border border-gray-100/80"
+            className="max-w-4xl mx-auto mb-20 bg-white rounded-3xl p-6 sm:p-10 md:p-12 border border-gray-200/80 shadow-sm text-center"
           >
-            <p className="font-heading font-bold text-gray-900 text-xl md:text-2xl mb-8">Monday to Sunday — All 7 Days</p>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-8">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-secondary block mb-2">Morning</span>
-                <p className="text-gray-600 font-medium text-base md:text-lg">5:00 AM, 6:00 AM, 7:00 AM, 8:00 AM, 9:00 AM, 10:30 AM</p>
+            {/* Tag Badge */}
+            <span className="inline-block bg-[#FDF2F4] text-secondary text-[10px] sm:text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
+              ANYTIME, ANYWHERE
+            </span>
+
+            {/* Heading */}
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-heading text-gray-900 leading-tight tracking-tight mb-3">
+              Smarter Training, <br className="hidden sm:inline" />
+              <span className="text-secondary">Flexible Schedule for Everyone</span>
+            </h3>
+
+            {/* Subtitle */}
+            <p className="text-gray-600 text-sm sm:text-base font-medium max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
+              Choose morning, afternoon, or evening. Never compromise work or family time for your health.
+            </p>
+
+            {/* Two Batch Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-8 sm:mb-10 text-left">
+              {/* Morning Batches */}
+              <div className="bg-[#FFFDF7] border border-[#FDE68A] rounded-2xl p-5 sm:p-6">
+                <div className="flex items-center gap-3.5 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-[#E58A00] text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <Clock size={20} strokeWidth={2.2} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-base leading-tight">Morning Batches</h4>
+                    <p className="text-gray-500 text-xs font-medium mt-0.5">Wake up energized before work</p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2 sm:gap-2.5">
+                  {["5:00 AM", "6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:30 AM"].map((time) => (
+                    <span
+                      key={time}
+                      className="px-3.5 py-1.5 rounded-xl border border-amber-200/90 bg-white text-gray-900 font-bold text-xs sm:text-sm shadow-xs"
+                    >
+                      {time}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="hidden md:block w-px h-12 bg-gray-200"></div>
-              <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-secondary block mb-2">Evening</span>
-                <p className="text-gray-600 font-medium text-base md:text-lg">4:00 PM, 5:00 PM, 6:00 PM, 7:00 PM, 8:00 PM</p>
+
+              {/* Evening Batches */}
+              <div className="bg-[#FFF8F9] border border-[#FECDD3] rounded-2xl p-5 sm:p-6">
+                <div className="flex items-center gap-3.5 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-secondary text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <Clock size={20} strokeWidth={2.2} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-base leading-tight">Evening Batches</h4>
+                    <p className="text-gray-500 text-xs font-medium mt-0.5">De-stress and sweat after work</p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2 sm:gap-2.5">
+                  {["4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM"].map((time) => (
+                    <span
+                      key={time}
+                      className="px-3.5 py-1.5 rounded-xl border border-rose-200/90 bg-white text-gray-900 font-bold text-xs sm:text-sm shadow-xs"
+                    >
+                      {time}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-            <p className="text-gray-500 text-base md:text-lg font-medium">You can join any class, any time, any day.</p>
+
+            {/* Bottom Action Button */}
+            <div className="flex justify-center">
+              <Link
+                to="/schedule"
+                className="btn-pop w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-gray-50 border border-gray-200 text-gray-800 font-bold text-xs sm:text-sm rounded-full transition-all text-center shadow-xs"
+              >
+                View Full Live Schedule
+              </Link>
+            </div>
           </motion.div>
 
           {/* Stats */}
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-10 sm:gap-12 md:gap-24">
-            <StatPill value="25000+" label="Active Members" delay={0.3} />
-            <StatPill value="25+"    label="Certified Coaches" delay={0.4} />
-            <StatPill value="4.9★"  label="Average Rating" delay={0.5} />
+          <div className="relative flex justify-center">
+            <div className="grid grid-cols-3 w-full max-w-lg border border-gray-100 rounded-2xl bg-white/80 backdrop-blur-sm shadow-sm overflow-hidden">
+              <div className="flex flex-col items-center py-5 px-3 border-r border-gray-100">
+                <StatPill value="25000+" label="Active Members" delay={0.3} />
+              </div>
+              <div className="flex flex-col items-center py-5 px-3 border-r border-gray-100">
+                <StatPill value="25+" label="Certified Coaches" delay={0.4} />
+              </div>
+              <div className="flex flex-col items-center py-5 px-3">
+                <StatPill value="4.9" label="Average Rating" delay={0.5} isRating={true} />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── SCROLL-DRIVEN RESULTS STRIP ── */}
       <ResultsStrip />
+
+      {/* ── TRANSFORMATION CTA ── */}
+      <section className="py-20 md:py-28 bg-white border-t border-b border-gray-100 overflow-hidden">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+
+            {/* Left copy */}
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+              className="flex-1 text-center lg:text-left"
+            >
+              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-secondary mb-4">90-Day Program</p>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-heading text-gray-900 leading-tight uppercase tracking-tight mb-5">
+                Ready to <span className="text-secondary">Transform?</span>
+              </h2>
+              <p className="text-gray-500 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                Experience the best in online fitness. Join our interactive live workout classes led by certified coaches — Yoga, HIIT, Zumba, Aerobics, Strength Training, Pilates, Functional Training & Weight Loss Program.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <Link
+                  to="/transformation"
+                  className="btn-pop w-full sm:w-auto px-8 py-4 bg-secondary text-white font-bold text-sm rounded-full text-center"
+                >
+                  Explore the Program
+                </Link>
+                <Link
+                  to="/transformation#assessment"
+                  className="btn-pop w-full sm:w-auto px-8 py-4 border border-gray-200 text-gray-700 font-bold text-sm rounded-full text-center hover:border-secondary hover:text-secondary transition-colors"
+                >
+                  Request a Callback
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Right — 4 feature pills */}
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
+              className="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-4"
+            >
+              {[
+                { num: "01", title: "Clean Eating, No Crash Diets", desc: "Real food, sustainable habits — no supplements or shakes." },
+                { num: "02", title: "Unlimited Live Classes", desc: "Yoga, Zumba, HIIT, Pilates, Aerobics & more — every day." },
+                { num: "03", title: "Personal Dietician", desc: "A custom fat-loss diet plan built around your lifestyle." },
+                { num: "04", title: "Expert Guidance", desc: "Coaches tell you exactly which classes to attend for your goal." },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: 0.15 + i * 0.08, ease: "easeOut" }}
+                  className="bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:border-secondary/40 transition-colors"
+                >
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-secondary block mb-3">{item.num}</span>
+                  <h3 className="text-gray-900 font-bold text-base mb-2 leading-snug">{item.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       <ProgramsStrip />
 
@@ -339,7 +491,7 @@ const Home = ({ onStartQuiz }) => {
               <span className="text-secondary">Class Schedule</span>
             </h2>
             <p className="text-gray-500 text-base">
-              Browse our real-time live batches and book your spot directly.
+              Browse our live batches below — click any class inside to register your spot.
             </p>
           </div>
           <div className="w-full max-w-5xl bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm h-[700px]">
@@ -350,6 +502,18 @@ const Home = ({ onStartQuiz }) => {
               allowFullScreen
             ></iframe>
           </div>
+          <p className="text-gray-400 text-sm mt-6">
+            Need help booking?{" "}
+            <a
+              href="https://wa.me/919310666287?text=Hi!%20I%20want%20to%20book%20a%20class."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-secondary font-semibold hover:underline"
+            >
+              WhatsApp us
+            </a>{" "}
+            and we'll reserve your spot in minutes.
+          </p>
         </div>
       </section>
 

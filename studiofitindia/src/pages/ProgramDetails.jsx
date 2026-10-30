@@ -31,7 +31,7 @@ const ProgramDetails = () => {
       "@type": "Organization",
       name: "Studio FIT India",
       url: "https://studiofitindia.com",
-      logo: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1777445549/image_ks0v7p.png",
+      logo: "https://res.cloudinary.com/dvrwadsfh/image/upload/v1787160047/sfi_pdk6so.png",
     },
     url: `https://studiofitindia.com/${program.slug}`,
     image: program.image,

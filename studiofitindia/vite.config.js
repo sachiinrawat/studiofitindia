@@ -90,11 +90,13 @@ WhatsApp: +91-9310666287 | Instagram: @studiofitindia | studiofitindia.com
 • Zumba / Dance Fitness / Aerobics • Pilates
 
 --- PRICING ---
-• Starter – 1 Month – ₹1,699 – 26 live classes
-• Standard – 3 Months – ₹2,800 – 85 classes + 15 Days FREE
-• Pro – 6 Months – ₹4,200 – Unlimited + 1 Month FREE
-• Elite – 1 Year – ₹9,900 – Unlimited + full recorded library + 3 diet consultations
-• Transformation Elite – 90 Days – ₹10,500 – Unlimited + customized diet + weekly monitoring
+• Starter – 1 Month – ₹1,499 – 30 live classes
+• Standard – 3 Months – ₹3,200 – 90 classes + 15 Days FREE
+• Pro – 6 Months – ₹4,999 – Unlimited + 1 Month FREE
+• Elite – 1 Year – ₹7,000 – Unlimited + content library
+• 3 Months Premium – ₹4,999 – Unlimited + monthly diet consultation
+• 1 Month Transformation – ₹3,500 – Unlimited + customized diet + weekly monitoring
+• Transformation Elite – 90 Days – ₹9,000 – Unlimited + customized diet + weekly monitoring
 
 --- COACHES ---
 • Pankaj Kavle — Strength, HIIT, CrossFit (15+ yrs)

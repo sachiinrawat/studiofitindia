@@ -61,38 +61,49 @@ const Blog = () => {
       </div>
 
       <main className="container mx-auto px-4 py-12 max-w-7xl">
-        {/* Featured Post */}
+        {/* Featured Post (Pure Typography Card - No Images) */}
         {!searchQuery && selectedCategory === "All" && (
-          <div className="mb-20">
-            <Link to={`/blog/${featuredPost.slug}`} className="group block relative overflow-hidden rounded-2xl bg-gray-900 min-h-[480px]">
-              <img 
-                src={featuredPost.image} 
-                alt={featuredPost.title}
-                className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-8 md:p-12 max-w-3xl">
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="bg-secondary text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+          <div className="mb-14">
+            <Link 
+              to={`/blog/${featuredPost.slug}`} 
+              className="group block relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 p-8 sm:p-12 border border-gray-800 shadow-xl hover:border-secondary/40 transition-all duration-300"
+            >
+              <div className="max-w-3xl">
+                <div className="flex flex-wrap items-center gap-3 mb-5">
+                  <span className="bg-secondary text-white text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm">
                     Featured Article
                   </span>
-                  <div className="flex items-center gap-2 text-white/80 text-xs font-semibold uppercase tracking-wider">
-                    <Calendar size={14} className="text-secondary" /> {featuredPost.date}
+                  <span className="bg-white/10 text-white/90 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                    {featuredPost.category}
+                  </span>
+                  <div className="flex items-center gap-1.5 text-white/70 text-xs font-semibold">
+                    <Calendar size={13} className="text-secondary" /> {featuredPost.date}
+                  </div>
+                  <div className="flex items-center gap-1.5 text-white/70 text-xs font-semibold">
+                    <Clock size={13} className="text-secondary" /> {featuredPost.readTime}
                   </div>
                 </div>
-                <h2 className="text-3xl md:text-5xl font-bold font-heading text-white mb-4 leading-tight">
+
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-heading text-white mb-4 leading-tight group-hover:text-rose-100 transition-colors">
                   {featuredPost.title}
                 </h2>
-                <p className="text-gray-300 text-base md:text-lg mb-6 line-clamp-2 max-w-2xl">
+                
+                <p className="text-gray-300 text-sm sm:text-base md:text-lg mb-8 leading-relaxed line-clamp-3 max-w-2xl">
                   {featuredPost.description}
                 </p>
-                <div className="flex items-center gap-6">
+
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/10 text-white font-bold text-xs">SF</div>
-                    <span className="text-white font-semibold uppercase tracking-wider text-xs">{featuredPost.author}</span>
+                    <div className="w-9 h-9 rounded-full bg-secondary/20 border border-secondary/40 flex items-center justify-center text-secondary font-black text-xs">
+                      SF
+                    </div>
+                    <div>
+                      <span className="block text-white font-bold uppercase tracking-wider text-xs">{featuredPost.author}</span>
+                      <span className="block text-gray-400 text-[10px]">Studio FIT India Coach</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-secondary font-bold uppercase tracking-wider text-xs">
-                    Read Story <ArrowRight size={16} />
+                  <div className="inline-flex items-center gap-2 text-secondary font-black uppercase tracking-wider text-xs group-hover:translate-x-1 transition-transform">
+                    Read Full Article <ArrowRight size={16} />
                   </div>
                 </div>
               </div>
@@ -108,35 +119,42 @@ const Blog = () => {
               Latest Insights
             </h3>
 
-            <div className="space-y-12">
+            <div className="space-y-6">
               {otherPosts.length > 0 ? (
                 otherPosts.map(post => (
-                  <article key={post.id} className="group flex flex-col md:flex-row gap-8">
-                    <Link to={`/blog/${post.slug}`} className="md:w-1/3 shrink-0 relative overflow-hidden rounded-2xl aspect-[4/3] md:aspect-auto border border-gray-200">
-                      <img 
-                        src={post.image} 
-                        alt={post.title}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-white/95 backdrop-blur-sm text-gray-900 text-[8px] font-bold px-2 py-1 rounded border border-gray-200 uppercase tracking-wider">
-                          {post.category}
-                        </span>
+                  <article 
+                    key={post.id} 
+                    className="group bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 hover:border-secondary/40 hover:shadow-lg transition-all duration-300"
+                  >
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                      <span className="bg-secondary/10 text-secondary text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                        {post.category}
+                      </span>
+                      <span className="text-gray-300">•</span>
+                      <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
+                        <Calendar size={13} className="text-gray-400" /> {post.date}
                       </div>
-                    </Link>
-                    <div className="flex flex-col justify-center">
-                      <div className="flex items-center gap-4 text-[10px] font-semibold uppercase tracking-wider text-gray-400 mb-2">
-                        <span className="flex items-center gap-1.5"><Calendar size={12} /> {post.date}</span>
-                        <span className="flex items-center gap-1.5"><Clock size={12} /> {post.readTime}</span>
+                      <span className="text-gray-300">•</span>
+                      <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
+                        <Clock size={13} className="text-gray-400" /> {post.readTime}
                       </div>
-                      <h4 className="text-xl md:text-2xl font-bold font-heading text-gray-900 mb-2 group-hover:text-secondary transition-colors leading-tight">
-                        <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-                      </h4>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
-                        {post.description}
-                      </p>
-                      <Link to={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-secondary font-bold uppercase tracking-wider text-[10px] group/link">
-                        Learn More <ChevronRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                    </div>
+
+                    <h4 className="text-xl sm:text-2xl font-bold font-heading text-gray-900 mb-3 group-hover:text-secondary transition-colors leading-snug">
+                      <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+                    </h4>
+
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-5">
+                      {post.description}
+                    </p>
+
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                      <span className="text-xs text-gray-400 font-medium">By {post.author}</span>
+                      <Link 
+                        to={`/blog/${post.slug}`} 
+                        className="inline-flex items-center gap-1.5 text-secondary font-bold uppercase tracking-wider text-xs group/link hover:underline"
+                      >
+                        Read Article <ChevronRight size={15} className="group-hover/link:translate-x-1 transition-transform" />
                       </Link>
                     </div>
                   </article>

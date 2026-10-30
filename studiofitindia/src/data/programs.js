@@ -9,8 +9,8 @@ export const programs = [
         icon: "Dumbbell",
         image: "https://res.cloudinary.com/dvrwadsfh/image/upload/f_auto,q_auto/v1774685139/strength_liqsgx.jpg",
         seo: {
-            title: "Online Strength Training Classes India | Studio FIT India",
-            description: "Join live online strength training classes in India with certified coaches. Build lean muscle, boost metabolism & improve posture. Morning & evening batches available. Book a trial at just ₹1 today!",
+            title: "Live Online Strength Training Classes India (Book ₹1 Trial) | Studio FIT",
+            description: "Join live 2-way online strength training classes in India. Build lean muscle, fix posture & burn fat at home with certified coaches. Morning & evening batches. Book your ₹1 trial!",
             keywords: [
                 "online strength training India",
                 "strength training classes online",
@@ -19,13 +19,15 @@ export const programs = [
                 "muscle building classes online",
                 "online weightlifting classes India",
                 "strength training at home India",
+                "home gym strength workouts India",
+                "live fitness trainer India"
             ],
-            h1: "Online Strength Training Classes in India",
+            h1: "Live Online Strength Training Classes in India — Certified Coach Guidance",
             h2s: [
-                "Why Choose Online Strength Training?",
-                "What You Will Learn in Our Strength Program",
-                "Who Can Join Our Strength Training Classes?",
-                "Class Timings & Batches",
+                "Why 25,000+ Indians Choose Our Online Strength Training",
+                "What You Will Learn & Movements We Master",
+                "Who Can Join Our Live Strength Training Classes?",
+                "Live Batch Timings (5:00 AM – 9:00 PM)",
             ],
         },
         details: `**What is Strength Training?**
@@ -50,8 +52,8 @@ export const programs = [
         icon: "Leaf",
         image: "https://res.cloudinary.com/dvrwadsfh/image/upload/f_auto,q_auto/v1774685139/yoga_f9jnhg.jpg",
         seo: {
-            title: "Online Yoga Classes India | Live Yoga Sessions | Studio FIT India",
-            description: "Join live online yoga classes in India with certified yoga instructors. Hatha, Vinyasa & Power Yoga sessions for all levels. Morning batches from 5am. Book a yoga trial at just ₹1 now!",
+            title: "Live Online Yoga Classes in India (Book ₹1 Trial) | 5 AM–9 PM Batches | Studio FIT",
+            description: "Join live interactive online yoga classes from home with certified yoga masters. Hatha, Vinyasa & Power Yoga for weight loss, flexibility & stress relief. Try for ₹1!",
             keywords: [
                 "online yoga classes India",
                 "live yoga classes India",
@@ -61,13 +63,14 @@ export const programs = [
                 "yoga for beginners India",
                 "online yoga studio India",
                 "yoga classes from home India",
+                "morning yoga classes online India"
             ],
-            h1: "Live Online Yoga Classes in India",
+            h1: "Live Interactive Online Yoga Classes in India — Mindful Strength & Flexibility",
             h2s: [
-                "Why Join Our Online Yoga Classes?",
-                "Types of Yoga We Teach",
-                "Who Is This Yoga Program For?",
-                "Class Schedule & Timings",
+                "Why Live Interactive Yoga Beats Pre-Recorded Videos",
+                "Hatha, Vinyasa & Power Yoga Styles We Teach",
+                "Who Can Join Our Online Yoga Sessions?",
+                "Daily Batch Schedule (Morning & Evening Slots)",
             ],
         },
         details: `**What is Yoga & Mindfulness?**
@@ -84,16 +87,16 @@ export const programs = [
     },
     {
         id: 3,
-        name: "HIIT & Functional",
+        name: "HIIT",
         slug: "hiit-training-online",
-        description: "High-intensity workouts to burn maximum calories.",
+        description: "High-intensity interval workouts to burn maximum calories in minimum time.",
         bestFor: ["Rapid fat loss", "Stamina & agility", "Busy schedules"],
         features: ["Circuit-based workouts", "Bodyweight training", "High-energy sessions"],
         icon: "Zap",
         image: "https://res.cloudinary.com/dvrwadsfh/image/upload/f_auto,q_auto/v1774685140/HIIT_ys26db.jpg",
         seo: {
-            title: "Online HIIT Training Classes India | Studio FIT India",
-            description: "Join live online HIIT classes in India and burn fat fast with certified trainers. High-intensity interval training for all fitness levels. Evening & morning batches. Book a trial at just ₹1!",
+            title: "Live Online HIIT Classes in India (Burn 400+ Cals) | Book ₹1 Trial | Studio FIT",
+            description: "Melt stubborn body fat fast with live online HIIT workouts. 30-min high-energy afterburn sessions with real-time coach feedback. Book your ₹1 trial batch now!",
             keywords: [
                 "HIIT classes online India",
                 "online HIIT training India",
@@ -101,18 +104,19 @@ export const programs = [
                 "live HIIT classes India",
                 "fat burning workout online India",
                 "HIIT workout from home India",
-                "functional training online India",
+                "cardio workouts online India",
+                "rapid fat loss workouts India"
             ],
-            h1: "Live Online HIIT Training Classes in India",
+            h1: "Live Online HIIT Training Classes in India — Maximum Calorie Burn at Home",
             h2s: [
-                "What Makes Our HIIT Classes Different?",
-                "Benefits of High-Intensity Interval Training",
-                "Who Can Join Our HIIT Program?",
-                "Class Schedule & Batches",
+                "The Science of HIIT: Burn Fat for 24 Hours Post-Workout (EPOC)",
+                "High-Energy Bodyweight & Circuit Formats We Run",
+                "Who Is This High-Intensity Program Designed For?",
+                "Flexible Morning & Evening Batch Timings",
             ],
         },
         details: `**What is HIIT?**
-        High-Intensity Interval Training (HIIT) describes any workout that alternates between intense bursts of activity and fixed periods of less-intense activity or even total rest. Functional fitness exercises train your muscles to work together and prepare them for daily tasks.
+        High-Intensity Interval Training (HIIT) describes any workout that alternates between intense bursts of activity and fixed periods of less-intense activity or even total rest.
         
         **Why It Works:**
         It pushes your cardiovascular system and keeps your body burning fat long after the workout is over (the Afterburn Effect).
@@ -125,16 +129,57 @@ export const programs = [
     },
     {
         id: 4,
-        name: "Weight Loss Programs",
+        name: "Functional Training",
+        slug: "functional-training-online",
+        description: "Train your body for real-life movement patterns and everyday strength.",
+        bestFor: ["Mobility", "Core strength", "Injury prevention"],
+        features: ["Movement-based exercises", "Bodyweight & resistance", "All fitness levels"],
+        icon: "Activity",
+        image: "https://res.cloudinary.com/dvrwadsfh/image/upload/f_auto,q_auto/v1774685140/HIIT_ys26db.jpg",
+        seo: {
+            title: "Live Online Functional Fitness Classes in India | Book ₹1 Trial | Studio FIT",
+            description: "Build real-world stamina, core strength, and injury resilience with live functional training online. Interactive coaching for beginners & pros. Book your ₹1 trial!",
+            keywords: [
+                "functional training online India",
+                "functional fitness classes India",
+                "online movement training India",
+                "core training online India",
+                "mobility training online India",
+                "functional workout from home India",
+                "posture correction fitness classes India"
+            ],
+            h1: "Live Online Functional Training Classes in India — Everyday Power & Mobility",
+            h2s: [
+                "What is Functional Fitness & Why Do You Need It?",
+                "Core, Balance & Multi-Joint Movement Drills",
+                "Who Should Join Our Functional Training Sessions?",
+                "Daily Live Class Schedule (5 AM – 9 PM)",
+            ],
+        },
+        details: `**What is Functional Training?**
+        Functional fitness exercises train your muscles to work together and prepare them for daily tasks by simulating common movements you might do at home, at work, or in sports.
+        
+        **Why It Matters:**
+        Unlike isolated exercises, functional training engages multiple muscle groups simultaneously, improving coordination, balance, and real-world strength.
+        
+        **Key Outcomes:**
+        - **Improved Mobility:** Move freely without restriction.
+        - **Core Stability:** Build a strong, stable foundation.
+        - **Injury Prevention:** Strengthen joints and connective tissue.
+        - **Everyday Strength:** Carry, lift, and move with ease.`
+    },
+    {
+        id: 5,
+        name: "Weight Loss Program",
         slug: "weight-loss-program-online",
-        description: "Complete transformation combining workouts and nutrition.",
+        description: "Complete transformation combining workouts and nutrition for sustainable fat loss.",
         bestFor: ["Visible results", "Sustainable fat loss", "Long-term discipline"],
         features: ["Customized plans", "Nutrition guidance", "Progress tracking"],
         icon: "TrendingDown",
         image: "https://res.cloudinary.com/dvrwadsfh/image/upload/f_auto,q_auto/v1774685140/weight-loss_g3hb5b.jpg",
         seo: {
-            title: "Online Weight Loss Program India | Studio FIT India",
-            description: "India's best online weight loss program with certified coaches. Customized workout plans, nutrition guidance & regular progress tracking. Lose weight from home. Book a trial at just ₹1!",
+            title: "Best Online Weight Loss Program in India (Custom Diet + Live Workouts) | Studio FIT",
+            description: "Lose 5–8 kgs sustainably from home with India's #1 online weight loss program. Includes custom Indian diet plans, daily live interactive classes & coach tracking. Try ₹1 trial!",
             keywords: [
                 "online weight loss program India",
                 "weight loss classes online India",
@@ -143,13 +188,15 @@ export const programs = [
                 "lose weight from home India",
                 "online slimming classes India",
                 "fat burning program India",
+                "Indian diet plan for weight loss online",
+                "90 day transformation India"
             ],
-            h1: "Online Weight Loss Program in India",
+            h1: "Online Weight Loss Transformation Program in India — Sustainable Results at Home",
             h2s: [
-                "How Our Weight Loss Program Works",
-                "Nutrition Guidance & Meal Planning",
-                "Who Is This Program For?",
-                "Class Schedule & Timings",
+                "How Our Scientific 90-Day Fat Loss System Works",
+                "Personalized Indian Nutrition & Calorie Tracking",
+                "Who Is This Weight Loss Program Perfect For?",
+                "Daily Live Workout Batches & Coach Check-Ins",
             ],
         },
         details: `**What is the Weight Loss Program?**
@@ -166,40 +213,116 @@ export const programs = [
     },
     {
         id: 6,
-        name: "Zumba & Aerobics",
+        name: "Zumba",
         slug: "zumba-classes-online",
-        description: "Dance your way to fitness — fun, energetic and effective.",
+        description: "Dance your way to fitness with high-energy Latin-inspired routines.",
         bestFor: ["Fun & energetic", "Cardio fitness", "Better consistency"],
         features: ["Daily online live classes", "Budget-friendly", "Community driven"],
-        icon: "Users",
+        icon: "Music",
         image: "https://res.cloudinary.com/dvrwadsfh/image/upload/f_auto,q_auto/v1774685139/zumba_hokxek.jpg",
         seo: {
-            title: "Online Zumba Classes India | Live Zumba & Aerobics | Studio FIT India",
-            description: "Join fun live Zumba and aerobics classes online in India. Burn calories while you dance with certified Zumba instructors. Morning & evening batches. Book a trial at just ₹1!",
+            title: "Live Online Zumba Classes in India (High-Energy Dance Cardio) | Studio FIT",
+            description: "Dance your way to weight loss with fun live online Zumba classes in India. Burn 500+ calories per session with certified Zumba instructors. Book your ₹1 live trial!",
             keywords: [
                 "online zumba classes India",
                 "live zumba classes online India",
                 "zumba instructor online India",
-                "aerobics classes online India",
                 "online dance fitness India",
                 "zumba workout from home India",
                 "zumba for weight loss online",
+                "dance cardio classes India",
+                "women zumba classes online India"
             ],
-            h1: "Live Online Zumba Classes in India",
+            h1: "Live Online Zumba Classes in India — Dance, Sweat & Burn Fat at Home",
             h2s: [
-                "Why Is Zumba So Effective for Weight Loss?",
-                "What to Expect in a Zumba Class",
-                "Who Can Join Our Online Zumba Program?",
-                "Zumba Class Schedule & Timings",
+                "Why Zumba is India's Favorite Fun Weight Loss Workout",
+                "High-Energy Latin & Bollywood Beats with Certified Instructors",
+                "Who Can Join Our Virtual Zumba Community?",
+                "Morning & Evening Live Dance Batches",
             ],
         },
-        details: `**What are Zumba & Aerobics Classes?**
-        Zumba is a dance fitness program that combines Latin rhythms with easy-to-follow moves to create a one-of-a-kind fitness program. Aerobics classes increase heart rate and circulation, working your entire body.
+        details: `**What is Zumba?**
+        Zumba is a dance fitness program that combines Latin rhythms with easy-to-follow moves to create a one-of-a-kind fitness experience. It's a party-style workout that doesn't feel like exercise.
         
-        **Why Join Our Group Classes?**
+        **Why Join Zumba?**
+        - **Fun Factor:** You won't even realize you're working out.
+        - **Calorie Burn:** Torch 400–600 calories per session.
         - **Motivation:** The collective energy is contagious.
-        - **Social Connection:** Train with like-minded individuals.
-        - **Consistency:** Scheduled classes create routine.
-        - **Affordability:** Expert coaching at great value.`
-    }
+        - **Consistency:** When it's fun, you keep coming back.`
+    },
+    {
+        id: 7,
+        name: "Aerobics",
+        slug: "aerobics-classes-online",
+        description: "Structured cardio sessions to boost heart health, stamina, and overall fitness.",
+        bestFor: ["Cardio health", "Endurance", "Full-body toning"],
+        features: ["Structured routines", "All fitness levels", "Expert-led sessions"],
+        icon: "Heart",
+        image: "https://res.cloudinary.com/dvrwadsfh/image/upload/f_auto,q_auto/v1774685139/zumba_hokxek.jpg",
+        seo: {
+            title: "Live Online Aerobics Classes in India (Cardio & Fat Burn) | Studio FIT",
+            description: "Boost heart health, stamina, and calorie burn with live aerobics classes online. Structured cardio routines guided step-by-step by certified coaches. Book a ₹1 trial!",
+            keywords: [
+                "aerobics classes online India",
+                "online aerobics India",
+                "live aerobics classes India",
+                "cardio workout online India",
+                "aerobics instructor online India",
+                "fat loss aerobics from home India"
+            ],
+            h1: "Live Online Aerobics Classes in India — Energizing Cardio & Full-Body Toning",
+            h2s: [
+                "How Aerobics Strengthens Your Heart & Burns Stubborn Fat",
+                "Rhythm-Based Full-Body Cardio Routines",
+                "Who Can Benefit Most From Online Aerobics?",
+                "Class Timings & Flexible Batch Options",
+            ],
+        },
+        details: `**What is Aerobics?**
+        Aerobics classes are structured cardiovascular workouts that increase your heart rate and circulation, working your entire body. They are designed to improve endurance, coordination, and overall fitness.
+        
+        **Why Choose Aerobics?**
+        - **Heart Health:** Strengthen your cardiovascular system.
+        - **Calorie Burn:** Effective fat-burning sessions.
+        - **Full-Body Workout:** Engage every muscle group.
+        - **Routine Building:** Scheduled classes keep you consistent.`
+    },
+    {
+        id: 8,
+        name: "Pilates",
+        slug: "pilates-classes-online",
+        description: "Strengthen your core, improve posture, and enhance body awareness through precise movements.",
+        bestFor: ["Core strength", "Posture correction", "Toning & flexibility"],
+        features: ["Mat-based exercises", "Low-impact training", "Mindful movement"],
+        icon: "Layers",
+        image: "https://res.cloudinary.com/dvrwadsfh/image/upload/f_auto,q_auto/v1774685139/yoga_f9jnhg.jpg",
+        seo: {
+            title: "Live Online Pilates Classes in India (Core & Posture Toning) | Studio FIT",
+            description: "Strengthen core muscles, fix back pain & tone your body with live online Pilates classes. Gentle on joints, guided by certified instructors. Book your ₹1 trial!",
+            keywords: [
+                "online pilates classes India",
+                "live pilates India",
+                "pilates instructor online India",
+                "core strengthening classes online India",
+                "pilates workout from home India",
+                "mat pilates classes India",
+                "posture correction exercises India"
+            ],
+            h1: "Live Online Pilates Classes in India — Deep Core Strength & Mindful Posture",
+            h2s: [
+                "Why Pilates is the Ultimate Low-Impact Core Sculptor",
+                "Mat-Based Precision & Spinal Alignment Techniques",
+                "Who Should Join Our Virtual Pilates Classes?",
+                "Class Schedule & Convenient Timings",
+            ],
+        },
+        details: `**What is Pilates?**
+        Pilates is a low-impact exercise method that focuses on strengthening muscles while improving postural alignment and flexibility. It emphasizes the connection between mind and body through controlled, precise movements.
+        
+        **Why Pilates?**
+        - **Core Strength:** Build deep stabilizing muscles.
+        - **Posture Correction:** Align your spine and reduce back pain.
+        - **Flexibility & Toning:** Lengthen and sculpt your body.
+        - **Mindful Movement:** Improve body awareness and coordination.`
+    },
 ];

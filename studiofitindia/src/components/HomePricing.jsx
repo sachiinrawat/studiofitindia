@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
-import { pricingPlans } from "../data/pricing";
+import { pricingPlans, dietPlans } from "../data/pricing";
 import PaymentModal from "./PaymentModal";
 
 const HomePricing = () => {
@@ -20,24 +20,40 @@ const HomePricing = () => {
 
 
 
+        {/* Great Festive Fit Sale Announcement Banner */}
+        <div className="max-w-4xl mx-auto mb-10 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-rose-50 via-amber-50 to-orange-50 border-2 border-rose-300 shadow-md text-center">
+          <div className="inline-flex items-center gap-2 bg-rose-600 text-white text-[10px] sm:text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-2 shadow-sm">
+            GREAT FESTIVE FIT SALE • VALID TILL 9TH NOV
+          </div>
+          <h3 className="text-xl sm:text-2xl font-black text-gray-900 font-heading">
+            BUY NOW, START LATER!
+          </h3>
+          <p className="text-gray-600 text-xs sm:text-sm font-semibold mt-1">
+            Book now &amp; start when you're ready • Festive renewal offers with up to 50% OFF!
+          </p>
+          <div className="mt-2.5 inline-block bg-white/90 border border-amber-300 text-amber-900 text-xs font-bold px-3 py-1 rounded-lg shadow-sm">
+            <span className="font-black">BONUS:</span> Renew by 31st Oct &amp; Get 21-Day FAT TO FIT CHALLENGE FREE!
+          </div>
+        </div>
+
         {/* Pricing Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
           {pricingPlans.slice(0, 4).map((plan) => {
-            const isMothersDay = plan.badge === "Mother's Day Offer";
+            const hasBadge = Boolean(plan.badge);
             return (
               <div key={plan.id} className="group h-full relative">
-                <div className={`flex flex-col h-full bg-white rounded-2xl transition-all duration-300 overflow-hidden border p-8 shadow-sm ${isMothersDay ? 'border-pink-400' : 'border-gray-200'}`}>
-                  {isMothersDay && (
-                    <div className="absolute top-0 right-0 bg-pink-600 text-white text-[9px] font-bold uppercase tracking-wider py-1 px-3.5 rounded-bl-xl z-10">
-                      Mother's Day Offer
+                <div className={`flex flex-col h-full bg-white rounded-2xl transition-all duration-300 overflow-hidden border p-8 shadow-sm ${hasBadge ? 'border-rose-400 shadow-md shadow-rose-100 ring-1 ring-rose-300' : 'border-gray-200'}`}>
+                  {hasBadge && (
+                    <div className="absolute top-0 right-0 bg-rose-600 text-white text-[9px] font-bold uppercase tracking-wider py-1 px-3.5 rounded-bl-xl z-10 shadow-sm">
+                      {plan.badge}
                     </div>
                   )}
                   <div className="mb-4">
-                    <h3 className={`text-lg font-bold font-heading mb-1 ${isMothersDay ? 'text-pink-600' : 'text-gray-900'}`}>{plan.name}</h3>
+                    <h3 className={`text-lg font-bold font-heading mb-1 ${hasBadge ? 'text-rose-600' : 'text-gray-900'}`}>{plan.name}</h3>
                     <p className="text-gray-400 font-semibold uppercase tracking-wider text-[10px]">
                       {plan.duration}
                       {plan.offerHighlight && (
-                        <span className="text-pink-600 ml-1 font-bold">
+                        <span className="text-rose-600 ml-1 font-bold">
                           (+ {plan.offerHighlight})
                         </span>
                       )}
@@ -52,18 +68,39 @@ const HomePricing = () => {
                     {plan.originalPrice && (
                       <p className="text-xs text-gray-400 line-through mt-0.5">₹{plan.originalPrice.toLocaleString()}</p>
                     )}
+                    {(() => {
+                      const d = plan.duration ?? "";
+                      const plusMatch = d.match(/(\d+)\s*\+\s*(\d+)\s*Month/i);
+                      const yearPlusMatch = d.match(/(\d+)\s*Year\s*\+\s*(\d+)\s*Month/i);
+                      const mM = d.match(/(\d+)\s*Month/i);
+                      const mY = d.match(/(\d+)\s*Year/i);
+                      const mD = d.match(/(\d+)\s*Day/i);
+                      const months = plusMatch ? parseInt(plusMatch[1]) + parseInt(plusMatch[2])
+                        : yearPlusMatch ? parseInt(yearPlusMatch[1]) * 12 + parseInt(yearPlusMatch[2])
+                        : mM ? parseInt(mM[1])
+                        : mY ? parseInt(mY[1]) * 12
+                        : mD ? Math.round(parseInt(mD[1]) / 30)
+                        : null;
+                      if (!months || months <= 1) return null;
+                      const perMonth = Math.ceil(plan.price / months);
+                      return (
+                        <div className="mt-2 inline-flex items-center bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1">
+                          <span className="text-[11px] font-bold text-emerald-700">Only ₹{perMonth.toLocaleString()}/month</span>
+                        </div>
+                      );
+                    })()}
                     <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block">5% GST Excluded</p>
                   </div>
 
                   <div className="space-y-3.5 mb-6 flex-grow">
                     {plan.features.map((feature, idx) => {
-                      const highlightFeature = isMothersDay && feature.includes('Free');
+                      const highlightFeature = feature.includes('FREE') || feature.includes('Free');
                       return (
-                        <div key={idx} className={`flex items-start gap-2.5 ${highlightFeature ? 'bg-pink-50 -mx-2 px-2 py-1.5 rounded-lg' : ''}`}>
+                        <div key={idx} className={`flex items-start gap-2.5 ${highlightFeature ? 'bg-rose-50 -mx-2 px-2 py-1.5 rounded-lg' : ''}`}>
                           <div className="shrink-0 mt-0.5">
-                            <Check size={14} className={isMothersDay ? "text-pink-500" : "text-secondary"} strokeWidth={3} />
+                            <Check size={14} className={highlightFeature ? "text-rose-600" : "text-secondary"} strokeWidth={3} />
                           </div>
-                          <span className={`text-xs leading-tight ${highlightFeature ? 'font-bold text-pink-600' : 'font-semibold text-gray-600'}`}>{feature}</span>
+                          <span className={`text-xs leading-tight ${highlightFeature ? 'font-bold text-rose-700' : 'font-semibold text-gray-600'}`}>{feature}</span>
                         </div>
                       )
                     })}
@@ -71,7 +108,7 @@ const HomePricing = () => {
 
                   <button 
                     onClick={() => setSelectedPlan(plan)}
-                    className={`w-full py-3 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl btn-pop ${isMothersDay ? 'bg-pink-600 hover:bg-pink-700 shadow-sm' : 'bg-gray-900 hover:bg-gray-800'}`}
+                    className={`w-full py-3 text-white text-[10px] font-bold uppercase tracking-wider rounded-xl btn-pop ${hasBadge ? 'bg-rose-600 hover:bg-rose-700 shadow-sm' : 'bg-gray-900 hover:bg-gray-800'}`}
                   >
                     Enroll Now
                   </button>
@@ -81,17 +118,21 @@ const HomePricing = () => {
           })}
         </div>
 
-        {/* Second Row for remaining 4 cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {pricingPlans.slice(4, 8).map((plan) => (
+        {/* Second Row for Diet & Transformation plans */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {dietPlans.map((plan) => (
             <div key={plan.id} className="group h-full">
               <div className="flex flex-col h-full bg-white rounded-2xl border border-gray-200 p-8 shadow-sm transition-all duration-300 hover:shadow-md">
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-1">
                     <h3 className="text-lg font-bold font-heading text-gray-900">{plan.name}</h3>
-                    {(plan.id === 6 || plan.id === 7) && (
+                    {plan.badge ? (
+                      <span className="bg-rose-600 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                        {plan.badge}
+                      </span>
+                    ) : (plan.id === 6 || plan.id === 7) ? (
                       <span className="bg-gray-100 text-gray-600 text-[8px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">1-on-1</span>
-                    )}
+                    ) : null}
                   </div>
                   <p className="text-gray-400 font-semibold uppercase tracking-wider text-[10px]">{plan.duration}</p>
                 </div>
@@ -99,11 +140,25 @@ const HomePricing = () => {
                 <div className="mb-6">
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-extrabold text-gray-900 font-heading">₹{plan.price.toLocaleString()}</span>
-                    <span className="text-gray-400 text-xs font-medium uppercase">/ {plan.duration.split(' ')[0]}</span>
+                    <span className="text-gray-400 text-xs font-medium uppercase">/ {plan.duration}</span>
                   </div>
                   {plan.originalPrice && (
                     <p className="text-xs text-gray-400 line-through mt-0.5">₹{plan.originalPrice.toLocaleString()}</p>
                   )}
+                  {(() => {
+                    const d = plan.duration ?? "";
+                    const mM = d.match(/(\d+)\s*Month/i);
+                    const mY = d.match(/(\d+)\s*Year/i);
+                    const mD = d.match(/(\d+)\s*Day/i);
+                    const months = mM ? parseInt(mM[1]) : mY ? parseInt(mY[1]) * 12 : mD ? Math.round(parseInt(mD[1]) / 30) : null;
+                    if (!months || months <= 1) return null;
+                    const perMonth = Math.ceil(plan.price / months);
+                    return (
+                      <div className="mt-2 inline-flex items-center bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1">
+                        <span className="text-[11px] font-bold text-emerald-700">Only ₹{perMonth.toLocaleString()}/month</span>
+                      </div>
+                    );
+                  })()}
                   <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block">5% GST Excluded</p>
                 </div>
 
@@ -162,6 +217,20 @@ const HomePricing = () => {
                       <span className="text-3xl font-extrabold text-gray-900 tracking-tight font-heading">₹{family3M.price.toLocaleString()}</span>
                       <span className="text-gray-500 text-xs uppercase font-bold">/ {family3M.duration}</span>
                     </div>
+                    {(() => {
+                      const d = family3M.duration ?? "";
+                      const mM = d.match(/(\d+)\s*Month/i);
+                      const mY = d.match(/(\d+)\s*Year/i);
+                      const mD = d.match(/(\d+)\s*Day/i);
+                      const months = mM ? parseInt(mM[1]) : mY ? parseInt(mY[1]) * 12 : mD ? Math.round(parseInt(mD[1]) / 30) : null;
+                      if (!months || months <= 1) return null;
+                      const perMonth = Math.ceil(family3M.price / months);
+                      return (
+                        <div className="mt-2 inline-flex items-center bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1">
+                          <span className="text-[11px] font-bold text-emerald-700">Only ₹{perMonth.toLocaleString()}/month</span>
+                        </div>
+                      );
+                    })()}
                     <p className="text-[11px] text-orange-600 font-semibold mt-1.5 bg-orange-50 border border-orange-200 rounded px-2 py-0.5 inline-block self-start">5% GST Excluded</p>
                   </div>
                 </div>
@@ -169,7 +238,7 @@ const HomePricing = () => {
                 {/* Right Column: Features list with left border divider */}
                 <div className="w-full md:w-[320px] flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-8">
                   <div>
-                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Included in Family Plan:</h4>
+                    <h4 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Included in Family Plan:</h4>
                     <div className="space-y-3 mb-6">
                       {family3M.features.map((feature, idx) => (
                         <div key={idx} className="flex items-start gap-2.5">
